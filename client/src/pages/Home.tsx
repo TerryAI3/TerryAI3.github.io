@@ -17,11 +17,11 @@ export default function Home() {
             <div className="inline-block bg-secondary px-4 py-1 text-xs font-bold uppercase tracking-widest text-white mb-4">
               Living Office
             </div>
-            <h1 className="font-heading text-5xl md:text-7xl font-bold uppercase leading-[1.1] tracking-tighter">
+            <h1 className="font-heading text-6xl md:text-8xl font-black uppercase leading-tight tracking-wider mb-6">
               设计·定制<br/>
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-white to-white/50">独特工作场所</span>
             </h1>
-            <p className="text-lg text-white/80 max-w-lg font-light border-l-2 border-secondary pl-6">
+            <p className="text-xl text-white/90 max-w-lg font-light border-l-4 border-secondary pl-8 leading-relaxed">
               激发灵感·分享创意
             </p>
             <div className="flex flex-wrap gap-4 pt-4">
@@ -43,11 +43,11 @@ export default function Home() {
       {/* Brand Values Section */}
       <section className="py-24 bg-background">
         <div className="container space-y-12">
-          <div className="space-y-4">
-            <h2 className="font-heading text-5xl font-bold uppercase tracking-tighter">
+          <div className="space-y-6 mb-12">
+            <h2 className="font-heading text-6xl font-bold uppercase tracking-wider">
               Living<span className="text-primary">Office</span>
             </h2>
-            <p className="text-lg text-muted-foreground max-w-2xl">
+            <p className="text-xl text-muted-foreground max-w-2xl leading-relaxed">
               不仅是办公空间，更是生活方式的体现
             </p>
           </div>
@@ -63,9 +63,9 @@ export default function Home() {
                 desc: "创造激励团队、促进协作的环境"
               }
             ].map((item, idx) => (
-              <div key={idx} className="p-8 bg-muted border-2 border-foreground/10 hover:border-primary transition-colors">
-                <h3 className="font-heading text-2xl font-bold uppercase mb-3">{item.title}</h3>
-                <p className="text-muted-foreground text-base">{item.desc}</p>
+              <div key={idx} className="p-10 bg-muted border-2 border-foreground/10 hover:border-primary transition-all duration-300">
+                <h3 className="font-heading text-3xl font-bold uppercase mb-4 tracking-wider">{item.title}</h3>
+                <p className="text-muted-foreground text-lg leading-relaxed">{item.desc}</p>
               </div>
             ))}
           </div>
