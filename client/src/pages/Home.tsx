@@ -18,11 +18,11 @@ export default function Home() {
               佐迪智能家具
             </div>
             <h1 className="font-heading text-6xl md:text-8xl font-bold uppercase leading-[0.9] tracking-tighter">
-              定义 <br/>
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-white to-white/50">你的空间</span>
+              设计 · 定制<br/>
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-white to-white/50">独特空间</span>
             </h1>
             <p className="text-xl text-muted-foreground max-w-lg font-light border-l-2 border-secondary pl-6">
-              佐迪智能家具为现代办公与教育环境打造的结构主义家具解决方案。理性、耐用、极简。
+              用智能家具激发灵感，为每个空间定制独特的生活办公方式。
             </p>
             <div className="flex flex-wrap gap-4 pt-4">
               <Link href="/products">
@@ -36,6 +36,46 @@ export default function Home() {
                 </Button>
               </Link>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Brand Values Section */}
+      <section className="py-24 bg-background">
+        <div className="container space-y-12">
+          <div className="space-y-4">
+            <h2 className="font-heading text-5xl font-bold uppercase tracking-tighter">
+              我们的<span className="text-primary">三大承诺</span>
+            </h2>
+            <p className="text-lg text-muted-foreground max-w-2xl">
+              设计·定制·激发灵感 - 这是佐迪对每个客户的承诺
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {[
+              {
+                title: "设计",
+                desc: "结构主义设计，理性而优雅",
+                icon: "✏️"
+              },
+              {
+                title: "定制",
+                desc: "灵活定制方案，适应多样场景",
+                icon: "🎯"
+              },
+              {
+                title: "激发灵感",
+                desc: "创造激励人心的工作和学习环境",
+                icon: "💡"
+              }
+            ].map((item, idx) => (
+              <div key={idx} className="p-8 bg-muted border-2 border-foreground/10 hover:border-primary transition-colors">
+                <div className="text-5xl mb-4">{item.icon}</div>
+                <h3 className="font-heading text-2xl font-bold uppercase mb-3">{item.title}</h3>
+                <p className="text-muted-foreground text-base">{item.desc}</p>
+              </div>
+            ))}
           </div>
         </div>
       </section>
@@ -133,13 +173,21 @@ export default function Home() {
             <h2 className="font-heading text-5xl font-bold uppercase tracking-tighter">
               关于 <span className="text-primary">佐迪</span>
             </h2>
-            <div className="space-y-4 text-lg text-muted-foreground leading-relaxed">
-              <p>
-                佐迪智能家具成立于2015年，总部位于佛山市三水区。我们专注于研发和生产适应现代办公与教育空间的高端家具产品。
-              </p>
-              <p>
-                从最初的小型工坊，到如今拥有现代化生产基地和专业设计团队的企业，佐迪始终坚持"结构主义"的设计理念，致力于将功能美学与工程卓越完美结合。
-              </p>
+            <div className="space-y-6 text-lg text-muted-foreground leading-relaxed">
+              <div>
+                <h3 className="font-heading text-2xl font-bold text-foreground mb-3">DESIGN · CUSTOMIZE · INSPIRE</h3>
+                <p>
+                  用智能家具激发灵感，为每个空间定制独特的生活办公方式。佐迪致力于为办公和教育空间设计定制的家具解决方案。
+                </p>
+              </div>
+              <div>
+                <h3 className="font-heading text-lg font-bold text-foreground mb-3">三大承诺</h3>
+                <ul className="space-y-2 text-base">
+                  <li><span className="font-bold">设计</span>: 结构主义设计，理性而优雅</li>
+                  <li><span className="font-bold">定制</span>: 灵活定制方案，适应多样场景</li>
+                  <li><span className="font-bold">激发灵感</span>: 创造激励人心的工作和学习环境</li>
+                </ul>
+              </div>
             </div>
             <Link href="/about">
               <a className="inline-flex items-center gap-2 px-8 py-3 bg-primary text-white font-heading uppercase tracking-wider hover:bg-primary/90 transition-colors">
