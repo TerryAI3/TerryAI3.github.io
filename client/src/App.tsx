@@ -8,6 +8,7 @@ import Home from "./pages/Home";
 import Office from "./pages/Office";
 import School from "./pages/School";
 import About from "./pages/About";
+import Cases from "./pages/Cases";
 import Layout from "./components/Layout";
 
 function Router() {
@@ -18,6 +19,7 @@ function Router() {
         <Route path={"/office"} component={Office} />
         <Route path={"/school"} component={School} />
         <Route path={"/about"} component={About} />
+        <Route path={"/cases"} component={Cases} />
         <Route path={"/404"} component={NotFound} />
         {/* Final fallback route */}
         <Route component={NotFound} />

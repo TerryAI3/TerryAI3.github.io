@@ -12,6 +12,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
     { name: "首页", path: "/" },
     { name: "办公家具", path: "/office" },
     { name: "学校家具", path: "/school" },
+    { name: "成功案例", path: "/cases" },
     { name: "关于我们", path: "/about" },
   ];
 

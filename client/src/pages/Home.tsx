@@ -136,6 +136,38 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Cases Preview Section */}
+      <section className="py-32 bg-muted">
+        <div className="container space-y-16">
+          <div className="space-y-4">
+            <h2 className="font-heading text-5xl font-bold uppercase tracking-tighter">
+              成功 <span className="text-primary">案例</span>
+            </h2>
+            <p className="text-lg text-muted-foreground max-w-2xl">
+              从校园到企业，佐迪为数百个项目打造了专业的空间解决方案。
+            </p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {[
+              { title: "现代教室改造", desc: "为传统教室配置现代化课桌椅系统", icon: "🏫" },
+              { title: "企业办公升级", desc: "打造高效协作的办公空间", icon: "🏢" },
+              { title: "智慧学习环境", desc: "创造激发创意的教育空间", icon: "✨" }
+            ].map((item, idx) => (
+              <div key={idx} className="p-8 bg-background border-2 border-foreground/10 hover:border-primary transition-colors">
+                <div className="text-4xl mb-4">{item.icon}</div>
+                <h3 className="font-heading text-xl font-bold uppercase mb-2">{item.title}</h3>
+                <p className="text-muted-foreground text-sm">{item.desc}</p>
+              </div>
+            ))}
+          </div>
+          <Link href="/cases">
+            <a className="inline-flex items-center gap-2 px-8 py-3 bg-primary text-white font-heading uppercase tracking-wider hover:bg-primary/90 transition-colors">
+              查看全部案例 <MoveRight className="h-5 w-5" />
+            </a>
+          </Link>
+        </div>
+      </section>
+
       {/* CTA Section */}
       <section className="py-24 bg-primary text-white">
         <div className="container flex flex-col md:flex-row items-center justify-between gap-12">
