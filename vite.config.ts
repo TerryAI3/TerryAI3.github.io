@@ -22,10 +22,27 @@ export default defineConfig({
   build: {
     outDir: path.resolve(import.meta.dirname, "dist/public"),
     emptyOutDir: true,
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          'vendor': ['react', 'react-dom', 'wouter'],
+          'ui': ['@radix-ui/react-dialog', '@radix-ui/react-dropdown-menu'],
+        },
+      },
+    },
+    minify: 'terser',
+    terserOptions: {
+      compress: {
+        drop_console: true,
+        drop_debugger: true,
+      },
+    },
+    cssCodeSplit: true,
+    assetsInlineLimit: 4096,
   },
   server: {
     port: 3000,
-    strictPort: false, // Will find next available port if 3000 is busy
+    strictPort: false,
     host: true,
     allowedHosts: [
       ".manuspre.computer",
@@ -40,5 +57,8 @@ export default defineConfig({
       strict: true,
       deny: ["**/.*"],
     },
+  },
+  optimizeDeps: {
+    include: ['react', 'react-dom', 'wouter', 'framer-motion', 'lucide-react'],
   },
 });
