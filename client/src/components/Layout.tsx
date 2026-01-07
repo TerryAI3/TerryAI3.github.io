@@ -10,6 +10,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
 
   const navItems = [
     { name: "首页", path: "/" },
+    { name: "产品中心", path: "/products" },
     { name: "办公家具", path: "/office" },
     { name: "学校家具", path: "/school" },
     { name: "成功案例", path: "/cases" },
