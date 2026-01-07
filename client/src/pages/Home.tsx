@@ -19,14 +19,14 @@ export default function Home() {
         <div className="container relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           <div className="space-y-8">
             <div className="inline-block bg-secondary px-4 py-1 text-xs font-bold uppercase tracking-widest text-white mb-4">
-              Form Follows Function
+              佐迪智能家具
             </div>
             <h1 className="font-heading text-6xl md:text-8xl font-bold uppercase leading-[0.9] tracking-tighter">
-              Define <br/>
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-white to-white/50">Your Space</span>
+              定义 <br/>
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-white to-white/50">你的空间</span>
             </h1>
             <p className="text-xl text-muted-foreground max-w-lg font-light border-l-2 border-secondary pl-6">
-              为现代办公与教育环境打造的结构主义家具解决方案。理性、耐用、极简。
+              佐迪智能家具为现代办公与教育环境打造的结构主义家具解决方案。理性、耐用、极简。
             </p>
             <div className="flex flex-wrap gap-4 pt-4">
               <Link href="/office">
@@ -57,7 +57,7 @@ export default function Home() {
           </div>
           <div className="relative z-10 space-y-4">
             <h2 className="font-heading text-5xl font-bold uppercase tracking-tighter text-white">
-              Office <br/> Collection
+              办公 <br/> 系列
             </h2>
             <p className="text-white/80 max-w-sm">
               提升效率与舒适度的专业办公解决方案。人体工学座椅、行政桌组、协作空间。
@@ -77,7 +77,7 @@ export default function Home() {
           </div>
           <div className="relative z-10 space-y-4">
             <h2 className="font-heading text-5xl font-bold uppercase tracking-tighter text-white">
-              School <br/> Furniture
+              教育 <br/> 系列
             </h2>
             <p className="text-white/80 max-w-sm">
               激发学习潜能的教育空间设计。耐用课桌椅、图书馆设施、多功能教室。

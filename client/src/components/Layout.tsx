@@ -13,7 +13,6 @@ export default function Layout({ children }: { children: React.ReactNode }) {
     { name: "办公家具", path: "/office" },
     { name: "学校家具", path: "/school" },
     { name: "关于我们", path: "/about" },
-    { name: "联系我们", path: "/contact" },
   ];
 
   return (
@@ -23,9 +22,8 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         <div className="container flex h-20 items-center justify-between">
           {/* Logo */}
           <Link href="/">
-            <a className="flex items-center gap-2 font-heading text-3xl font-bold tracking-tighter uppercase">
-              <div className="h-8 w-8 bg-primary" />
-              <span>Structura</span>
+            <a className="flex items-center gap-2">
+              <img src="/images/zuodi-logo.png" alt="佐迪" className="h-10 w-auto" />
             </a>
           </Link>
 
@@ -43,9 +41,9 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                 </a>
               </Link>
             ))}
-            <Button variant="default" className="rounded-none font-heading uppercase tracking-wider bg-primary hover:bg-primary/90 text-primary-foreground">
+            <a href="#contact" className="inline-flex items-center gap-2 px-6 py-2 bg-primary hover:bg-primary/90 text-primary-foreground font-heading uppercase tracking-wider transition-colors">
               获取报价
-            </Button>
+            </a>
           </nav>
 
           {/* Mobile Menu Toggle */}
@@ -91,12 +89,9 @@ export default function Layout({ children }: { children: React.ReactNode }) {
       <footer className="bg-foreground text-background border-t-8 border-secondary py-16">
         <div className="container grid grid-cols-1 md:grid-cols-4 gap-12">
           <div className="space-y-4">
-            <div className="flex items-center gap-2 font-heading text-2xl font-bold tracking-tighter uppercase">
-              <div className="h-6 w-6 bg-secondary" />
-              <span>Structura</span>
-            </div>
+            <img src="/images/zuodi-logo.png" alt="佐迪" className="h-12 w-auto" />
             <p className="text-muted-foreground text-sm leading-relaxed max-w-xs">
-              专注于现代办公与教育空间的家具解决方案。以结构主义美学，重新定义空间功能。
+              佛山市佐迪智能家具有限公司专注于现代办公与教育空间的家具解决方案。以结构主义美学，重新定义空间功能。
             </p>
           </div>
 
@@ -123,14 +118,14 @@ export default function Layout({ children }: { children: React.ReactNode }) {
           <div>
             <h3 className="font-heading text-lg font-bold uppercase tracking-widest mb-6 text-secondary">联系方式</h3>
             <ul className="space-y-3 text-sm text-muted-foreground">
-              <li>北京市朝阳区建国路88号</li>
-              <li>contact@structura.com</li>
-              <li>+86 10 8888 6666</li>
+              <li>佛山市三水区云东海街道双子星金融中心916</li>
+              <li>contact@zuodi.com</li>
+              <li>400-8888-6666</li>
             </ul>
           </div>
         </div>
         <div className="container mt-16 pt-8 border-t border-white/10 text-center text-xs text-muted-foreground uppercase tracking-widest">
-          © 2024 Structura Furniture. All rights reserved.
+          © 2024 佐迪智能家具. All rights reserved.
         </div>
       </footer>
     </div>
