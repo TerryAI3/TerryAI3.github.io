@@ -95,18 +95,18 @@ export default function Home() {
           {/* Content */}
           <div className="relative z-10 h-full flex flex-col justify-center px-6 lg:px-8 py-12">
             <h1 className="text-white text-2xl lg:text-3xl xl:text-4xl font-black mb-6 leading-tight uppercase" style={{ fontStyle: 'italic' }}>
-              YOUR BEST<br />
-              BUDDY FOR<br />
-              DIGITAL<br />
-              NOMADS
+              SMART<br />
+              OFFICE<br />
+              FUTURE<br />
+              DESIGN
             </h1>
 
             <p className="text-white/90 text-xs lg:text-sm mb-2 font-light leading-relaxed">
-              "数字牧民"的轻量化模块化办公家具
+              智能办公空间解决方案专家
             </p>
 
             <p className="text-orange-200 font-bold text-sm lg:text-base">
-              XBRICK & FLOMO
+              ZUODI 佐迪智能家具
             </p>
           </div>
         </div>
