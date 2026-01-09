@@ -63,26 +63,18 @@ export default function Home() {
         <div className="w-full h-full relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-0 h-full min-h-[600px] items-stretch">
             {/* Left: Orange Content Area with Paintbrush Edge */}
-            <div className="bg-gradient-to-br from-orange-500 to-orange-600 flex flex-col justify-center p-8 lg:p-16 relative overflow-visible">
+            <div 
+              className="bg-gradient-to-br from-orange-500 to-orange-600 flex flex-col justify-center p-8 lg:p-16 relative overflow-hidden"
+              style={{
+                clipPath: 'polygon(0 0%, 100% 0%, 100% 2%, 99% 5%, 98% 8%, 97% 11%, 96% 14%, 95% 17%, 94% 20%, 93% 23%, 92% 26%, 91% 29%, 90% 32%, 89% 35%, 88% 38%, 87% 41%, 86% 44%, 85% 47%, 84% 50%, 83% 53%, 82% 56%, 81% 59%, 80% 62%, 79% 65%, 78% 68%, 77% 71%, 76% 74%, 75% 77%, 74% 80%, 73% 83%, 72% 86%, 71% 89%, 70% 92%, 69% 95%, 68% 98%, 67% 100%, 0% 100%)'
+              }}
+            >
               {/* Background dark image overlay */}
               <div className="absolute inset-0 opacity-20 mix-blend-multiply" style={{
                 backgroundImage: 'url(/images/hero-office-new.jpg)',
                 backgroundSize: 'cover',
                 backgroundPosition: 'center'
               }}></div>
-
-              {/* Paintbrush texture on right edge using SVG */}
-              <svg className="absolute right-0 top-0 h-full w-32" preserveAspectRatio="none" viewBox="0 0 120 600" style={{ zIndex: 5 }}>
-                <defs>
-                  <filter id="paintbrush">
-                    <feTurbulence type="fractalNoise" baseFrequency="0.06" numOctaves="3" result="noise" seed="2" />
-                    <feDisplacementMap in="SourceGraphic" in2="noise" scale="25" />
-                  </filter>
-                </defs>
-                <path d="M 0 0 Q 20 40 15 100 Q 25 160 12 220 Q 28 280 8 340 Q 24 400 10 460 Q 26 520 15 600 L 120 600 L 120 0 Z" fill="white" opacity="0.15" filter="url(#paintbrush)" />
-                <path d="M 8 0 Q 18 60 5 140 Q 22 200 15 280 Q 20 360 6 440 Q 25 500 12 600 L 120 600 L 120 0 Z" fill="white" opacity="0.1" filter="url(#paintbrush)" />
-                <path d="M 3 0 Q 12 80 2 180 Q 16 260 10 360 Q 18 440 4 520 Q 20 580 8 600 L 120 600 L 120 0 Z" fill="white" opacity="0.08" filter="url(#paintbrush)" />
-              </svg>
               
               <div className="relative z-10">
                 <h1 className="text-white text-5xl lg:text-6xl font-black mb-6 leading-tight uppercase tracking-tight">
