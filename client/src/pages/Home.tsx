@@ -58,20 +58,20 @@ export default function Home() {
   return (
     <div className="flex flex-col">
       {/* Hero Banner */}
-      <section className="relative min-h-[700px] bg-gradient-to-br from-orange-500 via-orange-600 to-orange-700 overflow-hidden">
+      <section className="relative min-h-[700px] bg-gradient-to-r from-slate-900 via-slate-800 to-slate-900 overflow-hidden">
         {/* Decorative Background Elements */}
-        <div className="absolute top-0 right-0 w-96 h-96 bg-white/5 rounded-full -mr-48 -mt-48 blur-3xl"></div>
-        <div className="absolute bottom-0 left-1/4 w-80 h-80 bg-white/5 rounded-full -mb-40 blur-3xl"></div>
+        <div className="absolute top-0 right-1/3 w-96 h-96 bg-blue-500/10 rounded-full -mr-48 -mt-48 blur-3xl"></div>
+        <div className="absolute bottom-0 right-1/4 w-80 h-80 bg-blue-500/5 rounded-full -mb-40 blur-3xl"></div>
 
-        <div className="container mx-auto px-4 h-full relative z-10">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-0 h-full min-h-[700px] items-center">
-            {/* Left: Text Content */}
-            <div className="flex flex-col justify-center p-8 lg:p-20 relative">
-              <div className="absolute top-12 left-0 w-1 h-20 bg-white/40"></div>
+        <div className="w-full h-full relative z-10">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-0 h-full min-h-[700px] items-center">
+            {/* Left: Text Content - Takes 2 columns */}
+            <div className="lg:col-span-2 flex flex-col justify-center p-8 lg:p-24 relative">
+              <div className="absolute top-12 left-8 lg:left-24 w-1 h-24 bg-blue-400/60"></div>
               
-              <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md px-4 py-2 rounded-full w-fit mb-8 border border-white/20">
-                <span className="w-2 h-2 bg-white rounded-full"></span>
-                <span className="text-xs font-bold uppercase tracking-widest text-white">NEW COLLECTION 2024</span>
+              <div className="inline-flex items-center gap-2 bg-blue-500/20 backdrop-blur-md px-4 py-2 rounded-full w-fit mb-8 border border-blue-400/30">
+                <span className="w-2 h-2 bg-blue-400 rounded-full"></span>
+                <span className="text-xs font-bold uppercase tracking-widest text-blue-300">NEW COLLECTION 2024</span>
               </div>
 
               <h1 className="text-white text-6xl lg:text-7xl font-black mb-8 leading-tight uppercase tracking-tight">
@@ -81,7 +81,7 @@ export default function Home() {
                 NOMADS
               </h1>
 
-              <p className="text-white/90 text-xl mb-6 font-light leading-relaxed max-w-md">
+              <p className="text-slate-300 text-lg mb-6 font-light leading-relaxed max-w-lg">
                 "数字游牧"的经典化模块化办公家具
               </p>
 
@@ -90,28 +90,28 @@ export default function Home() {
               </p>
 
               <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4">
-                <a href="#products" className="inline-flex items-center gap-3 bg-white text-orange-600 px-8 py-4 rounded-lg font-bold hover:bg-gray-50 transition-all transform hover:scale-105 shadow-lg">
+                <a href="#products" className="inline-flex items-center gap-3 bg-blue-500 text-white px-8 py-4 rounded-lg font-bold hover:bg-blue-600 transition-all transform hover:scale-105 shadow-lg">
                   浏览产品
                   <ArrowRight className="w-5 h-5" />
                 </a>
-                <a href="#contact" className="inline-flex items-center gap-2 text-white border-2 border-white/40 px-6 py-3 rounded-lg font-semibold hover:border-white hover:bg-white/10 transition-all">
+                <a href="#contact" className="inline-flex items-center gap-2 text-white border-2 border-slate-500 px-6 py-3 rounded-lg font-semibold hover:border-blue-400 hover:bg-slate-700/50 transition-all">
                   获取报价
                 </a>
               </div>
             </div>
 
-            {/* Right: Product Scene Image */}
-            <div className="relative h-full min-h-[700px] overflow-hidden">
-              <div className="absolute inset-0 bg-gradient-to-l from-transparent via-transparent to-orange-600/20"></div>
+            {/* Right: Product Scene Image - Takes 1 column */}
+            <div className="hidden lg:block relative h-full min-h-[700px] overflow-hidden">
+              <div className="absolute inset-0 bg-gradient-to-l from-transparent via-transparent to-slate-900/40"></div>
               <img
                 src="/images/hero-office.jpg"
                 alt="Office Scene"
                 className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent"></div>
-              <div className="absolute bottom-8 left-8 bg-white/10 backdrop-blur-md p-6 rounded-lg border border-white/20 max-w-xs">
+              <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent"></div>
+              <div className="absolute bottom-8 right-8 bg-slate-900/80 backdrop-blur-md p-6 rounded-lg border border-blue-400/30 max-w-xs">
                 <p className="text-white text-sm font-semibold">✓ 模块化设计</p>
-                <p className="text-white/70 text-xs mt-2">灵活组合，适应多种办公场景</p>
+                <p className="text-slate-300 text-xs mt-2">灵活组合，适应多种办公场景</p>
               </div>
             </div>
           </div>
