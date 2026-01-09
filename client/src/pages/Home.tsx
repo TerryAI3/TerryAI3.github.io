@@ -62,7 +62,9 @@ export default function Home() {
         <div className="w-full h-full relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-0 h-full min-h-[700px] items-stretch">
             {/* Left: Orange Content Area with Background Image */}
-            <div className="bg-gradient-to-br from-orange-500 to-orange-600 flex flex-col justify-center p-8 lg:p-20 relative overflow-hidden">
+            <div className="bg-gradient-to-br from-orange-500 to-orange-600 flex flex-col justify-center p-8 lg:p-20 relative overflow-visible" style={{
+              clipPath: 'polygon(0 0, 100% 0%, 98% 5%, 96% 2%, 94% 8%, 92% 3%, 90% 7%, 88% 2%, 86% 6%, 84% 1%, 82% 5%, 80% 0%, 100% 0%, 100% 100%, 0 100%)'
+            }}>
               {/* Background dark image overlay */}
               <div className="absolute inset-0 opacity-15 mix-blend-multiply" style={{
                 backgroundImage: 'url(/images/hero-office-new.jpg)',
