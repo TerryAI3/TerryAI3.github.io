@@ -16,12 +16,14 @@ import AdminCategories from "./pages/AdminCategories";
 import Admin from "./pages/Admin";
 import AdminSeries from "./pages/AdminSeries";
 import AdminProductImport from "./pages/AdminProductImport";
+import Login from "./pages/Login";
 import Layout from "./components/Layout";
 function Router() {
   // make sure to consider if you need authentication for certain routes
   return (
     <Layout>
       <Switch>
+        <Route path={"/login"} component={Login} />
         <Route path={"/"} component={Home} />
         <Route path={"/office"} component={Office} />
         <Route path={"/school"} component={School} />

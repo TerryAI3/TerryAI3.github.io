@@ -54,7 +54,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
             <a href="#contact" className="inline-flex items-center gap-2 px-6 py-2 bg-primary hover:bg-primary/90 text-white text-sm font-medium transition-colors rounded">
               获取报价
             </a>
-            <Link href="/admin">
+            <Link href="/login">
               <a className="inline-flex items-center gap-2 px-4 py-2 border-2 border-primary text-primary hover:bg-primary hover:text-primary-foreground transition-colors rounded">
                 <Settings className="w-4 h-4" />
                 管理

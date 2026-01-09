@@ -21,7 +21,7 @@ export default function Admin() {
         <div className="text-center">
           <h1 className="text-2xl font-bold mb-4">需要登录</h1>
           <p className="text-muted-foreground mb-4">请先登录才能访问管理功能</p>
-          <Button onClick={() => navigate("/")}>返回首页</Button>
+          <Button onClick={() => navigate("/login")}>前往登录</Button>
         </div>
       </div>
     );
