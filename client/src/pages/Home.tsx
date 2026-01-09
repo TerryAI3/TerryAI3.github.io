@@ -72,15 +72,16 @@ export default function Home() {
               }}></div>
 
               {/* Paintbrush texture on right edge using SVG */}
-              <svg className="absolute right-0 top-0 h-full w-20" preserveAspectRatio="none" viewBox="0 0 100 600" style={{ zIndex: 5 }}>
+              <svg className="absolute right-0 top-0 h-full w-32" preserveAspectRatio="none" viewBox="0 0 120 600" style={{ zIndex: 5 }}>
                 <defs>
                   <filter id="paintbrush">
-                    <feTurbulence type="fractalNoise" baseFrequency="0.08" numOctaves="2" result="noise" />
-                    <feDisplacementMap in="SourceGraphic" in2="noise" scale="20" />
+                    <feTurbulence type="fractalNoise" baseFrequency="0.06" numOctaves="3" result="noise" seed="2" />
+                    <feDisplacementMap in="SourceGraphic" in2="noise" scale="25" />
                   </filter>
                 </defs>
-                <path d="M 0 0 Q 15 80 8 150 Q 20 220 10 300 Q 18 380 5 450 Q 22 520 12 600 L 100 600 L 100 0 Z" fill="white" opacity="0.12" filter="url(#paintbrush)" />
-                <path d="M 5 0 Q 10 100 3 200 Q 15 300 8 400 Q 12 500 2 600 L 100 600 L 100 0 Z" fill="white" opacity="0.08" filter="url(#paintbrush)" />
+                <path d="M 0 0 Q 20 40 15 100 Q 25 160 12 220 Q 28 280 8 340 Q 24 400 10 460 Q 26 520 15 600 L 120 600 L 120 0 Z" fill="white" opacity="0.15" filter="url(#paintbrush)" />
+                <path d="M 8 0 Q 18 60 5 140 Q 22 200 15 280 Q 20 360 6 440 Q 25 500 12 600 L 120 600 L 120 0 Z" fill="white" opacity="0.1" filter="url(#paintbrush)" />
+                <path d="M 3 0 Q 12 80 2 180 Q 16 260 10 360 Q 18 440 4 520 Q 20 580 8 600 L 120 600 L 120 0 Z" fill="white" opacity="0.08" filter="url(#paintbrush)" />
               </svg>
               
               <div className="relative z-10">
