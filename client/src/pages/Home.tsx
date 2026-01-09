@@ -61,12 +61,12 @@ export default function Home() {
       {/* Hero Banner */}
       <section className="relative w-full min-h-[600px] bg-gray-100 overflow-hidden">
         <div className="w-full h-full relative z-10">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-0 h-full min-h-[600px] items-stretch">
+          <div className="grid grid-cols-1 lg:grid-cols-[35%_65%] gap-0 h-full min-h-[600px] items-stretch">
             {/* Left: Orange Content Area with Paintbrush Edge */}
             <div 
               className="bg-gradient-to-br from-orange-500 to-orange-600 flex flex-col justify-center p-8 lg:p-16 relative overflow-hidden"
               style={{
-                clipPath: 'polygon(0 0%, 100% 0%, 100% 2%, 99% 5%, 98% 8%, 97% 11%, 96% 14%, 95% 17%, 94% 20%, 93% 23%, 92% 26%, 91% 29%, 90% 32%, 89% 35%, 88% 38%, 87% 41%, 86% 44%, 85% 47%, 84% 50%, 83% 53%, 82% 56%, 81% 59%, 80% 62%, 79% 65%, 78% 68%, 77% 71%, 76% 74%, 75% 77%, 74% 80%, 73% 83%, 72% 86%, 71% 89%, 70% 92%, 69% 95%, 68% 98%, 67% 100%, 0% 100%)'
+                clipPath: 'polygon(0 0%, 100% 0%, 100% 5%, 99% 8%, 98% 11%, 97% 14%, 96% 17%, 95% 20%, 94% 23%, 93% 26%, 92% 29%, 91% 32%, 90% 35%, 89% 38%, 88% 41%, 87% 44%, 86% 47%, 85% 50%, 84% 53%, 83% 56%, 82% 59%, 81% 62%, 80% 65%, 79% 68%, 78% 71%, 77% 74%, 76% 77%, 75% 80%, 74% 83%, 73% 86%, 72% 89%, 71% 92%, 70% 95%, 69% 98%, 68% 100%, 0% 100%)'
               }}
             >
               {/* Background dark image overlay */}
@@ -124,7 +124,7 @@ export default function Home() {
       {/* Brand Introduction */}
       <section className="py-20 bg-white">
         <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-[35%_65%] gap-16 items-center">
             <div className="space-y-6">
               <div className="text-sm font-bold text-gray-500 tracking-wider">
                 【SINCE 2010】
