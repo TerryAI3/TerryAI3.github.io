@@ -58,11 +58,18 @@ export default function Home() {
   return (
     <div className="flex flex-col">
       {/* Hero Banner */}
-      <section className="relative min-h-[700px] bg-white overflow-hidden border-b-4 border-dashed border-orange-500">
+      <section className="relative min-h-[700px] bg-white overflow-hidden">
         <div className="w-full h-full relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-0 h-full min-h-[700px] items-stretch">
-            {/* Left: Orange Content Area */}
+            {/* Left: Orange Content Area with Background Image */}
             <div className="bg-gradient-to-br from-orange-500 to-orange-600 flex flex-col justify-center p-8 lg:p-20 relative overflow-hidden">
+              {/* Background dark image overlay */}
+              <div className="absolute inset-0 opacity-15 mix-blend-multiply" style={{
+                backgroundImage: 'url(/images/hero-office-new.jpg)',
+                backgroundSize: 'cover',
+                backgroundPosition: 'center'
+              }}></div>
+
               {/* Decorative white slash line */}
               <div className="absolute top-0 left-0 w-32 h-32 opacity-20">
                 <svg viewBox="0 0 100 100" className="w-full h-full text-white" fill="none" stroke="currentColor" strokeWidth="8">
@@ -73,7 +80,7 @@ export default function Home() {
               </div>
 
               {/* NEW PRODUCT Badge */}
-              <div className="absolute top-8 right-8 bg-white text-orange-600 px-4 py-2 font-bold text-sm tracking-wider">
+              <div className="absolute top-8 right-8 bg-white text-orange-600 px-4 py-2 font-bold text-sm tracking-wider z-20">
                 NEW PRODUCT
               </div>
               
@@ -105,17 +112,27 @@ export default function Home() {
               </div>
             </div>
 
-            {/* Right: Image Area */}
-            <div className="hidden lg:block relative h-full min-h-[700px] overflow-hidden bg-gray-100">
+            {/* Right: Image Area with Paintbrush Effect */}
+            <div className="hidden lg:block relative h-full min-h-[700px] overflow-visible bg-gray-100">
               <img
-                src="/images/hero-office-modern.jpg"
+                src="/images/hero-office-new.jpg"
                 alt="Modern Office Space"
                 className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
+                style={{
+                  clipPath: 'polygon(0 0%, 2% 5%, 4% 2%, 6% 8%, 8% 3%, 10% 7%, 12% 2%, 14% 6%, 16% 1%, 18% 5%, 20% 0%, 100% 0%, 100% 100%, 0% 100%)'
+                }}
               />
-              <div className="absolute inset-0 bg-gradient-to-l from-transparent via-transparent to-orange-500/5"></div>
+              
+              {/* Soft gradient overlay for depth */}
+              <div className="absolute inset-0 bg-gradient-to-l from-transparent via-transparent to-orange-500/10"></div>
             </div>
           </div>
         </div>
+        
+        {/* Paintbrush divider effect at the bottom */}
+        <div className="absolute bottom-0 left-0 right-0 h-1 bg-white" style={{
+          clipPath: 'polygon(0 0, 100% 20%, 100% 100%, 0 100%)'
+        }}></div>
       </section>
 
       {/* Brand Introduction */}
