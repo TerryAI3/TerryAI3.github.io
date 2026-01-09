@@ -1,12 +1,14 @@
 import { Link, useLocation } from "wouter";
 import { cn } from "@/lib/utils";
-import { Menu, X } from "lucide-react";
+import { Menu, X, Settings } from "lucide-react";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
+import { useAuth } from "@/_core/hooks/useAuth";
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [location] = useLocation();
+  const { user } = useAuth();
 
   const navItems = [
     { name: "首页", path: "/" },
@@ -46,6 +48,14 @@ export default function Layout({ children }: { children: React.ReactNode }) {
             <a href="#contact" className="inline-flex items-center gap-2 px-6 py-2 bg-primary hover:bg-primary/90 text-primary-foreground font-heading uppercase tracking-wider transition-colors">
               获取报价
             </a>
+            {user?.role === "admin" && (
+              <Link href="/admin">
+                <a className="inline-flex items-center gap-2 px-4 py-2 border-2 border-primary text-primary hover:bg-primary hover:text-primary-foreground transition-colors">
+                  <Settings className="w-4 h-4" />
+                  管理
+                </a>
+              </Link>
+            )}
           </nav>
 
           {/* Mobile Menu Toggle */}
