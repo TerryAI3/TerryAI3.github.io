@@ -10,9 +10,11 @@ import School from "./pages/School";
 import About from "./pages/About";
 import Cases from "./pages/Cases";
 import Products from "./pages/Products";
+import ProductDetail from "./pages/ProductDetail";
+import AdminProducts from "./pages/AdminProducts";
 import Layout from "./components/Layout";
-
 function Router() {
+  // make sure to consider if you need authentication for certain routes
   return (
     <Layout>
       <Switch>
@@ -22,6 +24,8 @@ function Router() {
         <Route path={"/about"} component={About} />
         <Route path={"/cases"} component={Cases} />
         <Route path={"/products"} component={Products} />
+        <Route path={"/products/:id"} component={ProductDetail} />
+        <Route path={"/admin/products"} component={AdminProducts} />
         <Route path={"/404"} component={NotFound} />
         {/* Final fallback route */}
         <Route component={NotFound} />
