@@ -21,16 +21,26 @@ export default function Layout({ children }: { children: React.ReactNode }) {
     <div className="min-h-screen flex flex-col bg-background font-body text-foreground selection:bg-secondary selection:text-secondary-foreground">
       {/* Header */}
       <header className="sticky top-0 z-50 w-full border-b border-border bg-background shadow-sm">
-        <div className="container flex h-20 items-center justify-between">
-          {/* Logo */}
-          <Link href="/">
-            <a className="flex items-center gap-2">
-              <img src="/images/zuodi-logo.png" alt="佐迪" className="h-16 w-auto" />
-            </a>
-          </Link>
+        <div className="container py-4">
+          {/* Top Row: Logo centered */}
+          <div className="flex justify-center items-center mb-4">
+            <Link href="/">
+              <a className="flex items-center gap-2">
+                <img src="/images/zuodi-logo.png" alt="佐迪" className="h-20 w-auto" />
+              </a>
+            </Link>
+          </div>
 
-          {/* Desktop Nav */}
-          <nav className="hidden md:flex items-center gap-8">
+          {/* Mobile Menu Toggle - positioned absolute */}
+          <button
+            className="md:hidden p-2 absolute top-4 right-4"
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+          >
+            {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+          </button>
+
+          {/* Bottom Row: Navigation centered */}
+          <nav className="hidden md:flex items-center justify-center gap-8">
             {navItems.map((item) => (
               <Link key={item.path} href={item.path}>
                 <a
@@ -56,13 +66,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
             )}
           </nav>
 
-          {/* Mobile Menu Toggle */}
-          <button
-            className="md:hidden p-2"
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
-          >
-            {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-          </button>
+
         </div>
 
         {/* Mobile Nav */}
