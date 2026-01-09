@@ -58,13 +58,11 @@ export default function Home() {
   return (
     <div className="flex flex-col">
       {/* Hero Banner */}
-      <section className="relative min-h-[700px] bg-white overflow-hidden">
-        <div className="w-full h-full relative z-10">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-0 h-full min-h-[700px] items-stretch">
+      <section className="relative min-h-[700px] bg-white overflow-hidden py-12 lg:py-0">
+        <div className="w-full h-full relative z-10 flex items-center justify-center px-4 lg:px-0">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-0 h-full min-h-[700px] items-stretch rounded-3xl overflow-hidden shadow-2xl">
             {/* Left: Orange Content Area with Background Image */}
-            <div className="bg-gradient-to-br from-orange-500 to-orange-600 flex flex-col justify-center p-8 lg:p-20 relative overflow-visible" style={{
-              clipPath: 'polygon(0 0, 100% 0%, 98% 5%, 96% 2%, 94% 8%, 92% 3%, 90% 7%, 88% 2%, 86% 6%, 84% 1%, 82% 5%, 80% 0%, 100% 0%, 100% 100%, 0 100%)'
-            }}>
+            <div className="bg-gradient-to-br from-orange-500 to-orange-600 flex flex-col justify-center p-8 lg:p-20 relative overflow-hidden">
               {/* Background dark image overlay */}
               <div className="absolute inset-0 opacity-15 mix-blend-multiply" style={{
                 backgroundImage: 'url(/images/hero-office-new.jpg)',
@@ -114,15 +112,12 @@ export default function Home() {
               </div>
             </div>
 
-            {/* Right: Image Area with Paintbrush Effect */}
-            <div className="hidden lg:block relative h-full min-h-[700px] overflow-visible bg-gray-100">
+            {/* Right: Image Area */}
+            <div className="hidden lg:block relative h-full min-h-[700px] overflow-hidden bg-gray-100">
               <img
                 src="/images/hero-office-new.jpg"
                 alt="Modern Office Space"
                 className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
-                style={{
-                  clipPath: 'polygon(0 0%, 2% 5%, 4% 2%, 6% 8%, 8% 3%, 10% 7%, 12% 2%, 14% 6%, 16% 1%, 18% 5%, 20% 0%, 100% 0%, 100% 100%, 0% 100%)'
-                }}
               />
               
               {/* Soft gradient overlay for depth */}
@@ -130,11 +125,6 @@ export default function Home() {
             </div>
           </div>
         </div>
-        
-        {/* Paintbrush divider effect at the bottom */}
-        <div className="absolute bottom-0 left-0 right-0 h-1 bg-white" style={{
-          clipPath: 'polygon(0 0, 100% 20%, 100% 100%, 0 100%)'
-        }}></div>
       </section>
 
       {/* Brand Introduction */}
