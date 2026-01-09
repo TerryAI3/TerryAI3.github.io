@@ -120,79 +120,88 @@ export default function AdminProducts() {
           <h1 className="font-heading text-4xl font-bold uppercase tracking-wider">
             产品管理
           </h1>
-          <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
-            <DialogTrigger asChild>
-              <Button onClick={handleNewProduct} className="rounded-none">
-                <Plus className="w-4 h-4 mr-2" />
-                新增产品
-              </Button>
-            </DialogTrigger>
-            <DialogContent className="max-w-2xl">
-              <DialogHeader>
-                <DialogTitle>
-                  {editingId ? "编辑产品" : "新增产品"}
-                </DialogTitle>
-              </DialogHeader>
-              <div className="space-y-4">
-                <div>
-                  <Label htmlFor="name">产品名称</Label>
-                  <Input
-                    id="name"
-                    value={formData.name}
-                    onChange={(e) =>
-                      setFormData({ ...formData, name: e.target.value })
-                    }
-                    placeholder="输入产品名称"
-                  />
+          <div className="flex gap-4">
+            <Button 
+              onClick={() => navigate("/admin/categories")} 
+              variant="outline" 
+              className="rounded-none text-foreground border-background hover:bg-background hover:text-foreground"
+            >
+              分类管理
+            </Button>
+            <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
+              <DialogTrigger asChild>
+                <Button onClick={handleNewProduct} className="rounded-none">
+                  <Plus className="w-4 h-4 mr-2" />
+                  新增产品
+                </Button>
+              </DialogTrigger>
+              <DialogContent className="max-w-2xl">
+                <DialogHeader>
+                  <DialogTitle>
+                    {editingId ? "编辑产品" : "新增产品"}
+                  </DialogTitle>
+                </DialogHeader>
+                <div className="space-y-4">
+                  <div>
+                    <Label htmlFor="name">产品名称</Label>
+                    <Input
+                      id="name"
+                      value={formData.name}
+                      onChange={(e) =>
+                        setFormData({ ...formData, name: e.target.value })
+                      }
+                      placeholder="输入产品名称"
+                    />
+                  </div>
+                  <div>
+                    <Label htmlFor="price">价格</Label>
+                    <Input
+                      id="price"
+                      value={formData.price}
+                      onChange={(e) =>
+                        setFormData({ ...formData, price: e.target.value })
+                      }
+                      placeholder="输入价格"
+                    />
+                  </div>
+                  <div>
+                    <Label htmlFor="description">描述</Label>
+                    <Textarea
+                      id="description"
+                      value={formData.description}
+                      onChange={(e) =>
+                        setFormData({ ...formData, description: e.target.value })
+                      }
+                      placeholder="输入产品描述"
+                      rows={4}
+                    />
+                  </div>
+                  <div>
+                    <Label htmlFor="imageUrl">图片 URL</Label>
+                    <Input
+                      id="imageUrl"
+                      value={formData.imageUrl}
+                      onChange={(e) =>
+                        setFormData({ ...formData, imageUrl: e.target.value })
+                      }
+                      placeholder="输入图片 URL"
+                    />
+                  </div>
+                  <div className="flex gap-2 justify-end">
+                    <Button
+                      variant="outline"
+                      onClick={() => setIsDialogOpen(false)}
+                    >
+                      取消
+                    </Button>
+                    <Button onClick={handleSubmit}>
+                      {editingId ? "更新" : "创建"}
+                    </Button>
+                  </div>
                 </div>
-                <div>
-                  <Label htmlFor="price">价格</Label>
-                  <Input
-                    id="price"
-                    value={formData.price}
-                    onChange={(e) =>
-                      setFormData({ ...formData, price: e.target.value })
-                    }
-                    placeholder="输入价格"
-                  />
-                </div>
-                <div>
-                  <Label htmlFor="description">描述</Label>
-                  <Textarea
-                    id="description"
-                    value={formData.description}
-                    onChange={(e) =>
-                      setFormData({ ...formData, description: e.target.value })
-                    }
-                    placeholder="输入产品描述"
-                    rows={4}
-                  />
-                </div>
-                <div>
-                  <Label htmlFor="imageUrl">图片 URL</Label>
-                  <Input
-                    id="imageUrl"
-                    value={formData.imageUrl}
-                    onChange={(e) =>
-                      setFormData({ ...formData, imageUrl: e.target.value })
-                    }
-                    placeholder="输入图片 URL"
-                  />
-                </div>
-                <div className="flex gap-2 justify-end">
-                  <Button
-                    variant="outline"
-                    onClick={() => setIsDialogOpen(false)}
-                  >
-                    取消
-                  </Button>
-                  <Button onClick={handleSubmit}>
-                    {editingId ? "更新" : "创建"}
-                  </Button>
-                </div>
-              </div>
-            </DialogContent>
-          </Dialog>
+              </DialogContent>
+            </Dialog>
+          </div>
         </div>
       </div>
 

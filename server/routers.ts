@@ -2,7 +2,7 @@ import { COOKIE_NAME } from "@shared/const";
 import { getSessionCookieOptions } from "./_core/cookies";
 import { systemRouter } from "./_core/systemRouter";
 import { publicProcedure, router, protectedProcedure } from "./_core/trpc";
-import { getAllProducts, getProductById, getProductsByCategory, getAllCategories, createProduct, updateProduct, deleteProduct } from "./db";
+import { getAllProducts, getProductById, getProductsByCategory, getAllCategories, createProduct, updateProduct, deleteProduct, createCategory, updateCategory, deleteCategory, getCategoryById } from "./db";
 import { z } from "zod";
 
 export const appRouter = router({
@@ -81,6 +81,40 @@ export const appRouter = router({
     list: publicProcedure.query(async () => {
       return await getAllCategories();
     }),
+    getById: publicProcedure.input(z.number()).query(async ({ input }) => {
+      return await getCategoryById(input);
+    }),
+    create: protectedProcedure
+      .input(z.object({
+        name: z.string(),
+        slug: z.string(),
+        description: z.string().optional(),
+        type: z.enum(['office', 'school']),
+      }))
+      .mutation(async ({ input, ctx }) => {
+        if (ctx.user?.role !== 'admin') throw new Error('Only admins can create categories');
+        await createCategory(input);
+        return { success: true };
+      }),
+    update: protectedProcedure
+      .input(z.object({
+        id: z.number(),
+        name: z.string().optional(),
+        description: z.string().optional(),
+      }))
+      .mutation(async ({ input, ctx }) => {
+        if (ctx.user?.role !== 'admin') throw new Error('Only admins can update categories');
+        const { id, ...updates } = input;
+        await updateCategory(id, updates);
+        return { success: true };
+      }),
+    delete: protectedProcedure
+      .input(z.number())
+      .mutation(async ({ input, ctx }) => {
+        if (ctx.user?.role !== 'admin') throw new Error('Only admins can delete categories');
+        await deleteCategory(input);
+        return { success: true };
+      }),
   }),
 });
 

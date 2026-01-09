@@ -12,6 +12,7 @@ import Cases from "./pages/Cases";
 import Products from "./pages/Products";
 import ProductDetail from "./pages/ProductDetail";
 import AdminProducts from "./pages/AdminProducts";
+import AdminCategories from "./pages/AdminCategories";
 import Layout from "./components/Layout";
 function Router() {
   // make sure to consider if you need authentication for certain routes
@@ -26,6 +27,7 @@ function Router() {
         <Route path={"/products"} component={Products} />
         <Route path={"/products/:id"} component={ProductDetail} />
         <Route path={"/admin/products"} component={AdminProducts} />
+        <Route path={"/admin/categories"} component={AdminCategories} />
         <Route path={"/404"} component={NotFound} />
         {/* Final fallback route */}
         <Route component={NotFound} />

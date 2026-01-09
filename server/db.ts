@@ -134,3 +134,30 @@ export async function deleteProduct(id: number) {
   if (!db) throw new Error("Database not available");
   await db.delete(products).where(eq(products.id, id));
 }
+
+// Category queries
+export async function createCategory(data: { name: string; slug: string; description?: string; type: 'office' | 'school' }) {
+  const db = await getDb();
+  if (!db) throw new Error("Database not available");
+  const result = await db.insert(productCategories).values(data);
+  return result;
+}
+
+export async function updateCategory(id: number, updates: Partial<{ name: string; description: string }>) {
+  const db = await getDb();
+  if (!db) throw new Error("Database not available");
+  await db.update(productCategories).set(updates).where(eq(productCategories.id, id));
+}
+
+export async function deleteCategory(id: number) {
+  const db = await getDb();
+  if (!db) throw new Error("Database not available");
+  await db.delete(productCategories).where(eq(productCategories.id, id));
+}
+
+export async function getCategoryById(id: number) {
+  const db = await getDb();
+  if (!db) return undefined;
+  const result = await db.select().from(productCategories).where(eq(productCategories.id, id)).limit(1);
+  return result.length > 0 ? result[0] : undefined;
+}
