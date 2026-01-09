@@ -21,39 +21,37 @@ export default function Layout({ children }: { children: React.ReactNode }) {
     <div className="min-h-screen flex flex-col bg-background font-body text-foreground selection:bg-secondary selection:text-secondary-foreground">
       {/* Header */}
       <header className="sticky top-0 z-50 w-full border-b border-border bg-background shadow-sm">
-        <div className="container py-4">
-          {/* Top Row: Logo centered */}
-          <div className="flex justify-center items-center mb-4">
-            <Link href="/">
-              <a className="flex items-center gap-2">
-                <img src="/images/zuodi-logo.png" alt="佐迪" className="h-20 w-auto" />
-              </a>
-            </Link>
-          </div>
+        <div className="container flex h-20 items-center justify-between">
+          {/* Logo - Left aligned */}
+          <Link href="/">
+            <a className="flex items-center gap-2">
+              <img src="/images/zuodi-logo.png" alt="佐迪" className="h-12 w-auto" />
+            </a>
+          </Link>
 
-          {/* Mobile Menu Toggle - positioned absolute */}
+          {/* Mobile Menu Toggle */}
           <button
-            className="md:hidden p-2 absolute top-4 right-4"
+            className="md:hidden p-2"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
           >
             {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
           </button>
 
-          {/* Bottom Row: Navigation centered */}
-          <nav className="hidden md:flex items-center justify-center gap-8">
+          {/* Navigation - Right aligned */}
+          <nav className="hidden md:flex items-center gap-8">
             {navItems.map((item) => (
               <Link key={item.path} href={item.path}>
                 <a
                   className={cn(
-                    "text-sm font-medium uppercase tracking-widest transition-colors hover:text-primary",
-                    location === item.path ? "text-primary font-bold border-b-2 border-primary" : "text-muted-foreground"
+                    "text-sm font-medium transition-colors hover:text-primary",
+                    location === item.path ? "text-primary font-semibold" : "text-gray-600"
                   )}
                 >
                   {item.name}
                 </a>
               </Link>
             ))}
-            <a href="#contact" className="inline-flex items-center gap-2 px-6 py-2 bg-primary hover:bg-primary/90 text-primary-foreground font-heading uppercase tracking-wider transition-colors">
+            <a href="#contact" className="inline-flex items-center gap-2 px-6 py-2 bg-primary hover:bg-primary/90 text-white text-sm font-medium transition-colors rounded">
               获取报价
             </a>
             {user?.role === "admin" && (
