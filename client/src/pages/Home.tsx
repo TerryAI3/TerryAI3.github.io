@@ -59,72 +59,74 @@ export default function Home() {
   return (
     <div className="flex flex-col">
       {/* Hero Banner */}
-      <section className="relative w-full min-h-[600px] bg-gray-100 overflow-hidden">
-        <div className="w-full h-full relative z-10">
-          <div className="grid grid-cols-1 lg:grid-cols-[35%_65%] gap-0 h-full min-h-[600px] items-stretch">
-            {/* Left: Orange Content Area with Paintbrush Edge */}
-            <div 
-              className="bg-gradient-to-br from-orange-500 to-orange-600 flex flex-col justify-center p-8 lg:p-16 relative overflow-hidden"
-              style={{
-                clipPath: 'polygon(0 0%, 100% 0%, 100% 5%, 99% 8%, 98% 11%, 97% 14%, 96% 17%, 95% 20%, 94% 23%, 93% 26%, 92% 29%, 91% 32%, 90% 35%, 89% 38%, 88% 41%, 87% 44%, 86% 47%, 85% 50%, 84% 53%, 83% 56%, 82% 59%, 81% 62%, 80% 65%, 79% 68%, 78% 71%, 77% 74%, 76% 77%, 75% 80%, 74% 83%, 73% 86%, 72% 89%, 71% 92%, 70% 95%, 69% 98%, 68% 100%, 0% 100%)'
-              }}
-            >
-              {/* Background dark image overlay */}
-              <div className="absolute inset-0 opacity-20 mix-blend-multiply" style={{
-                backgroundImage: 'url(/images/hero-office-new.jpg)',
-                backgroundSize: 'cover',
-                backgroundPosition: 'center'
-              }}></div>
-              
-              <div className="relative z-10">
-                <h1 className="text-white text-5xl lg:text-6xl font-black mb-6 leading-tight uppercase tracking-tight">
-                  YOUR BEST<br />
-                  BUDDY FOR<br />
-                  DIGITAL<br />
-                  NOMADS
-                </h1>
+      <section className="relative w-full min-h-[550px] bg-gray-100 overflow-hidden">
+        {/* Full width image background */}
+        <div className="absolute inset-0 w-full h-full">
+          <img
+            src="/images/hero-office-new.jpg"
+            alt="Modern Office Space"
+            className="w-full h-full object-cover"
+          />
+        </div>
+        
+        {/* NEW PRODUCT Badge - Top Right */}
+        <div className="absolute top-6 right-6 bg-orange-500 text-white px-5 py-2 font-bold text-sm tracking-wider z-30 rounded">
+          NEW PRODUCT
+        </div>
+        
+        {/* Orange overlay with paintbrush edge */}
+        <div 
+          className="absolute left-0 top-0 h-full w-[30%] bg-gradient-to-br from-orange-500 to-orange-600 flex flex-col justify-center p-6 lg:p-10 z-10"
+          style={{
+            clipPath: 'polygon(0 0, 100% 0, 85% 8%, 80% 12%, 75% 18%, 70% 25%, 65% 33%, 60% 42%, 55% 52%, 50% 63%, 45% 75%, 40% 88%, 35% 100%, 0 100%)'
+          }}
+        >
+          {/* Background dark image overlay */}
+          <div className="absolute inset-0 opacity-20 mix-blend-multiply" style={{
+            backgroundImage: 'url(/images/hero-office-new.jpg)',
+            backgroundSize: 'cover',
+            backgroundPosition: 'center'
+          }}></div>
+          
+          <div className="relative z-10">
+            <h1 className="text-white text-3xl lg:text-4xl xl:text-5xl font-black mb-4 leading-tight uppercase tracking-tight">
+              YOUR BEST<br />
+              BUDDY FOR<br />
+              DIGITAL<br />
+              NOMADS
+            </h1>
 
-                <p className="text-white/90 text-base mb-4 font-light leading-relaxed max-w-md">
-                  "数字游牧"的经典化模块化办公家具
-                </p>
+            <p className="text-white/90 text-sm mb-3 font-light leading-relaxed max-w-xs">
+              "数字游牧"的经典化模块化办公家具
+            </p>
 
-                <p className="text-white font-bold text-xl mb-8">
-                  佐迪智能办公系列
-                </p>
-
-                <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4">
-                  <a href="#products" className="inline-flex items-center gap-3 bg-white text-orange-600 px-8 py-3 rounded font-bold hover:bg-gray-50 transition-all transform hover:scale-105 shadow-lg">
-                    浏览产品
-                    <ArrowRight className="w-5 h-5" />
-                  </a>
-                  <a href="#contact" className="inline-flex items-center gap-2 text-white border-2 border-white/60 px-6 py-2 rounded font-semibold hover:border-white hover:bg-white/10 transition-all">
-                    获取报价
-                  </a>
-                </div>
-              </div>
-            </div>
-
-            {/* Right: Image Area with Light Gray Background */}
-            <div className="hidden lg:flex relative h-full min-h-[600px] items-center justify-center bg-gray-100 overflow-hidden">
-              {/* NEW PRODUCT Badge - Top Right */}
-              <div className="absolute top-8 right-8 bg-orange-500 text-white px-6 py-3 font-bold text-sm tracking-wider z-20 rounded">
-                NEW PRODUCT
-              </div>
-              
-              <img
-                src="/images/hero-office-new.jpg"
-                alt="Modern Office Space"
-                className="w-full h-full object-cover"
-              />
-            </div>
+            <p className="text-white font-bold text-lg mb-6">
+              佐迪智能办公系列
+            </p>
           </div>
         </div>
+        
+        {/* White paintbrush stroke overlay */}
+        <svg className="absolute left-[26%] top-0 h-full w-[12%] z-20" preserveAspectRatio="none" viewBox="0 0 100 550">
+          <defs>
+            <filter id="roughEdge">
+              <feTurbulence type="fractalNoise" baseFrequency="0.03" numOctaves="4" result="noise" seed="3"/>
+              <feDisplacementMap in="SourceGraphic" in2="noise" scale="12" xChannelSelector="R" yChannelSelector="G"/>
+            </filter>
+          </defs>
+          <path 
+            d="M 0 0 C 30 20 25 50 20 80 C 35 110 15 140 25 170 C 10 200 30 230 20 260 C 35 290 10 320 25 350 C 15 380 30 410 20 440 C 35 470 15 500 25 550 L 100 550 L 100 0 Z" 
+            fill="white" 
+            opacity="1"
+            filter="url(#roughEdge)"
+          />
+        </svg>
       </section>
 
       {/* Brand Introduction */}
       <section className="py-20 bg-white">
         <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 lg:grid-cols-[35%_65%] gap-16 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <div className="space-y-6">
               <div className="text-sm font-bold text-gray-500 tracking-wider">
                 【SINCE 2010】
