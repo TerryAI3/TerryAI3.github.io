@@ -58,10 +58,10 @@ export default function Home() {
 
   return (
     <div className="flex flex-col">
-      {/* Hero Banner */}
-      <section className="relative w-full min-h-[550px] bg-gray-100 overflow-hidden">
-        {/* Full width image background */}
-        <div className="absolute inset-0 w-full h-full">
+      {/* Hero Banner - Matching Reference Design Exactly */}
+      <section className="relative w-full h-[550px] overflow-hidden">
+        {/* Full width background - light gray */}
+        <div className="absolute inset-0 w-full h-full bg-gray-100">
           <img
             src="/images/hero-office-new.jpg"
             alt="Modern Office Space"
@@ -70,57 +70,65 @@ export default function Home() {
         </div>
         
         {/* NEW PRODUCT Badge - Top Right */}
-        <div className="absolute top-6 right-6 bg-orange-500 text-white px-5 py-2 font-bold text-sm tracking-wider z-30 rounded">
+        <div className="absolute top-6 right-6 bg-orange-500 text-white px-5 py-2.5 font-bold text-sm tracking-wider z-30 rounded">
           NEW PRODUCT
         </div>
         
-        {/* Orange overlay with paintbrush edge */}
-        <div 
-          className="absolute left-0 top-0 h-full w-[30%] bg-gradient-to-br from-orange-500 to-orange-600 flex flex-col justify-center p-6 lg:p-10 z-10"
-          style={{
-            clipPath: 'polygon(0 0, 100% 0, 85% 8%, 80% 12%, 75% 18%, 70% 25%, 65% 33%, 60% 42%, 55% 52%, 50% 63%, 45% 75%, 40% 88%, 35% 100%, 0 100%)'
-          }}
-        >
-          {/* Background dark image overlay */}
-          <div className="absolute inset-0 opacity-20 mix-blend-multiply" style={{
-            backgroundImage: 'url(/images/hero-office-new.jpg)',
-            backgroundSize: 'cover',
-            backgroundPosition: 'center'
-          }}></div>
+        {/* Orange area - exactly matching reference */}
+        <div className="absolute left-0 top-0 h-full z-10" style={{ width: '25%' }}>
+          {/* Main orange background with diagonal cut */}
+          <div 
+            className="absolute inset-0 bg-orange-500"
+            style={{
+              clipPath: 'polygon(0 0, 100% 0, 65% 100%, 0 100%)'
+            }}
+          >
+            {/* Subtle texture overlay */}
+            <div className="absolute inset-0 opacity-10" style={{
+              backgroundImage: 'url(/images/hero-office-new.jpg)',
+              backgroundSize: 'cover',
+              backgroundPosition: 'center',
+              mixBlendMode: 'multiply'
+            }}></div>
+          </div>
           
-          <div className="relative z-10">
-            <h1 className="text-white text-3xl lg:text-4xl xl:text-5xl font-black mb-4 leading-tight uppercase tracking-tight">
+          {/* Content */}
+          <div className="relative z-10 h-full flex flex-col justify-center px-6 lg:px-8 py-12">
+            <h1 className="text-white text-2xl lg:text-3xl xl:text-4xl font-black mb-6 leading-tight uppercase" style={{ fontStyle: 'italic' }}>
               YOUR BEST<br />
               BUDDY FOR<br />
               DIGITAL<br />
               NOMADS
             </h1>
 
-            <p className="text-white/90 text-sm mb-3 font-light leading-relaxed max-w-xs">
-              "数字游牧"的经典化模块化办公家具
+            <p className="text-white/90 text-xs lg:text-sm mb-2 font-light leading-relaxed">
+              "数字牧民"的轻量化模块化办公家具
             </p>
 
-            <p className="text-white font-bold text-lg mb-6">
-              佐迪智能办公系列
+            <p className="text-orange-200 font-bold text-sm lg:text-base">
+              XBRICK & FLOMO
             </p>
           </div>
         </div>
         
-        {/* White paintbrush stroke overlay */}
-        <svg className="absolute left-[26%] top-0 h-full w-[12%] z-20" preserveAspectRatio="none" viewBox="0 0 100 550">
-          <defs>
-            <filter id="roughEdge">
-              <feTurbulence type="fractalNoise" baseFrequency="0.03" numOctaves="4" result="noise" seed="3"/>
-              <feDisplacementMap in="SourceGraphic" in2="noise" scale="12" xChannelSelector="R" yChannelSelector="G"/>
-            </filter>
-          </defs>
-          <path 
-            d="M 0 0 C 30 20 25 50 20 80 C 35 110 15 140 25 170 C 10 200 30 230 20 260 C 35 290 10 320 25 350 C 15 380 30 410 20 440 C 35 470 15 500 25 550 L 100 550 L 100 0 Z" 
-            fill="white" 
-            opacity="1"
-            filter="url(#roughEdge)"
+        {/* White brush stroke - diagonal from top-right to bottom-left */}
+        <div 
+          className="absolute top-0 h-full z-20 pointer-events-none"
+          style={{ 
+            left: '15%',
+            width: '18%'
+          }}
+        >
+          <img 
+            src="/images/brush-diagonal.png" 
+            alt=""
+            className="h-full w-full"
+            style={{
+              objectFit: 'cover',
+              objectPosition: 'left center'
+            }}
           />
-        </svg>
+        </div>
       </section>
 
       {/* Brand Introduction */}
