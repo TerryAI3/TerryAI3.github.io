@@ -87,9 +87,9 @@ export default function Home() {
             {/* Office Collection */}
             <div className="group relative h-96 overflow-hidden border-4 border-foreground">
               <div className="absolute inset-0 z-0 transition-transform duration-700 group-hover:scale-105">
-                <img src="/images/product-chair.jpg" alt="Office Chair" className="h-full w-full object-cover opacity-90 mix-blend-multiply grayscale group-hover:grayscale-0 transition-all duration-500" />
+                <img src="/images/products/office-workstation.webp" alt="Office Workstation" className="h-full w-full object-cover opacity-90 mix-blend-multiply grayscale group-hover:grayscale-0 transition-all duration-500" />
               </div>
-              <div className="relative z-10 space-y-4">
+              <div className="relative z-10 space-y-4 p-8">
                 <h2 className="font-heading text-5xl font-bold uppercase tracking-tighter text-white">
                   办公 <br/> 系列
                 </h2>
@@ -105,9 +105,9 @@ export default function Home() {
             {/* School Collection */}
             <div className="group relative h-96 overflow-hidden border-4 border-foreground">
               <div className="absolute inset-0 z-0 transition-transform duration-700 group-hover:scale-105">
-                <img src="/images/product-desk.jpg" alt="School Desk" className="h-full w-full object-cover opacity-80 mix-blend-overlay group-hover:mix-blend-normal transition-all duration-500" />
+                <img src="/images/products/classroom-furniture.webp" alt="Classroom Furniture" className="h-full w-full object-cover opacity-80 mix-blend-overlay group-hover:mix-blend-normal transition-all duration-500" />
               </div>
-              <div className="relative z-10 space-y-4">
+              <div className="relative z-10 space-y-4 p-8">
                 <h2 className="font-heading text-5xl font-bold uppercase tracking-tighter text-white">
                   教育 <br/> 系列
                 </h2>
@@ -119,6 +119,130 @@ export default function Home() {
                 </a>
               </div>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Product Highlights Section */}
+      <section className="py-32 bg-muted">
+        <div className="container space-y-16">
+          <div className="text-center space-y-4">
+            <h2 className="font-heading text-5xl font-bold uppercase tracking-tighter">
+              精选 <span className="text-primary">产品</span>
+            </h2>
+            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+              专业设计，精工制造，为您的空间提供完美解决方案
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {/* 办公桌 */}
+            <div className="group bg-background border-2 border-foreground/10 hover:border-primary transition-all duration-300 overflow-hidden">
+              <div className="aspect-[4/3] overflow-hidden">
+                <img 
+                  src="/images/products/office-desk-executive.webp" 
+                  alt="行政办公桌" 
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                />
+              </div>
+              <div className="p-6 space-y-3">
+                <h3 className="font-heading text-2xl font-bold uppercase tracking-wider">行政办公桌</h3>
+                <p className="text-muted-foreground text-sm leading-relaxed">
+                  经典设计，实木材质，展现企业形象与职业品味
+                </p>
+              </div>
+            </div>
+
+            {/* 人体工学椅 */}
+            <div className="group bg-background border-2 border-foreground/10 hover:border-primary transition-all duration-300 overflow-hidden">
+              <div className="aspect-[4/3] overflow-hidden">
+                <img 
+                  src="/images/products/office-chair-ergonomic.webp" 
+                  alt="人体工学椅" 
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                />
+              </div>
+              <div className="p-6 space-y-3">
+                <h3 className="font-heading text-2xl font-bold uppercase tracking-wider">人体工学椅</h3>
+                <p className="text-muted-foreground text-sm leading-relaxed">
+                  科学支撑，舒适体验，呈护健康办公姿态
+                </p>
+              </div>
+            </div>
+
+            {/* 会议桌 */}
+            <div className="group bg-background border-2 border-foreground/10 hover:border-primary transition-all duration-300 overflow-hidden">
+              <div className="aspect-[4/3] overflow-hidden">
+                <img 
+                  src="/images/products/conference-table.webp" 
+                  alt="会议桌椅组合" 
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                />
+              </div>
+              <div className="p-6 space-y-3">
+                <h3 className="font-heading text-2xl font-bold uppercase tracking-wider">会议系列</h3>
+                <p className="text-muted-foreground text-sm leading-relaxed">
+                  高效协作空间，促进团队沟通与决策
+                </p>
+              </div>
+            </div>
+
+            {/* 学生课桌椅 */}
+            <div className="group bg-background border-2 border-foreground/10 hover:border-primary transition-all duration-300 overflow-hidden">
+              <div className="aspect-[4/3] overflow-hidden">
+                <img 
+                  src="/images/products/student-desk-combo.webp" 
+                  alt="学生课桌椅" 
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                />
+              </div>
+              <div className="p-6 space-y-3">
+                <h3 className="font-heading text-2xl font-bold uppercase tracking-wider">学生课桌椅</h3>
+                <p className="text-muted-foreground text-sm leading-relaxed">
+                  符合人体工学，支持学生长时间学习
+                </p>
+              </div>
+            </div>
+
+            {/* 双人课桌 */}
+            <div className="group bg-background border-2 border-foreground/10 hover:border-primary transition-all duration-300 overflow-hidden">
+              <div className="aspect-[4/3] overflow-hidden">
+                <img 
+                  src="/images/products/student-desk-double.webp" 
+                  alt="双人课桌椅" 
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                />
+              </div>
+              <div className="p-6 space-y-3">
+                <h3 className="font-heading text-2xl font-bold uppercase tracking-wider">双人课桌椅</h3>
+                <p className="text-muted-foreground text-sm leading-relaxed">
+                  促进同桌互动，培养协作学习能力
+                </p>
+              </div>
+            </div>
+
+            {/* 教室套装 */}
+            <div className="group bg-background border-2 border-foreground/10 hover:border-primary transition-all duration-300 overflow-hidden">
+              <div className="aspect-[4/3] overflow-hidden">
+                <img 
+                  src="/images/products/classroom-set.webp" 
+                  alt="教室家具套装" 
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                />
+              </div>
+              <div className="p-6 space-y-3">
+                <h3 className="font-heading text-2xl font-bold uppercase tracking-wider">教室套装</h3>
+                <p className="text-muted-foreground text-sm leading-relaxed">
+                  整体解决方案，打造现代化学习环境
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div className="text-center pt-8">
+            <Button size="lg" className="rounded-none h-14 px-10 text-lg font-heading uppercase tracking-wider" onClick={() => window.location.href = '/products'}>
+              查看全部产品
+            </Button>
           </div>
         </div>
       </section>

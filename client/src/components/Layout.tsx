@@ -25,7 +25,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
           {/* Logo */}
           <Link href="/">
             <a className="flex items-center gap-2">
-              <img src="/images/zuodi-logo.png" alt="佐迪" className="h-10 w-auto" />
+              <img src="/images/zuodi-logo.png" alt="佐迪" className="h-16 w-auto" />
             </a>
           </Link>
 
@@ -91,7 +91,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
       <footer className="bg-foreground text-background border-t-8 border-secondary py-16">
         <div className="container grid grid-cols-1 md:grid-cols-4 gap-12">
           <div className="space-y-4">
-            <img src="/images/zuodi-logo.png" alt="佐迪" className="h-12 w-auto" />
+            <img src="/images/zuodi-logo.png" alt="佐迪" className="h-16 w-auto" />
             <p className="text-muted-foreground text-sm leading-relaxed max-w-xs">
               佛山市佐迪智能家具有限公司专注于现代办公与教育空间的家具解决方案。以结构主义美学，重新定义空间功能。
             </p>
