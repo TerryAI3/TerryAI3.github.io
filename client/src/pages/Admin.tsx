@@ -15,12 +15,12 @@ export default function Admin() {
     );
   }
 
-  if (!user || user.role !== "admin") {
+  if (!user) {
     return (
       <div className="min-h-screen flex items-center justify-center">
         <div className="text-center">
-          <h1 className="text-2xl font-bold mb-4">无权限访问</h1>
-          <p className="text-muted-foreground mb-4">您需要管理员权限才能访问此页面</p>
+          <h1 className="text-2xl font-bold mb-4">需要登录</h1>
+          <p className="text-muted-foreground mb-4">请先登录才能访问管理功能</p>
           <Button onClick={() => navigate("/")}>返回首页</Button>
         </div>
       </div>
