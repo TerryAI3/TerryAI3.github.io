@@ -25,6 +25,7 @@ export default function AdminProducts() {
     description: "",
     price: "",
     imageUrl: "",
+    seriesId: 1,
   });
 
   const { data: products, isLoading, refetch } = trpc.products.list.useQuery();
@@ -62,13 +63,12 @@ export default function AdminProducts() {
         });
       } else {
         await createMutation.mutateAsync({
-          categoryId: 1,
           slug: formData.name.toLowerCase().replace(/\s+/g, "-"),
           ...formData,
         });
       }
       setIsDialogOpen(false);
-      setFormData({ name: "", description: "", price: "", imageUrl: "" });
+      setFormData({ name: "", description: "", price: "", imageUrl: "", seriesId: 1 });
       setEditingId(null);
       refetch();
     } catch (error) {
@@ -94,13 +94,14 @@ export default function AdminProducts() {
       description: product.description || "",
       price: product.price,
       imageUrl: product.imageUrl || "",
+      seriesId: product.seriesId || 1,
     });
     setIsDialogOpen(true);
   };
 
   const handleNewProduct = () => {
     setEditingId(null);
-    setFormData({ name: "", description: "", price: "", imageUrl: "" });
+    setFormData({ name: "", description: "", price: "", imageUrl: "", seriesId: 1 });
     setIsDialogOpen(true);
   };
 

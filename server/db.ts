@@ -1,6 +1,6 @@
 import { eq } from "drizzle-orm";
 import { drizzle } from "drizzle-orm/mysql2";
-import { InsertUser, users, products, productCategories, InsertProduct } from "../drizzle/schema";
+import { InsertUser, users, products, productCategories, productSeries, InsertProduct, InsertProductSeries } from "../drizzle/schema";
 import { ENV } from './_core/env';
 
 let _db: ReturnType<typeof drizzle> | null = null;
@@ -111,6 +111,14 @@ export async function getProductsByCategory(categoryId: number) {
   );
 }
 
+export async function getProductsBySeries(seriesId: number) {
+  const db = await getDb();
+  if (!db) return [];
+  return await db.select().from(products).where(
+    eq(products.seriesId, seriesId)
+  );
+}
+
 export async function getAllCategories() {
   const db = await getDb();
   if (!db) return [];
@@ -160,4 +168,43 @@ export async function getCategoryById(id: number) {
   if (!db) return undefined;
   const result = await db.select().from(productCategories).where(eq(productCategories.id, id)).limit(1);
   return result.length > 0 ? result[0] : undefined;
+}
+
+// Product Series queries
+export async function getAllSeries() {
+  const db = await getDb();
+  if (!db) return [];
+  return await db.select().from(productSeries).where(eq(productSeries.isActive, 1));
+}
+
+export async function getSeriesById(id: number) {
+  const db = await getDb();
+  if (!db) return undefined;
+  const result = await db.select().from(productSeries).where(eq(productSeries.id, id)).limit(1);
+  return result.length > 0 ? result[0] : undefined;
+}
+
+export async function getSeriesBySlug(slug: string) {
+  const db = await getDb();
+  if (!db) return undefined;
+  const result = await db.select().from(productSeries).where(eq(productSeries.slug, slug)).limit(1);
+  return result.length > 0 ? result[0] : undefined;
+}
+
+export async function createSeries(data: InsertProductSeries) {
+  const db = await getDb();
+  if (!db) throw new Error("Database not available");
+  await db.insert(productSeries).values(data);
+}
+
+export async function updateSeries(id: number, updates: Partial<InsertProductSeries>) {
+  const db = await getDb();
+  if (!db) throw new Error("Database not available");
+  await db.update(productSeries).set(updates).where(eq(productSeries.id, id));
+}
+
+export async function deleteSeries(id: number) {
+  const db = await getDb();
+  if (!db) throw new Error("Database not available");
+  await db.delete(productSeries).where(eq(productSeries.id, id));
 }

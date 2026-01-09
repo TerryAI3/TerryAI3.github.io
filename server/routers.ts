@@ -2,7 +2,7 @@ import { COOKIE_NAME } from "@shared/const";
 import { getSessionCookieOptions } from "./_core/cookies";
 import { systemRouter } from "./_core/systemRouter";
 import { publicProcedure, router, protectedProcedure } from "./_core/trpc";
-import { getAllProducts, getProductById, getProductsByCategory, getAllCategories, createProduct, updateProduct, deleteProduct, createCategory, updateCategory, deleteCategory, getCategoryById } from "./db";
+import { getAllProducts, getProductById, getProductsByCategory, getProductsBySeries, getAllCategories, createProduct, updateProduct, deleteProduct, createCategory, updateCategory, deleteCategory, getCategoryById, getAllSeries, getSeriesById, getSeriesBySlug, createSeries, updateSeries, deleteSeries } from "./db";
 import { z } from "zod";
 
 export const appRouter = router({
@@ -30,20 +30,24 @@ export const appRouter = router({
     }),
     create: protectedProcedure
       .input(z.object({
-        categoryId: z.number(),
+        seriesId: z.number(),
+        categoryId: z.number().optional(),
         name: z.string(),
+        nameEn: z.string().optional(),
         slug: z.string(),
         description: z.string().optional(),
         specifications: z.string().optional(),
-        price: z.string(),
+        price: z.string().optional(),
         imageUrl: z.string().optional(),
         images: z.string().optional(),
       }))
       .mutation(async ({ input, ctx }) => {
         if (ctx.user?.role !== 'admin') throw new Error('Only admins can create products');
         await createProduct({
+          seriesId: input.seriesId,
           categoryId: input.categoryId,
           name: input.name,
+          nameEn: input.nameEn,
           slug: input.slug,
           description: input.description,
           specifications: input.specifications,
@@ -73,6 +77,58 @@ export const appRouter = router({
       .mutation(async ({ input, ctx }) => {
         if (ctx.user?.role !== 'admin') throw new Error('Only admins can delete products');
         await deleteProduct(input);
+        return { success: true };
+      }),
+  }),
+
+  series: router({
+    list: publicProcedure.query(async () => {
+      return await getAllSeries();
+    }),
+    getById: publicProcedure.input(z.number()).query(async ({ input }) => {
+      return await getSeriesById(input);
+    }),
+    getBySlug: publicProcedure.input(z.string()).query(async ({ input }) => {
+      return await getSeriesBySlug(input);
+    }),
+    getProducts: publicProcedure.input(z.number()).query(async ({ input }) => {
+      return await getProductsBySeries(input);
+    }),
+    create: protectedProcedure
+      .input(z.object({
+        name: z.string(),
+        nameEn: z.string().optional(),
+        code: z.string(),
+        slug: z.string(),
+        description: z.string().optional(),
+        coverImage: z.string().optional(),
+        sortOrder: z.number().optional(),
+      }))
+      .mutation(async ({ input, ctx }) => {
+        if (ctx.user?.role !== 'admin') throw new Error('Only admins can create series');
+        await createSeries(input);
+        return { success: true };
+      }),
+    update: protectedProcedure
+      .input(z.object({
+        id: z.number(),
+        name: z.string().optional(),
+        nameEn: z.string().optional(),
+        description: z.string().optional(),
+        coverImage: z.string().optional(),
+        sortOrder: z.number().optional(),
+      }))
+      .mutation(async ({ input, ctx }) => {
+        if (ctx.user?.role !== 'admin') throw new Error('Only admins can update series');
+        const { id, ...updates } = input;
+        await updateSeries(id, updates);
+        return { success: true };
+      }),
+    delete: protectedProcedure
+      .input(z.number())
+      .mutation(async ({ input, ctx }) => {
+        if (ctx.user?.role !== 'admin') throw new Error('Only admins can delete series');
+        await deleteSeries(input);
         return { success: true };
       }),
   }),

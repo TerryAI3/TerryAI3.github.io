@@ -27,6 +27,27 @@ export type InsertUser = typeof users.$inferInsert;
 
 // TODO: Add your tables here
 /**
+ * Product Series Table
+ * Stores product series like Dawn, Jerry, Sunshine, etc.
+ */
+export const productSeries = mysqlTable("product_series", {
+  id: int("id").autoincrement().primaryKey(),
+  name: varchar("name", { length: 100 }).notNull(),
+  nameEn: varchar("nameEn", { length: 100 }),
+  code: varchar("code", { length: 50 }).notNull().unique(),
+  slug: varchar("slug", { length: 100 }).notNull().unique(),
+  description: text("description"),
+  coverImage: varchar("coverImage", { length: 500 }),
+  sortOrder: int("sortOrder").default(0).notNull(),
+  isActive: int("isActive").default(1).notNull(),
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+  updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
+});
+
+export type ProductSeries = typeof productSeries.$inferSelect;
+export type InsertProductSeries = typeof productSeries.$inferInsert;
+
+/**
  * Product Category Table
  * Stores product categories like office chairs, meeting tables, etc.
  */
@@ -49,18 +70,46 @@ export type InsertProductCategory = typeof productCategories.$inferInsert;
  */
 export const products = mysqlTable("products", {
   id: int("id").autoincrement().primaryKey(),
-  categoryId: int("categoryId").notNull(),
+  seriesId: int("seriesId").notNull(),
+  categoryId: int("categoryId"),
   name: varchar("name", { length: 200 }).notNull(),
+  nameEn: varchar("nameEn", { length: 200 }),
   slug: varchar("slug", { length: 200 }).notNull().unique(),
   description: text("description"),
   specifications: text("specifications"),
-  price: decimal("price", { precision: 10, scale: 2 }).notNull(),
+  features: text("features"),
+  dimensions: varchar("dimensions", { length: 200 }),
+  materials: text("materials"),
+  colors: text("colors"),
+  price: decimal("price", { precision: 10, scale: 2 }),
   imageUrl: varchar("imageUrl", { length: 500 }),
   images: text("images"),
+  sortOrder: int("sortOrder").default(0).notNull(),
   isActive: int("isActive").default(1).notNull(),
+  isFeatured: int("isFeatured").default(0).notNull(),
   createdAt: timestamp("createdAt").defaultNow().notNull(),
   updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
 });
 
 export type Product = typeof products.$inferSelect;
 export type InsertProduct = typeof products.$inferInsert;
+
+/**
+ * Product Inquiries Table
+ * Stores customer inquiries about products
+ */
+export const productInquiries = mysqlTable("product_inquiries", {
+  id: int("id").autoincrement().primaryKey(),
+  productId: int("productId"),
+  name: varchar("name", { length: 100 }).notNull(),
+  phone: varchar("phone", { length: 50 }).notNull(),
+  email: varchar("email", { length: 320 }),
+  company: varchar("company", { length: 200 }),
+  message: text("message"),
+  status: mysqlEnum("status", ["pending", "contacted", "completed"]).default("pending").notNull(),
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+  updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
+});
+
+export type ProductInquiry = typeof productInquiries.$inferSelect;
+export type InsertProductInquiry = typeof productInquiries.$inferInsert;
