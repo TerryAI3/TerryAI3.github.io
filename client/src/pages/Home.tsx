@@ -74,8 +74,8 @@ export default function Home() {
           NEW PRODUCT
         </div>
         
-        {/* Artistic Orange Overlay - Bold geometric design */}
-        <div className="absolute left-0 top-0 h-full z-10" style={{ width: '45%' }}>
+        {/* Artistic Orange Overlay - Bold geometric design with hover animation */}
+        <div className="absolute left-0 top-0 h-full z-10 group" style={{ width: '45%' }}>
           {/* Main orange shape - dynamic angular design */}
           <svg className="absolute inset-0 w-full h-full" viewBox="0 0 500 600" preserveAspectRatio="none">
             <defs>
@@ -101,6 +101,7 @@ export default function Home() {
               d="M 0 0 L 380 0 C 420 80 400 180 340 280 C 380 380 320 480 240 580 L 180 600 L 0 600 Z" 
               fill="url(#orangeGradient)"
               filter="url(#shadow)"
+              className="transition-transform duration-700 ease-out group-hover:translate-x-1"
             />
             
             {/* Secondary flowing layer */}
@@ -108,35 +109,36 @@ export default function Home() {
               d="M 0 0 L 300 0 C 350 60 340 140 290 220 C 320 300 280 400 200 500 C 150 560 80 590 0 600 Z" 
               fill="#f97316"
               opacity="0.65"
+              className="transition-transform duration-500 ease-out group-hover:-translate-x-1"
             />
             
-            {/* Graffiti splatter blobs */}
-            <ellipse cx="400" cy="100" rx="40" ry="32" fill="#ff7b3d" opacity="0.75" filter="url(#glow)" />
-            <ellipse cx="360" cy="220" rx="28" ry="22" fill="#f97316" opacity="0.6" transform="rotate(-15 360 220)" />
-            <ellipse cx="320" cy="380" rx="35" ry="25" fill="#ea580c" opacity="0.55" transform="rotate(10 320 380)" />
-            <ellipse cx="260" cy="520" rx="30" ry="35" fill="#ff7b3d" opacity="0.6" transform="rotate(-20 260 520)" />
+            {/* Graffiti splatter blobs - with hover animations */}
+            <ellipse cx="400" cy="100" rx="40" ry="32" fill="#ff7b3d" opacity="0.75" filter="url(#glow)" className="transition-all duration-500 ease-out group-hover:translate-x-3 group-hover:-translate-y-2" />
+            <ellipse cx="360" cy="220" rx="28" ry="22" fill="#f97316" opacity="0.6" transform="rotate(-15 360 220)" className="transition-all duration-600 ease-out group-hover:-translate-x-2 group-hover:translate-y-3" />
+            <ellipse cx="320" cy="380" rx="35" ry="25" fill="#ea580c" opacity="0.55" transform="rotate(10 320 380)" className="transition-all duration-700 ease-out group-hover:translate-x-4 group-hover:translate-y-2" />
+            <ellipse cx="260" cy="520" rx="30" ry="35" fill="#ff7b3d" opacity="0.6" transform="rotate(-20 260 520)" className="transition-all duration-500 ease-out group-hover:-translate-x-3 group-hover:-translate-y-2" />
             
             {/* Paint drips */}
-            <path d="M 340 280 Q 355 330 348 380 Q 340 420 335 450" stroke="#f97316" strokeWidth="8" fill="none" opacity="0.5" strokeLinecap="round" />
-            <path d="M 240 580 Q 255 590 250 600" stroke="#ff7b3d" strokeWidth="10" fill="none" opacity="0.6" strokeLinecap="round" />
+            <path d="M 340 280 Q 355 330 348 380 Q 340 420 335 450" stroke="#f97316" strokeWidth="8" fill="none" opacity="0.5" strokeLinecap="round" className="transition-all duration-600 ease-out group-hover:translate-y-2" />
+            <path d="M 240 580 Q 255 590 250 600" stroke="#ff7b3d" strokeWidth="10" fill="none" opacity="0.6" strokeLinecap="round" className="transition-all duration-500 ease-out group-hover:translate-y-1" />
             
-            {/* Scattered dots */}
-            <circle cx="430" cy="60" r="12" fill="#ff7b3d" opacity="0.5" />
-            <circle cx="420" cy="160" r="8" fill="#f97316" opacity="0.4" />
-            <circle cx="380" cy="300" r="10" fill="#ea580c" opacity="0.45" />
-            <circle cx="340" cy="460" r="14" fill="#ff7b3d" opacity="0.5" />
-            <circle cx="300" cy="560" r="9" fill="#f97316" opacity="0.4" />
+            {/* Scattered dots - with hover animations */}
+            <circle cx="430" cy="60" r="12" fill="#ff7b3d" opacity="0.5" className="transition-all duration-400 ease-out group-hover:translate-x-2 group-hover:-translate-y-1" />
+            <circle cx="420" cy="160" r="8" fill="#f97316" opacity="0.4" className="transition-all duration-500 ease-out group-hover:-translate-x-1 group-hover:translate-y-2" />
+            <circle cx="380" cy="300" r="10" fill="#ea580c" opacity="0.45" className="transition-all duration-600 ease-out group-hover:translate-x-3 group-hover:translate-y-1" />
+            <circle cx="340" cy="460" r="14" fill="#ff7b3d" opacity="0.5" className="transition-all duration-500 ease-out group-hover:-translate-x-2 group-hover:-translate-y-2" />
+            <circle cx="300" cy="560" r="9" fill="#f97316" opacity="0.4" className="transition-all duration-400 ease-out group-hover:translate-x-1 group-hover:translate-y-1" />
             
-            {/* Tiny spray dots */}
-            <circle cx="450" cy="80" r="4" fill="#ff7b3d" opacity="0.35" />
-            <circle cx="440" cy="140" r="3" fill="#f97316" opacity="0.3" />
-            <circle cx="400" cy="260" r="5" fill="#ea580c" opacity="0.35" />
-            <circle cx="370" cy="420" r="4" fill="#ff7b3d" opacity="0.3" />
-            <circle cx="320" cy="540" r="5" fill="#f97316" opacity="0.35" />
+            {/* Tiny spray dots - with subtle hover animations */}
+            <circle cx="450" cy="80" r="4" fill="#ff7b3d" opacity="0.35" className="transition-all duration-300 ease-out group-hover:translate-x-1" />
+            <circle cx="440" cy="140" r="3" fill="#f97316" opacity="0.3" className="transition-all duration-400 ease-out group-hover:-translate-y-1" />
+            <circle cx="400" cy="260" r="5" fill="#ea580c" opacity="0.35" className="transition-all duration-350 ease-out group-hover:translate-x-1 group-hover:translate-y-1" />
+            <circle cx="370" cy="420" r="4" fill="#ff7b3d" opacity="0.3" className="transition-all duration-450 ease-out group-hover:-translate-x-1" />
+            <circle cx="320" cy="540" r="5" fill="#f97316" opacity="0.35" className="transition-all duration-300 ease-out group-hover:translate-y-1" />
             
             {/* Decorative brush strokes */}
-            <path d="M 50 90 Q 120 80 200 95 Q 260 85 300 100" stroke="rgba(255,255,255,0.2)" strokeWidth="3" fill="none" strokeLinecap="round" />
-            <path d="M 30 510 Q 100 500 160 515" stroke="rgba(255,255,255,0.15)" strokeWidth="2" fill="none" strokeLinecap="round" />
+            <path d="M 50 90 Q 120 80 200 95 Q 260 85 300 100" stroke="rgba(255,255,255,0.2)" strokeWidth="3" fill="none" strokeLinecap="round" className="transition-all duration-500 ease-out group-hover:translate-x-2" />
+            <path d="M 30 510 Q 100 500 160 515" stroke="rgba(255,255,255,0.15)" strokeWidth="2" fill="none" strokeLinecap="round" className="transition-all duration-400 ease-out group-hover:-translate-x-1" />
           </svg>
           
           {/* Content */}
