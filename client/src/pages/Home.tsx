@@ -30,16 +30,12 @@ export default function Home() {
               激发灵感·分享创意
             </p>
             <div className="flex flex-wrap gap-4 pt-4">
-              <Link href="/products">
-                <Button size="lg" className="rounded-none h-14 px-8 text-lg font-heading uppercase tracking-wider bg-white text-foreground hover:bg-secondary hover:text-white transition-all duration-300">
-                  浏览产品
-                </Button>
-              </Link>
-              <Link href="/office">
-                <Button variant="outline" size="lg" className="rounded-none h-14 px-8 text-lg font-heading uppercase tracking-wider border-2 border-white text-white hover:bg-white hover:text-foreground transition-all duration-300">
-                  办公系列
-                </Button>
-              </Link>
+              <Button size="lg" className="rounded-none h-14 px-8 text-lg font-heading uppercase tracking-wider bg-white text-foreground hover:bg-secondary hover:text-white transition-all duration-300" onClick={() => window.location.href = '/products'}>
+                浏览产品
+              </Button>
+              <Button variant="outline" size="lg" className="rounded-none h-14 px-8 text-lg font-heading uppercase tracking-wider border-2 border-white text-white hover:bg-white hover:text-foreground transition-all duration-300" onClick={() => window.location.href = '/office'}>
+                办公系列
+              </Button>
             </div>
           </div>
         </div>
@@ -100,9 +96,9 @@ export default function Home() {
                 <p className="text-white/80 max-w-sm">
                   专业办公解决方案。人体工学座椅、行政桌组、协作空间。
                 </p>
-                <Link href="/office" className="inline-flex items-center gap-2 text-white font-bold uppercase tracking-widest hover:gap-4 transition-all pt-4">
+                <a href="/office" className="inline-flex items-center gap-2 text-white font-bold uppercase tracking-widest hover:gap-4 transition-all pt-4">
                   了解详情 <ArrowRight className="h-5 w-5" />
-                </Link>
+                </a>
               </div>
             </div>
 
@@ -118,9 +114,9 @@ export default function Home() {
                 <p className="text-white/80 max-w-sm">
                   激发学习潜能的空间设计。课桌椅、图书馆设施、多功能教室。
                 </p>
-                <Link href="/school" className="inline-flex items-center gap-2 text-white font-bold uppercase tracking-widest hover:gap-4 transition-all pt-4">
+                <a href="/school" className="inline-flex items-center gap-2 text-white font-bold uppercase tracking-widest hover:gap-4 transition-all pt-4">
                   了解详情 <ArrowRight className="h-5 w-5" />
-                </Link>
+                </a>
               </div>
             </div>
           </div>
@@ -147,9 +143,9 @@ export default function Home() {
               </div>
             ))}
           </div>
-          <Link href="/cases" className="inline-flex items-center gap-2 px-8 py-3 bg-primary text-white font-heading uppercase tracking-wider hover:bg-primary/90 transition-colors">
+          <a href="/cases" className="inline-flex items-center gap-2 px-8 py-3 bg-primary text-white font-heading uppercase tracking-wider hover:bg-primary/90 transition-colors">
             查看全部 <MoveRight className="h-5 w-5" />
-          </Link>
+          </a>
         </div>
       </section>
 
@@ -168,9 +164,9 @@ export default function Home() {
                 我们相信，好的设计能改变空间，定制能创造独特体验，激发灵感是我们的终极使命。
               </p>
             </div>
-            <Link href="/about" className="inline-flex items-center gap-2 px-8 py-3 bg-primary text-white font-heading uppercase tracking-wider hover:bg-primary/90 transition-colors">
+            <a href="/about" className="inline-flex items-center gap-2 px-8 py-3 bg-primary text-white font-heading uppercase tracking-wider hover:bg-primary/90 transition-colors">
               了解更多 <MoveRight className="h-5 w-5" />
-            </Link>
+            </a>
           </div>
           <div className="bg-muted p-8 border-4 border-foreground">
             <img src="/images/bauhaus-pattern.jpg" alt="Pattern" className="w-full h-full object-cover" />
