@@ -11,18 +11,16 @@ export default function Layout({ children }: { children: React.ReactNode }) {
   const { user } = useAuth();
 
   const navItems = [
-    { name: "首页", path: "/" },
-    { name: "产品中心", path: "/products" },
-    { name: "办公家具", path: "/office" },
-    { name: "学校家具", path: "/school" },
-    { name: "成功案例", path: "/cases" },
+    { name: "产品", path: "/products" },
+    { name: "案例", path: "/cases" },
     { name: "关于我们", path: "/about" },
+    { name: "联系我们", path: "#contact" },
   ];
 
   return (
     <div className="min-h-screen flex flex-col bg-background font-body text-foreground selection:bg-secondary selection:text-secondary-foreground">
       {/* Header */}
-      <header className="sticky top-0 z-50 w-full border-b-4 border-foreground bg-background">
+      <header className="sticky top-0 z-50 w-full border-b border-border bg-background shadow-sm">
         <div className="container flex h-20 items-center justify-between">
           {/* Logo */}
           <Link href="/">
