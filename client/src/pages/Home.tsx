@@ -58,7 +58,7 @@ export default function Home() {
 
   return (
     <div className="flex flex-col">
-      {/* Hero Banner - Artistic Design */}
+      {/* Hero Banner - Graffiti Art Style */}
       <section className="relative w-full h-[600px] overflow-hidden">
         {/* Full width background image */}
         <div className="absolute inset-0 w-full h-full">
@@ -70,74 +70,81 @@ export default function Home() {
         </div>
         
         {/* NEW PRODUCT Badge - Top Right */}
-        <div className="absolute top-6 right-6 bg-orange-500 text-white px-5 py-2.5 font-bold text-sm tracking-wider z-30 rounded-sm shadow-lg">
+        <div className="absolute top-6 right-6 bg-orange-500 text-white px-5 py-2.5 font-bold text-sm tracking-wider z-30 rounded-sm shadow-lg transform rotate-2">
           NEW PRODUCT
         </div>
         
-        {/* Artistic Orange Overlay - Bold geometric design */}
-        <div className="absolute left-0 top-0 h-full z-10" style={{ width: '45%' }}>
-          {/* Main orange shape - dynamic angular design */}
-          <svg className="absolute inset-0 w-full h-full" viewBox="0 0 450 600" preserveAspectRatio="none">
+        {/* Graffiti Style Orange Overlay */}
+        <div className="absolute left-0 top-0 h-full z-10" style={{ width: '50%' }}>
+          {/* Main graffiti shape with splatter effect */}
+          <svg className="absolute inset-0 w-full h-full" viewBox="0 0 500 600" preserveAspectRatio="none">
             <defs>
-              <linearGradient id="orangeGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stopColor="#f97316" />
-                <stop offset="50%" stopColor="#ea580c" />
-                <stop offset="100%" stopColor="#c2410c" />
+              <linearGradient id="graffitiGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stopColor="#ff6b35" />
+                <stop offset="40%" stopColor="#f97316" />
+                <stop offset="100%" stopColor="#ea580c" />
               </linearGradient>
-              <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
-                <feDropShadow dx="5" dy="5" stdDeviation="10" floodOpacity="0.3"/>
+              <filter id="roughEdge">
+                <feTurbulence type="fractalNoise" baseFrequency="0.02" numOctaves="3" result="noise"/>
+                <feDisplacementMap in="SourceGraphic" in2="noise" scale="8" xChannelSelector="R" yChannelSelector="G"/>
+              </filter>
+              <filter id="glow">
+                <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+                <feMerge>
+                  <feMergeNode in="coloredBlur"/>
+                  <feMergeNode in="SourceGraphic"/>
+                </feMerge>
               </filter>
             </defs>
-            {/* Primary bold shape */}
+            
+            {/* Main organic blob shape */}
             <path 
-              d="M 0 0 L 350 0 Q 380 150 320 300 Q 280 450 200 600 L 0 600 Z" 
-              fill="url(#orangeGradient)"
-              filter="url(#shadow)"
+              d="M 0 0 L 380 0 C 420 50 400 120 350 180 C 380 250 340 320 300 380 C 320 450 280 520 220 580 L 180 600 L 0 600 Z" 
+              fill="url(#graffitiGradient)"
             />
-            {/* Secondary accent shape */}
-            <path 
-              d="M 0 0 L 280 0 Q 320 100 280 200 Q 250 350 150 500 Q 100 550 0 600 Z" 
-              fill="#f97316"
-              opacity="0.7"
-            />
-            {/* Decorative geometric lines */}
-            <line x1="50" y1="80" x2="200" y2="80" stroke="rgba(255,255,255,0.3)" strokeWidth="2" />
-            <line x1="30" y1="520" x2="120" y2="520" stroke="rgba(255,255,255,0.2)" strokeWidth="1" />
-            {/* Abstract decorative elements */}
-            <circle cx="280" cy="150" r="30" fill="rgba(255,255,255,0.1)" />
-            <circle cx="220" cy="400" r="20" fill="rgba(255,255,255,0.08)" />
+            
+            {/* Splatter effects */}
+            <circle cx="390" cy="80" r="25" fill="#f97316" opacity="0.8" />
+            <circle cx="360" cy="140" r="12" fill="#ff6b35" opacity="0.6" />
+            <circle cx="320" cy="280" r="18" fill="#ea580c" opacity="0.7" />
+            <circle cx="280" cy="450" r="15" fill="#f97316" opacity="0.5" />
+            <circle cx="240" cy="540" r="20" fill="#ff6b35" opacity="0.6" />
+            
+            {/* Small splatter dots */}
+            <circle cx="410" cy="60" r="6" fill="#f97316" opacity="0.4" />
+            <circle cx="400" cy="110" r="4" fill="#ff6b35" opacity="0.5" />
+            <circle cx="370" cy="200" r="5" fill="#ea580c" opacity="0.4" />
+            <circle cx="340" cy="350" r="7" fill="#f97316" opacity="0.3" />
+            <circle cx="300" cy="500" r="8" fill="#ff6b35" opacity="0.4" />
+            <circle cx="260" cy="570" r="5" fill="#ea580c" opacity="0.5" />
+            
+            {/* Drip effects */}
+            <path d="M 350 180 Q 360 220 355 260 Q 350 280 345 290" stroke="#f97316" strokeWidth="4" fill="none" opacity="0.6" strokeLinecap="round" />
+            <path d="M 300 380 Q 310 420 305 450" stroke="#ea580c" strokeWidth="3" fill="none" opacity="0.5" strokeLinecap="round" />
+            <path d="M 220 580 Q 230 590 225 600" stroke="#ff6b35" strokeWidth="5" fill="none" opacity="0.7" strokeLinecap="round" />
+            
+            {/* Abstract brush strokes */}
+            <path d="M 50 100 Q 100 95 150 105 Q 200 100 220 110" stroke="rgba(255,255,255,0.2)" strokeWidth="3" fill="none" strokeLinecap="round" />
+            <path d="M 30 500 Q 80 495 130 505" stroke="rgba(255,255,255,0.15)" strokeWidth="2" fill="none" strokeLinecap="round" />
           </svg>
           
           {/* Content */}
           <div className="relative z-10 h-full flex flex-col justify-center px-8 lg:px-12 py-16">
-            {/* Decorative top line */}
-            <div className="w-16 h-1 bg-white/40 mb-8"></div>
-            
-            <h1 className="text-white text-4xl lg:text-5xl xl:text-6xl font-black mb-8 leading-none tracking-tight">
-              <span className="block" style={{ fontStyle: 'italic' }}>SMART</span>
-              <span className="block" style={{ fontStyle: 'italic' }}>OFFICE</span>
-              <span className="block text-orange-200" style={{ fontStyle: 'italic' }}>FUTURE</span>
-              <span className="block" style={{ fontStyle: 'italic' }}>DESIGN</span>
+            {/* Graffiti style title */}
+            <h1 className="text-white text-5xl lg:text-6xl xl:text-7xl font-black mb-6 leading-none">
+              <span className="block transform -rotate-2" style={{ textShadow: '3px 3px 0 rgba(0,0,0,0.2)' }}>SMART</span>
+              <span className="block transform rotate-1 text-orange-100" style={{ textShadow: '3px 3px 0 rgba(0,0,0,0.2)' }}>OFFICE</span>
+              <span className="block transform -rotate-1" style={{ textShadow: '4px 4px 0 rgba(0,0,0,0.3)', WebkitTextStroke: '1px rgba(255,255,255,0.3)' }}>FUTURE</span>
+              <span className="block transform rotate-2 text-orange-200" style={{ textShadow: '3px 3px 0 rgba(0,0,0,0.2)' }}>DESIGN</span>
             </h1>
 
-            <p className="text-white/80 text-sm lg:text-base mb-4 font-light leading-relaxed max-w-xs">
+            <p className="text-white/90 text-sm lg:text-base mb-4 font-medium leading-relaxed max-w-xs transform -rotate-1">
               智能办公空间解决方案专家
             </p>
 
-            <p className="text-white font-bold text-lg lg:text-xl tracking-wide">
-              ZUODI<span className="text-orange-200 ml-2">佐迪</span>
+            <p className="text-white font-black text-xl lg:text-2xl tracking-wider transform rotate-1" style={{ textShadow: '2px 2px 0 rgba(0,0,0,0.2)' }}>
+              ZUODI <span className="text-orange-200">佐迪</span>
             </p>
-            
-            {/* CTA Buttons */}
-            <div className="flex flex-col sm:flex-row gap-4 mt-8">
-              <a href="#products" className="inline-flex items-center justify-center gap-2 bg-white text-orange-600 px-6 py-3 font-bold text-sm hover:bg-orange-50 transition-all shadow-lg">
-                浏览产品
-                <ArrowRight className="w-4 h-4" />
-              </a>
-              <a href="#contact" className="inline-flex items-center justify-center gap-2 border-2 border-white/50 text-white px-6 py-3 font-semibold text-sm hover:bg-white/10 transition-all">
-                获取报价
-              </a>
-            </div>
           </div>
         </div>
       </section>
