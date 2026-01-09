@@ -58,10 +58,10 @@ export default function Home() {
 
   return (
     <div className="flex flex-col">
-      {/* Hero Banner - Matching Reference Design Exactly */}
-      <section className="relative w-full h-[550px] overflow-hidden">
-        {/* Full width background - light gray */}
-        <div className="absolute inset-0 w-full h-full bg-gray-100">
+      {/* Hero Banner - Artistic Design */}
+      <section className="relative w-full h-[600px] overflow-hidden">
+        {/* Full width background image */}
+        <div className="absolute inset-0 w-full h-full">
           <img
             src="/images/hero-office-new.jpg"
             alt="Modern Office Space"
@@ -70,64 +70,75 @@ export default function Home() {
         </div>
         
         {/* NEW PRODUCT Badge - Top Right */}
-        <div className="absolute top-6 right-6 bg-orange-500 text-white px-5 py-2.5 font-bold text-sm tracking-wider z-30 rounded">
+        <div className="absolute top-6 right-6 bg-orange-500 text-white px-5 py-2.5 font-bold text-sm tracking-wider z-30 rounded-sm shadow-lg">
           NEW PRODUCT
         </div>
         
-        {/* Orange area - exactly matching reference */}
-        <div className="absolute left-0 top-0 h-full z-10" style={{ width: '25%' }}>
-          {/* Main orange background with diagonal cut */}
-          <div 
-            className="absolute inset-0 bg-orange-500"
-            style={{
-              clipPath: 'polygon(0 0, 100% 0, 65% 100%, 0 100%)'
-            }}
-          >
-            {/* Subtle texture overlay */}
-            <div className="absolute inset-0 opacity-10" style={{
-              backgroundImage: 'url(/images/hero-office-new.jpg)',
-              backgroundSize: 'cover',
-              backgroundPosition: 'center',
-              mixBlendMode: 'multiply'
-            }}></div>
-          </div>
+        {/* Artistic Orange Overlay - Bold geometric design */}
+        <div className="absolute left-0 top-0 h-full z-10" style={{ width: '45%' }}>
+          {/* Main orange shape - dynamic angular design */}
+          <svg className="absolute inset-0 w-full h-full" viewBox="0 0 450 600" preserveAspectRatio="none">
+            <defs>
+              <linearGradient id="orangeGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stopColor="#f97316" />
+                <stop offset="50%" stopColor="#ea580c" />
+                <stop offset="100%" stopColor="#c2410c" />
+              </linearGradient>
+              <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+                <feDropShadow dx="5" dy="5" stdDeviation="10" floodOpacity="0.3"/>
+              </filter>
+            </defs>
+            {/* Primary bold shape */}
+            <path 
+              d="M 0 0 L 350 0 Q 380 150 320 300 Q 280 450 200 600 L 0 600 Z" 
+              fill="url(#orangeGradient)"
+              filter="url(#shadow)"
+            />
+            {/* Secondary accent shape */}
+            <path 
+              d="M 0 0 L 280 0 Q 320 100 280 200 Q 250 350 150 500 Q 100 550 0 600 Z" 
+              fill="#f97316"
+              opacity="0.7"
+            />
+            {/* Decorative geometric lines */}
+            <line x1="50" y1="80" x2="200" y2="80" stroke="rgba(255,255,255,0.3)" strokeWidth="2" />
+            <line x1="30" y1="520" x2="120" y2="520" stroke="rgba(255,255,255,0.2)" strokeWidth="1" />
+            {/* Abstract decorative elements */}
+            <circle cx="280" cy="150" r="30" fill="rgba(255,255,255,0.1)" />
+            <circle cx="220" cy="400" r="20" fill="rgba(255,255,255,0.08)" />
+          </svg>
           
           {/* Content */}
-          <div className="relative z-10 h-full flex flex-col justify-center px-6 lg:px-8 py-12">
-            <h1 className="text-white text-2xl lg:text-3xl xl:text-4xl font-black mb-6 leading-tight uppercase" style={{ fontStyle: 'italic' }}>
-              SMART<br />
-              OFFICE<br />
-              FUTURE<br />
-              DESIGN
+          <div className="relative z-10 h-full flex flex-col justify-center px-8 lg:px-12 py-16">
+            {/* Decorative top line */}
+            <div className="w-16 h-1 bg-white/40 mb-8"></div>
+            
+            <h1 className="text-white text-4xl lg:text-5xl xl:text-6xl font-black mb-8 leading-none tracking-tight">
+              <span className="block" style={{ fontStyle: 'italic' }}>SMART</span>
+              <span className="block" style={{ fontStyle: 'italic' }}>OFFICE</span>
+              <span className="block text-orange-200" style={{ fontStyle: 'italic' }}>FUTURE</span>
+              <span className="block" style={{ fontStyle: 'italic' }}>DESIGN</span>
             </h1>
 
-            <p className="text-white/90 text-xs lg:text-sm mb-2 font-light leading-relaxed">
+            <p className="text-white/80 text-sm lg:text-base mb-4 font-light leading-relaxed max-w-xs">
               智能办公空间解决方案专家
             </p>
 
-            <p className="text-orange-200 font-bold text-sm lg:text-base">
-              ZUODI 佐迪智能家具
+            <p className="text-white font-bold text-lg lg:text-xl tracking-wide">
+              ZUODI<span className="text-orange-200 ml-2">佐迪</span>
             </p>
+            
+            {/* CTA Buttons */}
+            <div className="flex flex-col sm:flex-row gap-4 mt-8">
+              <a href="#products" className="inline-flex items-center justify-center gap-2 bg-white text-orange-600 px-6 py-3 font-bold text-sm hover:bg-orange-50 transition-all shadow-lg">
+                浏览产品
+                <ArrowRight className="w-4 h-4" />
+              </a>
+              <a href="#contact" className="inline-flex items-center justify-center gap-2 border-2 border-white/50 text-white px-6 py-3 font-semibold text-sm hover:bg-white/10 transition-all">
+                获取报价
+              </a>
+            </div>
           </div>
-        </div>
-        
-        {/* White brush stroke - diagonal from top-right to bottom-left */}
-        <div 
-          className="absolute top-0 h-full z-20 pointer-events-none"
-          style={{ 
-            left: '15%',
-            width: '18%'
-          }}
-        >
-          <img 
-            src="/images/brush-diagonal.png" 
-            alt=""
-            className="h-full w-full"
-            style={{
-              objectFit: 'cover',
-              objectPosition: 'left center'
-            }}
-          />
         </div>
       </section>
 
