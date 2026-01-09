@@ -58,7 +58,7 @@ export default function Home() {
 
   return (
     <div className="flex flex-col">
-      {/* Hero Banner - Free-form Graffiti with Business Typography */}
+      {/* Hero Banner - Artistic Design */}
       <section className="relative w-full h-[600px] overflow-hidden">
         {/* Full width background image */}
         <div className="absolute inset-0 w-full h-full">
@@ -70,102 +70,74 @@ export default function Home() {
         </div>
         
         {/* NEW PRODUCT Badge - Top Right */}
-        <div className="absolute top-6 right-6 bg-orange-500 text-white px-5 py-2.5 font-bold text-sm tracking-wider z-30 rounded shadow-lg">
+        <div className="absolute top-6 right-6 bg-orange-500 text-white px-5 py-2.5 font-bold text-sm tracking-wider z-30 rounded-sm shadow-lg">
           NEW PRODUCT
         </div>
         
-        {/* Free-form Graffiti Orange Overlay */}
-        <div className="absolute left-0 top-0 h-full z-10" style={{ width: '55%' }}>
-          {/* Organic free-flowing graffiti shapes */}
-          <svg className="absolute inset-0 w-full h-full" viewBox="0 0 550 600" preserveAspectRatio="none">
+        {/* Artistic Orange Overlay - Bold geometric design */}
+        <div className="absolute left-0 top-0 h-full z-10" style={{ width: '45%' }}>
+          {/* Main orange shape - dynamic angular design */}
+          <svg className="absolute inset-0 w-full h-full" viewBox="0 0 450 600" preserveAspectRatio="none">
             <defs>
-              <linearGradient id="freeGradient" x1="0%" y1="0%" x2="100%" y2="80%">
-                <stop offset="0%" stopColor="#ff7849" />
-                <stop offset="50%" stopColor="#f97316" />
-                <stop offset="100%" stopColor="#ea580c" />
+              <linearGradient id="orangeGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stopColor="#f97316" />
+                <stop offset="50%" stopColor="#ea580c" />
+                <stop offset="100%" stopColor="#c2410c" />
               </linearGradient>
-              <filter id="paintTexture">
-                <feTurbulence type="fractalNoise" baseFrequency="0.015" numOctaves="4" result="noise"/>
-                <feDisplacementMap in="SourceGraphic" in2="noise" scale="12" xChannelSelector="R" yChannelSelector="G"/>
+              <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+                <feDropShadow dx="5" dy="5" stdDeviation="10" floodOpacity="0.3"/>
               </filter>
             </defs>
-            
-            {/* Main free-flowing shape - like paint thrown on canvas */}
+            {/* Primary bold shape */}
             <path 
-              d="M 0 0 
-                 L 320 0 
-                 C 380 20 420 60 400 120 
-                 C 450 160 420 220 380 280 
-                 C 420 320 400 380 350 420 
-                 C 380 480 340 540 280 580 
-                 C 250 600 200 600 150 600 
-                 L 0 600 Z" 
-              fill="url(#freeGradient)"
-              filter="url(#paintTexture)"
+              d="M 0 0 L 350 0 Q 380 150 320 300 Q 280 450 200 600 L 0 600 Z" 
+              fill="url(#orangeGradient)"
+              filter="url(#shadow)"
             />
-            
-            {/* Secondary flowing layer */}
+            {/* Secondary accent shape */}
             <path 
-              d="M 0 0 
-                 L 280 0 
-                 C 340 40 360 100 320 160 
-                 C 360 220 330 300 280 360 
-                 C 310 420 270 500 200 560 
-                 L 120 600 
-                 L 0 600 Z" 
+              d="M 0 0 L 280 0 Q 320 100 280 200 Q 250 350 150 500 Q 100 550 0 600 Z" 
               fill="#f97316"
-              opacity="0.6"
+              opacity="0.7"
             />
-            
-            {/* Organic splatter blobs - more natural shapes */}
-            <ellipse cx="420" cy="90" rx="35" ry="28" fill="#ff7849" opacity="0.7" transform="rotate(-15 420 90)" />
-            <ellipse cx="380" cy="200" rx="22" ry="18" fill="#f97316" opacity="0.6" transform="rotate(20 380 200)" />
-            <ellipse cx="400" cy="320" rx="28" ry="20" fill="#ea580c" opacity="0.5" transform="rotate(-10 400 320)" />
-            <ellipse cx="350" cy="480" rx="25" ry="30" fill="#ff7849" opacity="0.6" transform="rotate(25 350 480)" />
-            <ellipse cx="280" cy="560" rx="32" ry="22" fill="#f97316" opacity="0.5" transform="rotate(-20 280 560)" />
-            
-            {/* Scattered paint drops - random organic feel */}
-            <circle cx="450" cy="50" r="8" fill="#ff7849" opacity="0.5" />
-            <circle cx="440" cy="140" r="5" fill="#f97316" opacity="0.4" />
-            <circle cx="420" cy="260" r="7" fill="#ea580c" opacity="0.35" />
-            <circle cx="430" cy="380" r="6" fill="#ff7849" opacity="0.4" />
-            <circle cx="390" cy="540" r="9" fill="#f97316" opacity="0.45" />
-            <circle cx="320" cy="590" r="5" fill="#ea580c" opacity="0.3" />
-            
-            {/* Tiny scattered dots */}
-            <circle cx="460" cy="80" r="3" fill="#ff7849" opacity="0.3" />
-            <circle cx="445" cy="180" r="2" fill="#f97316" opacity="0.25" />
-            <circle cx="435" cy="300" r="3" fill="#ea580c" opacity="0.3" />
-            <circle cx="410" cy="450" r="2" fill="#ff7849" opacity="0.25" />
-            <circle cx="360" cy="520" r="3" fill="#f97316" opacity="0.3" />
-            
-            {/* Paint drip effects - more organic */}
-            <path d="M 400 120 Q 415 160 408 200 Q 400 230 395 250" stroke="#f97316" strokeWidth="6" fill="none" opacity="0.5" strokeLinecap="round" />
-            <path d="M 350 420 Q 365 460 358 500 Q 350 530 340 550" stroke="#ea580c" strokeWidth="5" fill="none" opacity="0.4" strokeLinecap="round" />
-            <path d="M 280 580 Q 290 590 285 600" stroke="#ff7849" strokeWidth="7" fill="none" opacity="0.5" strokeLinecap="round" />
-            
-            {/* Subtle brush texture strokes */}
-            <path d="M 40 80 Q 100 70 180 85 Q 240 75 280 90" stroke="rgba(255,255,255,0.15)" strokeWidth="4" fill="none" strokeLinecap="round" />
-            <path d="M 30 520 Q 90 510 150 525" stroke="rgba(255,255,255,0.1)" strokeWidth="3" fill="none" strokeLinecap="round" />
+            {/* Decorative geometric lines */}
+            <line x1="50" y1="80" x2="200" y2="80" stroke="rgba(255,255,255,0.3)" strokeWidth="2" />
+            <line x1="30" y1="520" x2="120" y2="520" stroke="rgba(255,255,255,0.2)" strokeWidth="1" />
+            {/* Abstract decorative elements */}
+            <circle cx="280" cy="150" r="30" fill="rgba(255,255,255,0.1)" />
+            <circle cx="220" cy="400" r="20" fill="rgba(255,255,255,0.08)" />
           </svg>
           
-          {/* Content - Business Typography */}
-          <div className="relative z-10 h-full flex flex-col justify-center px-10 lg:px-14 py-16">
-            {/* Clean business style title */}
-            <h1 className="text-white text-4xl lg:text-5xl xl:text-6xl font-bold mb-8 leading-tight tracking-tight">
-              SMART<br />
-              OFFICE<br />
-              <span className="text-orange-100">FUTURE</span><br />
-              DESIGN
+          {/* Content */}
+          <div className="relative z-10 h-full flex flex-col justify-center px-8 lg:px-12 py-16">
+            {/* Decorative top line */}
+            <div className="w-16 h-1 bg-white/40 mb-8"></div>
+            
+            <h1 className="text-white text-4xl lg:text-5xl xl:text-6xl font-black mb-8 leading-none tracking-tight">
+              <span className="block" style={{ fontStyle: 'italic' }}>SMART</span>
+              <span className="block" style={{ fontStyle: 'italic' }}>OFFICE</span>
+              <span className="block text-orange-200" style={{ fontStyle: 'italic' }}>FUTURE</span>
+              <span className="block" style={{ fontStyle: 'italic' }}>DESIGN</span>
             </h1>
 
-            <p className="text-white/90 text-sm lg:text-base mb-6 font-normal leading-relaxed max-w-sm">
+            <p className="text-white/80 text-sm lg:text-base mb-4 font-light leading-relaxed max-w-xs">
               智能办公空间解决方案专家
             </p>
 
-            <p className="text-white font-semibold text-lg lg:text-xl tracking-wide">
-              ZUODI <span className="text-orange-200 font-normal">佐迪智能家具</span>
+            <p className="text-white font-bold text-lg lg:text-xl tracking-wide">
+              ZUODI<span className="text-orange-200 ml-2">佐迪</span>
             </p>
+            
+            {/* CTA Buttons */}
+            <div className="flex flex-col sm:flex-row gap-4 mt-8">
+              <a href="#products" className="inline-flex items-center justify-center gap-2 bg-white text-orange-600 px-6 py-3 font-bold text-sm hover:bg-orange-50 transition-all shadow-lg">
+                浏览产品
+                <ArrowRight className="w-4 h-4" />
+              </a>
+              <a href="#contact" className="inline-flex items-center justify-center gap-2 border-2 border-white/50 text-white px-6 py-3 font-semibold text-sm hover:bg-white/10 transition-all">
+                获取报价
+              </a>
+            </div>
           </div>
         </div>
       </section>
