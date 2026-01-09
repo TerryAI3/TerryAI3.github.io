@@ -58,35 +58,61 @@ export default function Home() {
   return (
     <div className="flex flex-col">
       {/* Hero Banner */}
-      <section className="relative min-h-[600px] bg-white overflow-hidden">
-        <div className="container mx-auto px-4 h-full">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-0 h-full min-h-[600px]">
-            {/* Left: Orange Block with Text */}
-            <div className="bg-primary flex flex-col justify-center p-12 lg:p-16 relative">
-              <div className="absolute top-4 right-4 bg-white px-3 py-1 text-xs font-bold uppercase tracking-wider text-primary">
-                NEW PRODUCT
+      <section className="relative min-h-[700px] bg-gradient-to-br from-orange-500 via-orange-600 to-orange-700 overflow-hidden">
+        {/* Decorative Background Elements */}
+        <div className="absolute top-0 right-0 w-96 h-96 bg-white/5 rounded-full -mr-48 -mt-48 blur-3xl"></div>
+        <div className="absolute bottom-0 left-1/4 w-80 h-80 bg-white/5 rounded-full -mb-40 blur-3xl"></div>
+
+        <div className="container mx-auto px-4 h-full relative z-10">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-0 h-full min-h-[700px] items-center">
+            {/* Left: Text Content */}
+            <div className="flex flex-col justify-center p-8 lg:p-20 relative">
+              <div className="absolute top-12 left-0 w-1 h-20 bg-white/40"></div>
+              
+              <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md px-4 py-2 rounded-full w-fit mb-8 border border-white/20">
+                <span className="w-2 h-2 bg-white rounded-full"></span>
+                <span className="text-xs font-bold uppercase tracking-widest text-white">NEW COLLECTION 2024</span>
               </div>
-              <h1 className="text-white text-5xl lg:text-6xl font-bold mb-6 leading-tight uppercase">
+
+              <h1 className="text-white text-6xl lg:text-7xl font-black mb-8 leading-tight uppercase tracking-tight">
                 YOUR BEST<br />
                 BUDDY FOR<br />
                 DIGITAL<br />
                 NOMADS
               </h1>
-              <p className="text-white/90 text-lg mb-8">
+
+              <p className="text-white/90 text-xl mb-6 font-light leading-relaxed max-w-md">
                 "数字游牧"的经典化模块化办公家具
               </p>
-              <p className="text-white font-semibold text-xl">
+
+              <p className="text-white font-bold text-2xl mb-12">
                 佐迪智能办公系列
               </p>
+
+              <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4">
+                <a href="#products" className="inline-flex items-center gap-3 bg-white text-orange-600 px-8 py-4 rounded-lg font-bold hover:bg-gray-50 transition-all transform hover:scale-105 shadow-lg">
+                  浏览产品
+                  <ArrowRight className="w-5 h-5" />
+                </a>
+                <a href="#contact" className="inline-flex items-center gap-2 text-white border-2 border-white/40 px-6 py-3 rounded-lg font-semibold hover:border-white hover:bg-white/10 transition-all">
+                  获取报价
+                </a>
+              </div>
             </div>
 
             {/* Right: Product Scene Image */}
-            <div className="relative bg-gray-100">
+            <div className="relative h-full min-h-[700px] overflow-hidden">
+              <div className="absolute inset-0 bg-gradient-to-l from-transparent via-transparent to-orange-600/20"></div>
               <img
                 src="/images/hero-office.jpg"
                 alt="Office Scene"
-                className="w-full h-full object-cover"
+                className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
               />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent"></div>
+              <div className="absolute bottom-8 left-8 bg-white/10 backdrop-blur-md p-6 rounded-lg border border-white/20 max-w-xs">
+                <p className="text-white text-sm font-semibold">✓ 模块化设计</p>
+                <p className="text-white/70 text-xs mt-2">灵活组合，适应多种办公场景</p>
+              </div>
             </div>
           </div>
         </div>
@@ -120,7 +146,7 @@ export default function Home() {
       </section>
 
       {/* Products Section */}
-      <section className="py-20 bg-gray-50">
+      <section id="products" className="py-20 bg-gray-50">
         <div className="container mx-auto px-4">
           <div className="mb-12">
             <h2 className="text-4xl font-bold text-gray-800 mb-2">
