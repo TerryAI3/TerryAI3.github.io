@@ -1,4 +1,5 @@
 import { useAuth } from "@/_core/hooks/useAuth";
+
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Package, Briefcase, Archive, Grid3x3 } from "lucide-react";
 import { Link } from "wouter";
@@ -58,31 +59,29 @@ export default function Home() {
   return (
     <div className="flex flex-col">
       {/* Hero Banner */}
-      <section className="relative min-h-[700px] bg-white overflow-hidden py-12 lg:py-0">
-        <div className="w-full h-full relative z-10 flex items-center justify-center px-4 lg:px-0">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-0 h-full min-h-[700px] items-stretch rounded-3xl overflow-hidden shadow-2xl">
-            {/* Left: Orange Content Area with Background Image */}
-            <div className="bg-gradient-to-br from-orange-500 to-orange-600 flex flex-col justify-center p-8 lg:p-20 relative overflow-hidden">
+      <section className="relative w-full min-h-[600px] bg-gray-100 overflow-hidden">
+        <div className="w-full h-full relative z-10">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-0 h-full min-h-[600px] items-stretch">
+            {/* Left: Orange Content Area with Paintbrush Edge */}
+            <div className="bg-gradient-to-br from-orange-500 to-orange-600 flex flex-col justify-center p-8 lg:p-16 relative overflow-visible">
               {/* Background dark image overlay */}
-              <div className="absolute inset-0 opacity-15 mix-blend-multiply" style={{
+              <div className="absolute inset-0 opacity-20 mix-blend-multiply" style={{
                 backgroundImage: 'url(/images/hero-office-new.jpg)',
                 backgroundSize: 'cover',
                 backgroundPosition: 'center'
               }}></div>
 
-              {/* Decorative white slash line */}
-              <div className="absolute top-0 left-0 w-32 h-32 opacity-20">
-                <svg viewBox="0 0 100 100" className="w-full h-full text-white" fill="none" stroke="currentColor" strokeWidth="8">
-                  <line x1="0" y1="0" x2="100" y2="100" />
-                  <line x1="20" y1="0" x2="100" y2="80" />
-                  <line x1="0" y1="20" x2="80" y2="100" />
-                </svg>
-              </div>
-
-              {/* NEW PRODUCT Badge */}
-              <div className="absolute top-8 right-8 bg-white text-orange-600 px-4 py-2 font-bold text-sm tracking-wider z-20">
-                NEW PRODUCT
-              </div>
+              {/* Paintbrush texture on right edge using SVG */}
+              <svg className="absolute right-0 top-0 h-full w-20" preserveAspectRatio="none" viewBox="0 0 100 600" style={{ zIndex: 5 }}>
+                <defs>
+                  <filter id="paintbrush">
+                    <feTurbulence type="fractalNoise" baseFrequency="0.08" numOctaves="2" result="noise" />
+                    <feDisplacementMap in="SourceGraphic" in2="noise" scale="20" />
+                  </filter>
+                </defs>
+                <path d="M 0 0 Q 15 80 8 150 Q 20 220 10 300 Q 18 380 5 450 Q 22 520 12 600 L 100 600 L 100 0 Z" fill="white" opacity="0.12" filter="url(#paintbrush)" />
+                <path d="M 5 0 Q 10 100 3 200 Q 15 300 8 400 Q 12 500 2 600 L 100 600 L 100 0 Z" fill="white" opacity="0.08" filter="url(#paintbrush)" />
+              </svg>
               
               <div className="relative z-10">
                 <h1 className="text-white text-5xl lg:text-6xl font-black mb-6 leading-tight uppercase tracking-tight">
@@ -112,16 +111,18 @@ export default function Home() {
               </div>
             </div>
 
-            {/* Right: Image Area */}
-            <div className="hidden lg:block relative h-full min-h-[700px] overflow-hidden bg-gray-100">
+            {/* Right: Image Area with Light Gray Background */}
+            <div className="hidden lg:flex relative h-full min-h-[600px] items-center justify-center bg-gray-100 overflow-hidden">
+              {/* NEW PRODUCT Badge - Top Right */}
+              <div className="absolute top-8 right-8 bg-orange-500 text-white px-6 py-3 font-bold text-sm tracking-wider z-20 rounded">
+                NEW PRODUCT
+              </div>
+              
               <img
                 src="/images/hero-office-new.jpg"
                 alt="Modern Office Space"
-                className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
+                className="w-full h-full object-cover"
               />
-              
-              {/* Soft gradient overlay for depth */}
-              <div className="absolute inset-0 bg-gradient-to-l from-transparent via-transparent to-orange-500/10"></div>
             </div>
           </div>
         </div>
@@ -158,19 +159,15 @@ export default function Home() {
       <section id="products" className="py-20 bg-gray-50">
         <div className="container mx-auto px-4">
           <div className="mb-12">
-            <h2 className="text-4xl font-bold text-gray-800 mb-2">
-              产品 <span className="text-gray-400">PRODUCTS</span>
+            <h2 className="text-4xl font-bold text-gray-800 mb-8">
+              产品 <span className="text-gray-400">CATEGORIES</span>
             </h2>
           </div>
-
-          {/* Product Categories Icons */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-16">
+          {/* Product Categories */}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-16">
             {productCategories.map((category, idx) => (
-              <div
-                key={idx}
-                className="flex flex-col items-center justify-center p-8 bg-white hover:shadow-lg transition-shadow cursor-pointer group"
-              >
-                <div className="w-20 h-20 rounded-full bg-gray-100 flex items-center justify-center mb-4 group-hover:bg-primary group-hover:text-white transition-colors">
+              <div key={idx} className="text-center justify-center mb-4 group-hover:bg-primary group-hover:text-white transition-colors">
+                <div className="flex items-center justify-center mb-4 group-hover:bg-primary group-hover:text-white transition-colors">
                   <category.icon className="w-10 h-10" />
                 </div>
                 <h3 className="text-lg font-semibold text-gray-800 mb-1">
@@ -180,7 +177,6 @@ export default function Home() {
               </div>
             ))}
           </div>
-
           {/* Featured Products */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {featuredProducts.map((product, idx) => (
@@ -203,7 +199,6 @@ export default function Home() {
               </Link>
             ))}
           </div>
-
           <div className="text-center mt-12">
             <Link href="/products">
               <a className="inline-flex items-center gap-2 px-8 py-3 border-2 border-gray-800 text-gray-800 font-semibold hover:bg-gray-800 hover:text-white transition-colors">
@@ -213,7 +208,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-
       {/* Projects Section */}
       <section className="py-20 bg-white">
         <div className="container mx-auto px-4">
@@ -222,7 +216,6 @@ export default function Home() {
               案例 <span className="text-gray-400">PROJECTS</span>
             </h2>
           </div>
-
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {projects.map((project, idx) => (
               <Link key={idx} href="/cases">
@@ -241,7 +234,6 @@ export default function Home() {
               </Link>
             ))}
           </div>
-
           <div className="text-center mt-12">
             <Link href="/cases">
               <a className="inline-flex items-center gap-2 px-8 py-3 border-2 border-gray-800 text-gray-800 font-semibold hover:bg-gray-800 hover:text-white transition-colors">
@@ -251,7 +243,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-
       {/* Contact Section */}
       <section id="contact" className="py-20 bg-gray-50">
         <div className="container mx-auto px-4">
@@ -262,7 +253,6 @@ export default function Home() {
             <p className="text-gray-600 text-lg mb-12">
               欢迎咨询产品信息或预约展厅参观
             </p>
-
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
               <div className="bg-white p-8">
                 <h3 className="text-xl font-semibold text-gray-800 mb-4">
@@ -274,7 +264,6 @@ export default function Home() {
                   <p>地址：中国·深圳</p>
                 </div>
               </div>
-
               <div className="bg-white p-8">
                 <h3 className="text-xl font-semibold text-gray-800 mb-4">
                   工作时间
@@ -286,7 +275,6 @@ export default function Home() {
                 </div>
               </div>
             </div>
-
             <Button
               size="lg"
               className="px-12 py-6 text-lg"
