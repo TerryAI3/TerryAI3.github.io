@@ -107,9 +107,17 @@ export default function Home() {
           ))}
         </div>
         
-        {/* Logo - Top Left */}
-        <div className="absolute top-8 lg:top-16 left-8 lg:left-16 z-20">
-          <img src="/images/logo-zuodi.png" alt="ZUODI 佐迪" className="h-16 lg:h-20 xl:h-24 w-auto object-contain" />
+        {/* Logo and Brand Area - Top Left */}
+        <div className="absolute top-8 lg:top-12 left-8 lg:left-16 z-20 flex flex-col gap-2">
+          {/* Logo */}
+          <div className="flex items-center gap-3">
+            <img src="/images/logo-zuodi.png" alt="ZUODI 佐迪" className="h-20 lg:h-28 xl:h-32 w-auto object-contain" />
+            {/* Brand Tagline - Right of Logo */}
+            <div className="flex flex-col gap-1">
+              <p className="text-white text-sm lg:text-base font-bold tracking-wider">改大一些</p>
+              <p className="text-white text-xs lg:text-sm font-light">佐迪小二</p>
+            </div>
+          </div>
         </div>
         
         {/* Text Overlay - Bottom Left */}
