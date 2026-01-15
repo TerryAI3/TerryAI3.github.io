@@ -112,10 +112,14 @@ export default function Home() {
           {/* Top Section - Brand Logo */}
           <div className="flex flex-col">
             <div className="flex items-baseline gap-0.5">
-              {/* English text */}
-              <span className="text-5xl lg:text-6xl xl:text-7xl font-black tracking-tight" style={{ color: '#ffffff', fontFamily: '"Montserrat", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif', fontWeight: 900, letterSpacing: '-0.02em' }}>
-                zuodi
-              </span>
+              {/* English text with cyan dot */}
+              <div className="relative inline-block">
+                <span className="text-5xl lg:text-6xl xl:text-7xl font-black tracking-tight" style={{ color: '#ffffff', fontFamily: '"Montserrat", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif', fontWeight: 900, letterSpacing: '-0.02em' }}>
+                  zuodi
+                </span>
+                {/* Cyan dot above 'i' */}
+                <div className="absolute w-2.5 h-2.5 rounded-full" style={{ backgroundColor: '#3E9FFF', top: '-12px', right: '2px' }}></div>
+              </div>
               {/* Chinese text */}
               <span className="text-4xl lg:text-5xl xl:text-6xl font-black" style={{ color: '#ffffff', fontFamily: '"SimHei", "Microsoft YaHei", sans-serif', fontWeight: 900, letterSpacing: '-0.01em' }}>
                 佐迪
