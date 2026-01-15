@@ -1,8 +1,48 @@
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Package, Briefcase, Archive, Grid3x3 } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { Link } from "wouter";
 import { useAuth } from "@/_core/hooks/useAuth";
+
+// 几何图形风格的产品分类图标
+const CategoryIcons = {
+  Chair: () => (
+    <svg className="w-12 h-12" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="50" cy="50" r="48" fill="#000" />
+      {/* 椅子几何图形 */}
+      <rect x="35" y="25" width="30" height="20" fill="none" stroke="#fff" strokeWidth="2" />
+      <rect x="30" y="45" width="40" height="3" fill="#fff" />
+      <line x1="35" y1="48" x2="35" y2="65" stroke="#fff" strokeWidth="2" />
+      <line x1="65" y1="48" x2="65" y2="65" stroke="#fff" strokeWidth="2" />
+    </svg>
+  ),
+  Table: () => (
+    <svg className="w-12 h-12" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="50" cy="50" r="48" fill="#000" />
+      {/* 办公会议桌几何图形 */}
+      <rect x="20" y="30" width="60" height="25" fill="none" stroke="#fff" strokeWidth="2" />
+      <line x1="30" y1="55" x2="30" y2="70" stroke="#fff" strokeWidth="2" />
+      <line x1="70" y1="55" x2="70" y2="70" stroke="#fff" strokeWidth="2" />
+    </svg>
+  ),
+  Storage: () => (
+    <svg className="w-12 h-12" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="50" cy="50" r="48" fill="#000" />
+      {/* 存储柜几何图形 */}
+      <rect x="30" y="25" width="40" height="50" fill="none" stroke="#fff" strokeWidth="2" />
+      <line x1="30" y1="40" x2="70" y2="40" stroke="#fff" strokeWidth="2" />
+      <line x1="30" y1="55" x2="70" y2="55" stroke="#fff" strokeWidth="2" />
+    </svg>
+  ),
+  Space: () => (
+    <svg className="w-12 h-12" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="50" cy="50" r="48" fill="#000" />
+      {/* 空间支持几何图形 */}
+      <polygon points="50,20 70,35 70,65 50,75 30,65 30,35" fill="none" stroke="#fff" strokeWidth="2" />
+      <circle cx="50" cy="50" r="8" fill="#fff" />
+    </svg>
+  ),
+};
 
 export default function Home() {
   const { user } = useAuth();
@@ -22,10 +62,10 @@ export default function Home() {
   }, [heroImages.length]);
 
   const productCategories = [
-    { icon: Briefcase, name: "座椅", nameEn: "Seating" },
-    { icon: Package, name: "办公会议桌", nameEn: "Desks & Tables" },
-    { icon: Archive, name: "存储", nameEn: "Storage" },
-    { icon: Grid3x3, name: "空间支持", nameEn: "Space Solutions" },
+    { icon: CategoryIcons.Chair, name: "座椅", nameEn: "Seating" },
+    { icon: CategoryIcons.Table, name: "办公会议桌", nameEn: "Desks & Tables" },
+    { icon: CategoryIcons.Storage, name: "存储", nameEn: "Storage" },
+    { icon: CategoryIcons.Space, name: "空间支持", nameEn: "Space Solutions" },
   ];
 
   const featuredProducts = [
@@ -108,8 +148,8 @@ export default function Home() {
         </div>
         
         {/* Logo - Top Left */}
-        <div className="absolute top-8 lg:top-16 left-8 lg:left-16 z-20">
-          <img src="/images/logo-zuodi.png" alt="ZUODI 佐迪" className="h-16 lg:h-20 xl:h-24 w-auto object-contain" />
+        <div className="absolute top-6 lg:top-8 left-6 lg:left-8 z-20">
+          <img src="/images/logo-zuodi.png" alt="ZUODI 佐迪" className="h-12 lg:h-14 xl:h-16 w-auto object-contain" />
         </div>
         
         {/* Text Overlay - Bottom Left */}
@@ -162,13 +202,18 @@ export default function Home() {
           </div>
           {/* Product Categories */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-16">
-            {productCategories.map((category, idx) => (
+            {productCategories.map((category, idx) => {
+              const IconComponent = category.icon;
+              return (
               <div key={idx} className="flex flex-col items-center text-center p-6 bg-white rounded-lg hover:shadow-lg transition-shadow">
-                <category.icon className="w-12 h-12 text-orange-500 mb-4" />
+                <div className="mb-4">
+                  <IconComponent />
+                </div>
                 <h3 className="font-bold text-gray-800 mb-1">{category.name}</h3>
                 <p className="text-xs text-gray-500">{category.nameEn}</p>
               </div>
-            ))}
+            );
+            })}
           </div>
 
           {/* Featured Products */}
