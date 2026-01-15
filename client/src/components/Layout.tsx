@@ -25,7 +25,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
           {/* Logo - Left aligned */}
           <Link href="/">
             <a className="flex items-center gap-2">
-              <img src="/images/zuodi-logo.png" alt="佐迪" className="h-16 lg:h-20 w-auto" />
+              <img src="/images/zuodi-logo.png" alt="佐迪" className="h-20 lg:h-24 w-auto" />
             </a>
           </Link>
 

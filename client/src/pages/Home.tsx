@@ -149,7 +149,7 @@ export default function Home() {
         
         {/* Logo - Top Left */}
         <div className="absolute top-6 lg:top-10 left-6 lg:left-8 z-20">
-          <img src="/images/logo-zuodi.png" alt="ZUODI 佐迪" className="h-12 lg:h-16 xl:h-20 w-auto object-contain" />
+          <img src="/images/logo-zuodi.png" alt="ZUODI 佐迪" className="h-10 lg:h-14 xl:h-18 w-auto object-contain" />
         </div>
         
         {/* Text Overlay - Bottom Left */}
