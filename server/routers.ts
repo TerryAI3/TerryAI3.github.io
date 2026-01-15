@@ -4,6 +4,7 @@ import { systemRouter } from "./_core/systemRouter";
 import { publicProcedure, router, protectedProcedure } from "./_core/trpc";
 import { getAllProducts, getProductById, getProductsByCategory, getProductsBySeries, getAllCategories, createProduct, updateProduct, deleteProduct, createCategory, updateCategory, deleteCategory, getCategoryById, getAllSeries, getSeriesById, getSeriesBySlug, createSeries, updateSeries, deleteSeries } from "./db";
 import { z } from "zod";
+import { storagePut } from "./storage";
 
 export const appRouter = router({
   system: systemRouter,
@@ -170,6 +171,34 @@ export const appRouter = router({
         if (ctx.user?.role !== 'admin') throw new Error('Only admins can delete categories');
         await deleteCategory(input);
         return { success: true };
+      }),
+  }),
+
+  upload: router({
+    image: protectedProcedure
+      .input(z.object({
+        filename: z.string(),
+        base64: z.string(),
+        contentType: z.string().default('image/jpeg'),
+      }))
+      .mutation(async ({ input, ctx }) => {
+        if (ctx.user?.role !== 'admin') throw new Error('Only admins can upload images');
+        
+        try {
+          const buffer = Buffer.from(input.base64, 'base64');
+          const timestamp = Date.now();
+          const randomStr = Math.random().toString(36).substring(2, 8);
+          const ext = input.filename.split('.').pop() || 'jpg';
+          const uniqueFilename = `products/${timestamp}-${randomStr}.${ext}`;
+          const result = await storagePut(uniqueFilename, buffer, input.contentType);
+          return {
+            success: true,
+            url: result.url,
+            key: result.key,
+          };
+        } catch (error) {
+          throw new Error(`Image upload failed: ${(error as Error).message}`);
+        }
       }),
   }),
 });
