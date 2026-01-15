@@ -8,7 +8,7 @@ import { useAuth } from "@/_core/hooks/useAuth";
 const CategoryIcons = {
   Chair: () => (
     <svg className="w-12 h-12" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <circle cx="50" cy="50" r="48" fill="#000" />
+      <circle cx="50" cy="50" r="48" fill="#3E9FFF" />
       {/* 椅子几何图形 */}
       <rect x="35" y="25" width="30" height="20" fill="none" stroke="#fff" strokeWidth="2" />
       <rect x="30" y="45" width="40" height="3" fill="#fff" />
@@ -18,7 +18,7 @@ const CategoryIcons = {
   ),
   Table: () => (
     <svg className="w-12 h-12" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <circle cx="50" cy="50" r="48" fill="#000" />
+      <circle cx="50" cy="50" r="48" fill="#3E9FFF" />
       {/* 办公会议桌几何图形 */}
       <rect x="20" y="30" width="60" height="25" fill="none" stroke="#fff" strokeWidth="2" />
       <line x1="30" y1="55" x2="30" y2="70" stroke="#fff" strokeWidth="2" />
@@ -27,7 +27,7 @@ const CategoryIcons = {
   ),
   Storage: () => (
     <svg className="w-12 h-12" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <circle cx="50" cy="50" r="48" fill="#000" />
+      <circle cx="50" cy="50" r="48" fill="#3E9FFF" />
       {/* 存储柜几何图形 */}
       <rect x="30" y="25" width="40" height="50" fill="none" stroke="#fff" strokeWidth="2" />
       <line x1="30" y1="40" x2="70" y2="40" stroke="#fff" strokeWidth="2" />
@@ -36,7 +36,7 @@ const CategoryIcons = {
   ),
   Space: () => (
     <svg className="w-12 h-12" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <circle cx="50" cy="50" r="48" fill="#000" />
+      <circle cx="50" cy="50" r="48" fill="#3E9FFF" />
       {/* 空间支持几何图形 */}
       <polygon points="50,20 70,35 70,65 50,75 30,65 30,35" fill="none" stroke="#fff" strokeWidth="2" />
       <circle cx="50" cy="50" r="8" fill="#fff" />
@@ -148,8 +148,8 @@ export default function Home() {
         </div>
         
         {/* Logo - Top Left */}
-        <div className="absolute top-6 lg:top-8 left-6 lg:left-8 z-20">
-          <img src="/images/logo-zuodi.png" alt="ZUODI 佐迪" className="h-12 lg:h-14 xl:h-16 w-auto object-contain" />
+        <div className="absolute top-6 lg:top-10 left-6 lg:left-8 z-20">
+          <img src="/images/logo-zuodi.png" alt="ZUODI 佐迪" className="h-14 lg:h-20 xl:h-28 w-auto object-contain" />
         </div>
         
         {/* Text Overlay - Bottom Left */}
