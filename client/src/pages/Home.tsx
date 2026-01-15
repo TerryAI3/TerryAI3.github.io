@@ -1,11 +1,25 @@
-import { useAuth } from "@/_core/hooks/useAuth";
-
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Package, Briefcase, Archive, Grid3x3 } from "lucide-react";
 import { Link } from "wouter";
+import { useAuth } from "@/_core/hooks/useAuth";
 
 export default function Home() {
   const { user } = useAuth();
+  const [currentSlide, setCurrentSlide] = useState(0);
+  
+  const heroImages = [
+    "/images/hero-office-new.jpg",
+    "/images/hero-carousel-1.jpg",
+    "/images/hero-carousel-2.jpg"
+  ];
+  
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % heroImages.length);
+    }, 5000);
+    return () => clearInterval(interval);
+  }, [heroImages.length]);
 
   const productCategories = [
     { icon: Briefcase, name: "座椅", nameEn: "Seating" },
@@ -58,15 +72,36 @@ export default function Home() {
 
   return (
     <div className="flex flex-col">
-      {/* Hero Banner - Artistic Design */}
+      {/* Hero Banner - Artistic Design with Carousel */}
       <section className="relative w-full h-[600px] overflow-hidden">
-        {/* Full width background image */}
+        {/* Image Carousel */}
         <div className="absolute inset-0 w-full h-full">
-          <img
-            src="/images/hero-office-new.jpg"
-            alt="Modern Office Space"
-            className="w-full h-full object-cover"
-          />
+          {heroImages.map((image, index) => (
+            <img
+              key={index}
+              src={image}
+              alt={`Office Space ${index + 1}`}
+              className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ease-in-out ${
+                index === currentSlide ? 'opacity-100' : 'opacity-0'
+              }`}
+            />
+          ))}
+        </div>
+        
+        {/* Carousel Indicators - Bottom Center */}
+        <div className="absolute bottom-6 left-1/2 transform -translate-x-1/2 flex gap-3 z-20">
+          {heroImages.map((_, index) => (
+            <button
+              key={index}
+              onClick={() => setCurrentSlide(index)}
+              className={`w-2 h-2 rounded-full transition-all duration-300 ${
+                index === currentSlide
+                  ? 'bg-white w-8'
+                  : 'bg-white/50 hover:bg-white/75'
+              }`}
+              aria-label={`Go to slide ${index + 1}`}
+            />
+          ))}
         </div>
         
         {/* NEW PRODUCT Badge - Top Right */}
