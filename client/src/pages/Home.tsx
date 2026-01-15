@@ -111,7 +111,7 @@ export default function Home() {
         <div className="absolute inset-0 z-10 flex flex-col justify-between p-8 lg:p-16">
           {/* Top Section - Brand Name */}
           <div className="flex flex-col">
-            <h1 className="text-white text-5xl lg:text-6xl xl:text-7xl font-black leading-tight tracking-tight" style={{ color: '#001F3F' }}>
+            <h1 className="text-5xl lg:text-6xl xl:text-7xl font-black leading-tight tracking-tight" style={{ color: '#001F3F', fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", sans-serif', fontWeight: 900, letterSpacing: '-0.02em' }}>
               ZUODI<br />
               <span style={{ color: '#001F3F' }}>佐迪</span>
             </h1>
