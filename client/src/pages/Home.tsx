@@ -111,20 +111,7 @@ export default function Home() {
         <div className="absolute inset-0 z-10 flex flex-col justify-between p-8 lg:p-16">
           {/* Top Section - Brand Logo */}
           <div className="flex flex-col">
-            <div className="flex items-center gap-0">
-              {/* English text with dot */}
-              <div className="relative inline-block">
-                <span className="text-4xl lg:text-5xl xl:text-6xl font-bold tracking-tight" style={{ color: '#ffffff', fontFamily: 'Montserrat, -apple-system, BlinkMacSystemFont, sans-serif', fontWeight: 700 }}>
-                  zuodi
-                </span>
-                {/* Cyan dot above 'i' */}
-                <div className="absolute w-2 lg:w-2.5 h-2 lg:h-2.5 rounded-full" style={{ backgroundColor: '#3E9FFF', top: '-8px', right: '2px' }}></div>
-              </div>
-              {/* Chinese text */}
-              <span className="text-3xl lg:text-4xl xl:text-5xl font-bold ml-1" style={{ color: '#ffffff', fontFamily: 'SimHei, "Microsoft YaHei", sans-serif', fontWeight: 700 }}>
-                佐迪
-              </span>
-            </div>
+            <img src="/images/logo-zuodi-brand.png" alt="ZUODI 佐迪" className="h-20 lg:h-28 xl:h-36 w-auto object-contain" />
           </div>
           
           {/* Bottom Section - Tagline */}
