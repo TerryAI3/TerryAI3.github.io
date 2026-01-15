@@ -1,8 +1,10 @@
 import { useState } from "react";
 import { Link } from "wouter";
 import { ChevronRight } from "lucide-react";
+import { trpc } from "@/lib/trpc";
 
-const cases = [
+// 本地案例数据（备用）
+const localCases = [
   {
     id: 1,
     title: "现代教室改造方案",
@@ -158,11 +160,15 @@ const cases = [
 ];
 
 export default function Cases() {
-  const [selectedCategory, setSelectedCategory] = useState<string>("全部");
+  const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
+  const { data: dbCases = [] } = trpc.cases.list.useQuery();
   
-  const categories = ["全部", "教室", "办公"];
-  const filteredCases = selectedCategory === "全部" 
-    ? cases 
+  // 使用数据库案例，如果为空则使用本地案例
+  const cases = dbCases.length > 0 ? dbCases : localCases;
+  
+  const categories = ["全部", ...Array.from(new Set(localCases.map(c => c.category)))];
+  const filteredCases = selectedCategory === null || selectedCategory === "全部"
+    ? cases
     : cases.filter(c => c.category === selectedCategory);
 
   return (
@@ -191,9 +197,9 @@ export default function Cases() {
             {categories.map((cat) => (
               <button
                 key={cat}
-                onClick={() => setSelectedCategory(cat)}
+                onClick={() => setSelectedCategory(cat === "全部" ? null : cat)}
                 className={`px-6 py-3 text-sm font-heading uppercase tracking-wider border-2 transition-all ${
-                  selectedCategory === cat
+                  (selectedCategory === null && cat === "全部") || selectedCategory === cat
                     ? "bg-foreground text-background border-foreground"
                     : "bg-transparent text-foreground border-foreground/20 hover:border-foreground"
                 }`}
@@ -214,7 +220,7 @@ export default function Cases() {
                 {/* Image */}
                 <div className="relative aspect-video overflow-hidden bg-muted">
                   <img
-                    src={caseItem.image}
+                    src={("image" in caseItem ? caseItem.image : caseItem.mainImage) || ""}
                     alt={caseItem.title}
                     className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
                   />
@@ -240,38 +246,42 @@ export default function Cases() {
                     {caseItem.description}
                   </p>
 
-                  {/* Stats */}
-                  <div className="grid grid-cols-3 gap-4 py-4 border-y border-foreground/10">
-                    {Object.entries(caseItem.stats).map(([key, value]) => (
-                      <div key={key} className="text-center">
-                        <p className="text-xs text-muted-foreground uppercase tracking-widest mb-1">
-                          {key === "area" && "面积"}
-                          {key === "students" && "学生数"}
-                          {key === "employees" && "员工数"}
-                          {key === "offices" && "办公室"}
-                          {key === "teams" && "团队数"}
-                          {key === "children" && "儿童数"}
-                          {key === "completion" && "完成时间"}
-                        </p>
-                        <p className="font-heading text-lg font-bold">{value}</p>
-                      </div>
-                    ))}
-                  </div>
-
-                  {/* Highlights */}
-                  <div className="space-y-2">
-                    <p className="text-xs font-bold uppercase tracking-widest text-primary">项目亮点</p>
-                    <div className="flex flex-wrap gap-2">
-                      {caseItem.highlights.map((highlight, idx) => (
-                        <span
-                          key={idx}
-                          className="px-3 py-1 bg-muted text-foreground text-xs font-bold uppercase tracking-wider rounded-none border border-foreground/20"
-                        >
-                          {highlight}
-                        </span>
+                  {/* Stats - 仅本地案例显示 */}
+                  {"stats" in caseItem && (
+                    <div className="grid grid-cols-3 gap-4 py-4 border-y border-foreground/10">
+                      {Object.entries((caseItem.stats as any)).map(([key, value]: [string, any]) => (
+                        <div key={key} className="text-center">
+                          <p className="text-xs text-muted-foreground uppercase tracking-widest mb-1">
+                            {key === "area" && "面积"}
+                            {key === "students" && "学生数"}
+                            {key === "employees" && "员工数"}
+                            {key === "offices" && "办公室"}
+                            {key === "teams" && "团队数"}
+                            {key === "children" && "儿童数"}
+                            {key === "completion" && "完成时间"}
+                          </p>
+                          <p className="font-heading text-lg font-bold">{value}</p>
+                        </div>
                       ))}
                     </div>
-                  </div>
+                  )}
+
+                  {/* Highlights - 仅本地案例显示 */}
+                  {"highlights" in caseItem && (
+                    <div className="space-y-2">
+                      <p className="text-xs font-bold uppercase tracking-widest text-primary">项目亮点</p>
+                      <div className="flex flex-wrap gap-2">
+                        {(caseItem.highlights as string[]).map((highlight: string, idx: number) => (
+                          <span
+                            key={idx}
+                            className="px-3 py-1 bg-muted text-foreground text-xs font-bold uppercase tracking-wider rounded-none border border-foreground/20"
+                          >
+                            {highlight}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                  )}
 
                   {/* CTA */}
                   <a href="#" className="inline-flex items-center gap-2 text-primary font-bold uppercase tracking-widest hover:gap-4 transition-all pt-2">

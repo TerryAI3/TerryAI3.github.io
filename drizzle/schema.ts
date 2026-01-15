@@ -113,3 +113,27 @@ export const productInquiries = mysqlTable("product_inquiries", {
 
 export type ProductInquiry = typeof productInquiries.$inferSelect;
 export type InsertProductInquiry = typeof productInquiries.$inferInsert;
+
+/**
+ * Cases Table
+ * Stores project cases/examples showcasing products in real environments
+ */
+export const cases = mysqlTable("cases", {
+  id: int("id").autoincrement().primaryKey(),
+  title: varchar("title", { length: 200 }).notNull(),
+  slug: varchar("slug", { length: 200 }).notNull().unique(),
+  category: varchar("category", { length: 100 }).notNull(),
+  description: text("description"),
+  location: varchar("location", { length: 200 }),
+  completedDate: varchar("completedDate", { length: 50 }),
+  mainImage: varchar("mainImage", { length: 500 }),
+  images: text("images"),
+  products: text("products"),
+  sortOrder: int("sortOrder").default(0).notNull(),
+  isActive: int("isActive").default(1).notNull(),
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+  updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
+});
+
+export type Case = typeof cases.$inferSelect;
+export type InsertCase = typeof cases.$inferInsert;

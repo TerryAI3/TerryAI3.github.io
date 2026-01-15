@@ -16,6 +16,7 @@ import AdminCategories from "./pages/AdminCategories";
 import Admin from "./pages/Admin";
 import AdminSeries from "./pages/AdminSeries";
 import AdminProductImport from "./pages/AdminProductImport";
+import AdminCases from "./pages/AdminCases";
 import Login from "./pages/Login";
 import Layout from "./components/Layout";
 function Router() {
@@ -36,6 +37,7 @@ function Router() {
         <Route path={"/admin/categories"} component={AdminCategories} />
         <Route path={"/admin/series"} component={AdminSeries} />
         <Route path={"/admin/import"} component={AdminProductImport} />
+        <Route path={"/admin/cases"} component={AdminCases} />
         <Route path={"/404"} component={NotFound} />
         {/* Final fallback route */}
         <Route component={NotFound} />

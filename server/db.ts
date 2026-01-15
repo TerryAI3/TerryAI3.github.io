@@ -1,6 +1,6 @@
 import { eq } from "drizzle-orm";
 import { drizzle } from "drizzle-orm/mysql2";
-import { InsertUser, users, products, productCategories, productSeries, InsertProduct, InsertProductSeries } from "../drizzle/schema";
+import { InsertUser, users, products, productCategories, productSeries, InsertProduct, InsertProductSeries, cases, InsertCase, Case } from "../drizzle/schema";
 import { ENV } from './_core/env';
 
 let _db: ReturnType<typeof drizzle> | null = null;
@@ -207,4 +207,49 @@ export async function deleteSeries(id: number) {
   const db = await getDb();
   if (!db) throw new Error("Database not available");
   await db.delete(productSeries).where(eq(productSeries.id, id));
+}
+
+// Cases queries
+export async function getAllCases() {
+  const db = await getDb();
+  if (!db) return [];
+  return await db.select().from(cases).where(eq(cases.isActive, 1)).orderBy(cases.sortOrder);
+}
+
+export async function getCaseById(id: number) {
+  const db = await getDb();
+  if (!db) return undefined;
+  const result = await db.select().from(cases).where(eq(cases.id, id)).limit(1);
+  return result.length > 0 ? result[0] : undefined;
+}
+
+export async function getCaseBySlug(slug: string) {
+  const db = await getDb();
+  if (!db) return undefined;
+  const result = await db.select().from(cases).where(eq(cases.slug, slug)).limit(1);
+  return result.length > 0 ? result[0] : undefined;
+}
+
+export async function getCasesByCategory(category: string) {
+  const db = await getDb();
+  if (!db) return [];
+  return await db.select().from(cases).where(eq(cases.category, category)).orderBy(cases.sortOrder);
+}
+
+export async function createCase(caseData: InsertCase) {
+  const db = await getDb();
+  if (!db) throw new Error("Database not available");
+  await db.insert(cases).values(caseData);
+}
+
+export async function updateCase(id: number, updates: Partial<InsertCase>) {
+  const db = await getDb();
+  if (!db) throw new Error("Database not available");
+  await db.update(cases).set(updates).where(eq(cases.id, id));
+}
+
+export async function deleteCase(id: number) {
+  const db = await getDb();
+  if (!db) throw new Error("Database not available");
+  await db.delete(cases).where(eq(cases.id, id));
 }
