@@ -107,19 +107,16 @@ export default function Home() {
           ))}
         </div>
         
-        {/* Text Overlay - Minimalist Design */}
-        <div className="absolute inset-0 z-10 flex flex-col justify-between p-8 lg:p-16">
-          {/* Top Section - Brand Logo */}
-          <div className="flex flex-col">
-            <img src="/images/logo-zuodi.png" alt="ZUODI 佐迪" className="h-16 lg:h-20 xl:h-24 w-auto object-contain" />
-          </div>
-          
-          {/* Bottom Section - Tagline */}
-          <div className="flex flex-col">
-            <p className="text-white text-lg lg:text-2xl font-light leading-relaxed max-w-md">
-              办公空间解决方案专家
-            </p>
-          </div>
+        {/* Logo - Top Left */}
+        <div className="absolute top-8 lg:top-16 left-8 lg:left-16 z-20">
+          <img src="/images/logo-zuodi.png" alt="ZUODI 佐迪" className="h-16 lg:h-20 xl:h-24 w-auto object-contain" />
+        </div>
+        
+        {/* Text Overlay - Bottom Left */}
+        <div className="absolute bottom-8 lg:bottom-16 left-8 lg:left-16 z-10">
+          <p className="text-white text-lg lg:text-2xl font-light leading-relaxed max-w-md">
+            办公空间解决方案专家
+          </p>
         </div>
         
         {/* NEW PRODUCT Badge - Top Right */}
