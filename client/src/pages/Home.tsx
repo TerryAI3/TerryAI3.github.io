@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 import { Link } from "wouter";
 import { useAuth } from "@/_core/hooks/useAuth";
+import { trpc } from "@/lib/trpc";
 
 // 几何图形风格的产品分类图标
 const CategoryIcons = {
@@ -47,6 +48,7 @@ const CategoryIcons = {
 export default function Home() {
   const { user } = useAuth();
   const [currentSlide, setCurrentSlide] = useState(0);
+  const { data: cases = [] } = trpc.cases.list.useQuery();
   
   const heroImages = [
     "/images/hero-1.jpg",
@@ -245,11 +247,11 @@ export default function Home() {
             </h2>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {projects.map((project, idx) => (
+            {(cases.length > 0 ? cases : projects).map((project: any, idx: number) => (
               <div key={idx} className="group relative h-64 overflow-hidden rounded-lg">
-                <img src={project.image} alt={project.name} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
+                <img src={project.mainImage || project.image} alt={project.title || project.name} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
                 <div className="absolute inset-0 bg-black/40 group-hover:bg-black/60 transition-all flex items-end p-6">
-                  <h3 className="text-white font-bold text-lg">{project.name}</h3>
+                  <h3 className="text-white font-bold text-lg">{project.title || project.name}</h3>
                 </div>
               </div>
             ))}
