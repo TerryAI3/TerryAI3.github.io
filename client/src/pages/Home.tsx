@@ -9,9 +9,9 @@ export default function Home() {
   const [currentSlide, setCurrentSlide] = useState(0);
   
   const heroImages = [
-    "/images/hero-office-new.jpg",
-    "/images/hero-carousel-1.jpg",
-    "/images/hero-carousel-2.jpg"
+    "/images/hero-1.jpg",
+    "/images/hero-2.jpg",
+    "/images/hero-3.jpg"
   ];
   
   useEffect(() => {
