@@ -111,7 +111,7 @@ export default function Home() {
         <div className="absolute inset-0 z-10 flex flex-col justify-between p-8 lg:p-16">
           {/* Top Section - Brand Logo */}
           <div className="flex flex-col">
-            <img src="/images/logo-zuodi.png" alt="ZUODI 佐迪" className="h-24 lg:h-32 xl:h-40 w-auto object-contain" />
+            <img src="/images/logo-zuodi.png" alt="ZUODI 佐迪" className="h-16 lg:h-20 xl:h-24 w-auto object-contain" />
           </div>
           
           {/* Bottom Section - Tagline */}
