@@ -111,10 +111,9 @@ export default function Home() {
         <div className="absolute inset-0 z-10 flex flex-col justify-between p-8 lg:p-16">
           {/* Top Section - Brand Name */}
           <div className="flex flex-col">
-            <div className="w-20 h-1 bg-white mb-8"></div>
-            <h1 className="text-white text-5xl lg:text-6xl xl:text-7xl font-black leading-tight tracking-tight">
+            <h1 className="text-white text-5xl lg:text-6xl xl:text-7xl font-black leading-tight tracking-tight" style={{ color: '#001F3F' }}>
               ZUODI<br />
-              <span className="text-orange-500">佐迪</span>
+              <span style={{ color: '#001F3F' }}>佐迪</span>
             </h1>
           </div>
           
