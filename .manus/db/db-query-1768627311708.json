@@ -1,0 +1,15 @@
+{
+  "query": "SELECT email, resetToken, resetTokenExpiry FROM users WHERE email='terrykang112@gmail.com' LIMIT 1;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway03.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 3kXMpZLpMyzynkG.root --database TT8Y97ru5SB3TceVuj6uhk --execute SELECT email, resetToken, resetTokenExpiry FROM users WHERE email='terrykang112@gmail.com' LIMIT 1;",
+  "rows": [
+    {
+      "email": "terrykang112@gmail.com",
+      "resetToken": "954429",
+      "resetTokenExpiry": "2026-01-17 05:51:37"
+    }
+  ],
+  "messages": [],
+  "stdout": "email\tresetToken\tresetTokenExpiry\nterrykang112@gmail.com\t954429\t2026-01-17 05:51:37\n",
+  "stderr": "",
+  "execution_time_ms": 1542
+}
