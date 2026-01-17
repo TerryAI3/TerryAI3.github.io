@@ -1,0 +1,9 @@
+{
+  "query": "UPDATE users SET passwordHash = '987066bd50ddda746476c1bcc6885e31:d326ef09483b8b7f6954aacbad33d821414b0d911c42f8f0d21645d6c509075c73e8c5854ce01ea256620ecf44e15318f04bef878564ceb447fa2b2c7c4f249b', role = 'admin' WHERE email = 'terrykang112@gmail.com';",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway03.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 3kXMpZLpMyzynkG.root --database TT8Y97ru5SB3TceVuj6uhk --execute UPDATE users SET passwordHash = '987066bd50ddda746476c1bcc6885e31:d326ef09483b8b7f6954aacbad33d821414b0d911c42f8f0d21645d6c509075c73e8c5854ce01ea256620ecf44e15318f04bef878564ceb447fa2b2c7c4f249b', role = 'admin' WHERE email = 'terrykang112@gmail.com';",
+  "rows": [],
+  "messages": [],
+  "stdout": "",
+  "stderr": "",
+  "execution_time_ms": 1496
+}

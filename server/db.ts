@@ -253,3 +253,34 @@ export async function deleteCase(id: number) {
   if (!db) throw new Error("Database not available");
   await db.delete(cases).where(eq(cases.id, id));
 }
+
+
+// Email/Password authentication queries
+export async function getUserByEmail(email: string) {
+  const db = await getDb();
+  if (!db) {
+    console.warn("[Database] Cannot get user: database not available");
+    return undefined;
+  }
+
+  const result = await db.select().from(users).where(eq(users.email, email)).limit(1);
+  return result.length > 0 ? result[0] : undefined;
+}
+
+export async function createEmailUser(data: {
+  email: string;
+  name?: string;
+  passwordHash: string;
+  role?: 'user' | 'admin';
+}) {
+  const db = await getDb();
+  if (!db) throw new Error("Database not available");
+  
+  await db.insert(users).values({
+    email: data.email,
+    name: data.name,
+    passwordHash: data.passwordHash,
+    role: data.role || 'user',
+    lastSignedIn: new Date(),
+  });
+}
