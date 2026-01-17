@@ -1,0 +1,9 @@
+{
+  "query": "UPDATE users SET passwordHash = '8930fbdb129ceeb1b172f0acb2014ccf:a45bc95490b58c42b09fdbb8ab05a7ae24e0e9d4fdb9625631a87acf179cc071a97e948ab9d45cc8b2996c8dec6b3eb2a9d4a3a566ae01ffde1be4d863aff1b7' WHERE email = 'admin@zuodi.com';",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway03.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 3kXMpZLpMyzynkG.root --database TT8Y97ru5SB3TceVuj6uhk --execute UPDATE users SET passwordHash = '8930fbdb129ceeb1b172f0acb2014ccf:a45bc95490b58c42b09fdbb8ab05a7ae24e0e9d4fdb9625631a87acf179cc071a97e948ab9d45cc8b2996c8dec6b3eb2a9d4a3a566ae01ffde1be4d863aff1b7' WHERE email = 'admin@zuodi.com';",
+  "rows": [],
+  "messages": [],
+  "stdout": "",
+  "stderr": "",
+  "execution_time_ms": 1499
+}

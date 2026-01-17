@@ -1,0 +1,9 @@
+{
+  "query": "DELETE FROM users WHERE email = 'admin@zuodi.com'; INSERT INTO users (email, name, passwordHash, role, createdAt, updatedAt) VALUES ('admin@zuodi.com', 'Admin', '$2b$10$YIjlrHWe8Ks.xL5XqF8Gx.5Z5Z5Z5Z5Z5Z5Z5Z5Z5Z5Z5Z5Z5Z5Z5Z', 'admin', NOW(), NOW());",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway03.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 3kXMpZLpMyzynkG.root --database TT8Y97ru5SB3TceVuj6uhk --execute DELETE FROM users WHERE email = 'admin@zuodi.com'; INSERT INTO users (email, name, passwordHash, role, createdAt, updatedAt) VALUES ('admin@zuodi.com', 'Admin', '$2b$10$YIjlrHWe8Ks.xL5XqF8Gx.5Z5Z5Z5Z5Z5Z5Z5Z5Z5Z5Z5Z5Z5Z5Z5Z', 'admin', NOW(), NOW());",
+  "rows": [],
+  "messages": [],
+  "stdout": "",
+  "stderr": "",
+  "execution_time_ms": 1815
+}
