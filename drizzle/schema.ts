@@ -18,6 +18,10 @@ export const users = mysqlTable("users", {
   loginMethod: varchar("loginMethod", { length: 64 }),
   /** Password hash for email/password login */
   passwordHash: varchar("passwordHash", { length: 255 }),
+  /** Password reset token */
+  resetToken: varchar("resetToken", { length: 255 }),
+  /** Password reset token expiration time */
+  resetTokenExpiry: timestamp("resetTokenExpiry"),
   role: mysqlEnum("role", ["user", "admin"]).default("user").notNull(),
   createdAt: timestamp("createdAt").defaultNow().notNull(),
   updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),

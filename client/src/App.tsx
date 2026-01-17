@@ -18,6 +18,7 @@ import AdminSeries from "./pages/AdminSeries";
 import AdminProductImport from "./pages/AdminProductImport";
 import AdminCases from "./pages/AdminCases";
 import Login from "./pages/Login";
+import ResetPassword from "./pages/ResetPassword";
 import Layout from "./components/Layout";
 function Router() {
   // make sure to consider if you need authentication for certain routes
@@ -25,6 +26,7 @@ function Router() {
     <Layout>
       <Switch>
         <Route path={"/login"} component={Login} />
+        <Route path={"/reset-password"} component={ResetPassword} />
         <Route path={"/"} component={Home} />
         <Route path={"/office"} component={Office} />
         <Route path={"/school"} component={School} />

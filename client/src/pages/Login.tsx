@@ -43,6 +43,10 @@ export default function Login() {
     navigate("/register");
   };
 
+  const handleForgotPassword = () => {
+    navigate("/reset-password");
+  };
+
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-orange-50 to-white px-4">
       <div className="w-full max-w-md">
@@ -114,17 +118,27 @@ export default function Login() {
             </Button>
           </form>
 
-          {/* Register Link */}
-          <div className="mt-6 text-center">
-            <p className="text-gray-600">
-              还没有账户？
+          {/* Register Link and Forgot Password */}
+          <div className="mt-6 space-y-3">
+            <div className="text-center">
+              <p className="text-gray-600">
+                还没有账户？
+                <button
+                  onClick={handleRegister}
+                  className="text-primary hover:text-primary/80 font-semibold ml-1 transition-colors"
+                >
+                  立即注册
+                </button>
+              </p>
+            </div>
+            <div className="text-center">
               <button
-                onClick={handleRegister}
-                className="text-primary hover:text-primary/80 font-semibold ml-1 transition-colors"
+                onClick={handleForgotPassword}
+                className="text-sm text-gray-500 hover:text-primary transition-colors"
               >
-                立即注册
+                忘记密码？
               </button>
-            </p>
+            </div>
           </div>
         </div>
 
