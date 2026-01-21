@@ -1,0 +1,8 @@
+{
+  "query": "UPDATE users SET email = 'terrykang112@gmail.com', passwordHash = '69bb4ece8eae5e8c6520ebfad722a637:181cd4c0864ac8eb36eea7c7e4063de1635d0fa858bebfd28175ccfbde96116f1ff22f2253f3bae474d37193a63bfb55461410100b9ab147b3289a40ade6f7d0' WHERE email = 'admin@zuodi.com';",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway03.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 3kXMpZLpMyzynkG.root --database TT8Y97ru5SB3TceVuj6uhk --execute UPDATE users SET email = 'terrykang112@gmail.com', passwordHash = '69bb4ece8eae5e8c6520ebfad722a637:181cd4c0864ac8eb36eea7c7e4063de1635d0fa858bebfd28175ccfbde96116f1ff22f2253f3bae474d37193a63bfb55461410100b9ab147b3289a40ade6f7d0' WHERE email = 'admin@zuodi.com';",
+  "returncode": 1,
+  "logs": [
+    "ERROR 1062 (23000) at line 1: Duplicate entry '?' for key 'users.users_email_unique'"
+  ]
+}

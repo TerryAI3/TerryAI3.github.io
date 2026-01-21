@@ -1,0 +1,20 @@
+{
+  "query": "SELECT id, email, role FROM users;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway03.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 3kXMpZLpMyzynkG.root --database TT8Y97ru5SB3TceVuj6uhk --execute SELECT id, email, role FROM users;",
+  "rows": [
+    {
+      "id": "1",
+      "email": "terrykang112@gmail.com",
+      "role": "admin"
+    },
+    {
+      "id": "510060",
+      "email": "admin@zuodi.com",
+      "role": "admin"
+    }
+  ],
+  "messages": [],
+  "stdout": "id\temail\trole\n1\tterrykang112@gmail.com\tadmin\n510060\tadmin@zuodi.com\tadmin\n",
+  "stderr": "",
+  "execution_time_ms": 1491
+}
