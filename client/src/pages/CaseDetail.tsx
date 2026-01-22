@@ -128,68 +128,69 @@ export default function CaseDetail() {
 
       {/* 项目图片库 */}
       {images && images.length > 0 && (
-        <div className="bg-muted py-12">
-          <div className="container">
-            <h2 className="font-heading text-3xl font-bold mb-8">项目图片</h2>
+        <>
+          {/* 主图轮播 - 全宽 */}
+          <div className="relative w-screen h-96 bg-background overflow-hidden group" style={{ marginLeft: 'calc(-50vw + 50%)' }}>
+            <img
+              src={images[currentImageIndex]}
+              alt={`${caseData.title} - 图片 ${currentImageIndex + 1}`}
+              className="w-full h-full object-contain"
+            />
             
-            {/* 主图轮播 */}
-            <div className="relative w-full h-96 bg-background rounded-lg overflow-hidden mb-8 group">
-              <img
-                src={images[currentImageIndex]}
-                alt={`${caseData.title} - 图片 ${currentImageIndex + 1}`}
-                className="w-full h-full object-cover"
-              />
-              
-              {/* 左箭头 */}
-              {images.length > 1 && (
-                <button
-                  onClick={handlePrevImage}
-                  className="absolute left-4 top-1/2 -translate-y-1/2 z-10 bg-black/50 hover:bg-black/70 text-white p-2 rounded-full transition-all opacity-0 group-hover:opacity-100"
-                >
-                  <ChevronLeft className="h-6 w-6" />
-                </button>
-              )}
-              
-              {/* 右箭头 */}
-              {images.length > 1 && (
-                <button
-                  onClick={handleNextImage}
-                  className="absolute right-4 top-1/2 -translate-y-1/2 z-10 bg-black/50 hover:bg-black/70 text-white p-2 rounded-full transition-all opacity-0 group-hover:opacity-100"
-                >
-                  <ChevronRight className="h-6 w-6" />
-                </button>
-              )}
-              
-              {/* 图片计数器 */}
-              {images.length > 1 && (
-                <div className="absolute bottom-4 right-4 bg-black/50 text-white px-3 py-1 rounded-full text-sm font-medium">
-                  {currentImageIndex + 1} / {images.length}
-                </div>
-              )}
-            </div>
+            {/* 左箭头 */}
+            {images.length > 1 && (
+              <button
+                onClick={handlePrevImage}
+                className="absolute left-4 top-1/2 -translate-y-1/2 z-10 bg-black/50 hover:bg-black/70 text-white p-2 rounded-full transition-all opacity-0 group-hover:opacity-100"
+              >
+                <ChevronLeft className="h-6 w-6" />
+              </button>
+            )}
             
-            {/* 缩略图网格 */}
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-              {images.map((image: string, idx: number) => (
-                <button
-                  key={idx}
-                  onClick={() => setCurrentImageIndex(idx)}
-                  className={`relative w-full h-32 bg-background rounded-lg overflow-hidden transition-all ${
-                    idx === currentImageIndex
-                      ? 'ring-2 ring-primary shadow-lg'
-                      : 'hover:shadow-md opacity-70 hover:opacity-100'
-                  }`}
-                >
-                  <img
-                    src={image}
-                    alt={`${caseData.title} - 缩略图 ${idx + 1}`}
-                    className="w-full h-full object-cover"
-                  />
-                </button>
-              ))}
+            {/* 右箭头 */}
+            {images.length > 1 && (
+              <button
+                onClick={handleNextImage}
+                className="absolute right-4 top-1/2 -translate-y-1/2 z-10 bg-black/50 hover:bg-black/70 text-white p-2 rounded-full transition-all opacity-0 group-hover:opacity-100"
+              >
+                <ChevronRight className="h-6 w-6" />
+              </button>
+            )}
+            
+            {/* 图片计数器 */}
+            {images.length > 1 && (
+              <div className="absolute bottom-4 right-4 bg-black/50 text-white px-3 py-1 rounded-full text-sm font-medium">
+                {currentImageIndex + 1} / {images.length}
+              </div>
+            )}
+          </div>
+          
+          {/* 缩略图网格和标题 */}
+          <div className="bg-muted py-12">
+            <div className="container">
+              <h2 className="font-heading text-3xl font-bold mb-8">项目图片</h2>
+              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                {images.map((image: string, idx: number) => (
+                  <button
+                    key={idx}
+                    onClick={() => setCurrentImageIndex(idx)}
+                    className={`relative w-full h-32 bg-background rounded-lg overflow-hidden transition-all ${
+                      idx === currentImageIndex
+                        ? 'ring-2 ring-primary shadow-lg'
+                        : 'hover:shadow-md opacity-70 hover:opacity-100'
+                    }`}
+                  >
+                    <img
+                      src={image}
+                      alt={`${caseData.title} - 缩略图 ${idx + 1}`}
+                      className="w-full h-full object-cover"
+                    />
+                  </button>
+                ))}
+              </div>
             </div>
           </div>
-        </div>
+        </>
       )}
 
       {/* CTA 区域 */}
