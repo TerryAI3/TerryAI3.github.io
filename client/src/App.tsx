@@ -9,6 +9,7 @@ import Office from "./pages/Office";
 import School from "./pages/School";
 import About from "./pages/About";
 import Cases from "./pages/Cases";
+import CaseDetail from "./pages/CaseDetail";
 import Products from "./pages/Products";
 import ProductDetail from "./pages/ProductDetail";
 import AdminProducts from "./pages/AdminProducts";
@@ -32,6 +33,7 @@ function Router() {
         <Route path={"/school"} component={School} />
         <Route path={"/about"} component={About} />
         <Route path={"/cases"} component={Cases} />
+        <Route path={"/cases/:id"} component={CaseDetail} />
         <Route path={"/products"} component={Products} />
         <Route path={"/products/:id"} component={ProductDetail} />
         <Route path={"/admin"} component={Admin} />

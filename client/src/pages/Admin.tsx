@@ -1,6 +1,6 @@
 import { useAuth } from "@/_core/hooks/useAuth";
 import { Button } from "@/components/ui/button";
-import { Loader2, Package, FolderTree, Upload, BarChart3 } from "lucide-react";
+import { Loader2, Package, FolderTree, Upload, BarChart3, Image } from "lucide-react";
 import { useLocation } from "wouter";
 
 export default function Admin() {
@@ -41,6 +41,13 @@ export default function Admin() {
       icon: Package,
       path: "/admin/products",
       color: "bg-green-500",
+    },
+    {
+      title: "案例管理",
+      description: "管理成功案例，添加、编辑、删除案例和图片",
+      icon: Image,
+      path: "/admin/cases",
+      color: "bg-indigo-500",
     },
     {
       title: "批量导入",
