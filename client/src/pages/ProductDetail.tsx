@@ -2,7 +2,6 @@ import { useParams } from "wouter";
 import { trpc } from "@/lib/trpc";
 import { Button } from "@/components/ui/button";
 import { Loader2, ArrowLeft } from "lucide-react";
-import { Link } from "wouter";
 
 export default function ProductDetail() {
   const { id } = useParams();
@@ -18,9 +17,7 @@ export default function ProductDetail() {
       <div className="min-h-screen flex items-center justify-center">
         <div className="text-center">
           <h1 className="text-2xl font-bold mb-4">产品未找到</h1>
-          <Link href="/products">
-            <Button>返回产品列表</Button>
-          </Link>
+          <Button onClick={() => window.location.href = '/products'}>返回产品列表</Button>
         </div>
       </div>
     );
@@ -39,9 +36,7 @@ export default function ProductDetail() {
       <div className="min-h-screen flex items-center justify-center">
         <div className="text-center">
           <h1 className="text-2xl font-bold mb-4">产品加载失败</h1>
-          <Link href="/products">
-            <Button>返回产品列表</Button>
-          </Link>
+          <Button onClick={() => window.location.href = '/products'}>返回产品列表</Button>
         </div>
       </div>
     );
@@ -55,10 +50,10 @@ export default function ProductDetail() {
       {/* Header */}
       <div className="bg-foreground text-background py-8">
         <div className="container">
-          <Link href="/products" className="inline-flex items-center gap-2 mb-4 hover:opacity-80">
+          <a href="/products" className="inline-flex items-center gap-2 mb-4 hover:opacity-80">
             <ArrowLeft className="w-5 h-5" />
             返回产品列表
-          </Link>
+          </a>
           <h1 className="font-heading text-4xl font-bold uppercase tracking-wider">{product.name}</h1>
         </div>
       </div>

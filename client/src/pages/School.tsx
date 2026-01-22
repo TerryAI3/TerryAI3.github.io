@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { Link } from "wouter";
+
 
 const products = [
   {
@@ -59,7 +59,7 @@ export default function School() {
         {/* Header */}
         <div className="mb-16 space-y-6">
           <div className="flex items-center gap-4 text-sm text-muted-foreground uppercase tracking-widest">
-            <Link href="/">首页</Link>
+            <a href="/" className="hover:text-secondary transition-colors">首页</a>
             <span>/</span>
             <span className="text-primary font-bold">学校家具</span>
           </div>

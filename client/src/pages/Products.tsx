@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { trpc } from "@/lib/trpc";
-import { Link } from "wouter";
 import { Loader2 } from "lucide-react";
 
 export default function Products() {
@@ -88,8 +87,7 @@ export default function Products() {
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {displayProducts.map((product) => (
-              <Link key={product.id} href={`/products/${product.id}`}>
-                <a className="group block bg-white hover:shadow-xl transition-shadow">
+              <a key={product.id} href={`/products/${product.id}`} className="group block bg-white hover:shadow-xl transition-shadow">
                   {/* Product Image */}
                   <div className="aspect-[16/10] overflow-hidden bg-gray-100">
                     {product.imageUrl ? (
@@ -125,7 +123,6 @@ export default function Products() {
                     )}
                   </div>
                 </a>
-              </Link>
             ))}
           </div>
         )}

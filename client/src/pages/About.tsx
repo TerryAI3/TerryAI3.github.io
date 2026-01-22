@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { Link } from "wouter";
+
 import { CheckCircle2 } from "lucide-react";
 
 export default function About() {
@@ -36,7 +36,7 @@ export default function About() {
       <section className="py-24 bg-foreground text-background">
         <div className="container space-y-6">
           <div className="flex items-center gap-4 text-sm text-muted-foreground uppercase tracking-widest">
-            <Link href="/">首页</Link>
+            <a href="/" className="hover:text-secondary transition-colors">首页</a>
             <span>/</span>
             <span className="text-secondary font-bold">关于我们</span>
           </div>
