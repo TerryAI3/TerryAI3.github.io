@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link } from "wouter";
+import { useLocation } from "wouter";
 import { ChevronRight } from "lucide-react";
 import { trpc } from "@/lib/trpc";
 
@@ -177,7 +177,7 @@ export default function Cases() {
       <section className="py-24 bg-foreground text-background">
         <div className="container space-y-6">
           <div className="flex items-center gap-4 text-sm text-muted-foreground uppercase tracking-widest">
-            <Link href="/">首页</Link>
+            <a href="/" className="hover:text-secondary transition-colors">首页</a>
             <span>/</span>
             <span className="text-secondary font-bold">成功案例</span>
           </div>
@@ -284,9 +284,12 @@ export default function Cases() {
                   )}
 
                   {/* CTA */}
-                  <a href="#" className="inline-flex items-center gap-2 text-primary font-bold uppercase tracking-widest hover:gap-4 transition-all pt-2">
+                  <button 
+                    onClick={() => window.location.href = `/cases/${caseItem.id}`}
+                    className="inline-flex items-center gap-2 text-primary font-bold uppercase tracking-widest hover:gap-4 transition-all pt-2 bg-transparent border-none cursor-pointer p-0"
+                  >
                     了解详情 <ChevronRight className="h-5 w-5" />
-                  </a>
+                  </button>
                 </div>
               </div>
             ))}

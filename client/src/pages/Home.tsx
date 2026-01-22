@@ -248,22 +248,24 @@ export default function Home() {
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {(cases.length > 0 ? cases : projects).map((project: any, idx: number) => {
-              const caseLink = project.id ? `/cases/${project.id}` : '#';
+              const handleCaseClick = () => {
+                if (project.id) {
+                  window.location.href = `/cases/${project.id}`;
+                }
+              };
               return (
-                <Link key={idx} href={caseLink}>
-                  <div className="group relative h-64 overflow-hidden rounded-lg cursor-pointer">
-                    <img src={project.mainImage || project.image} alt={project.title || project.name} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
-                    <div className="absolute inset-0 bg-black/40 group-hover:bg-black/60 transition-all flex flex-col items-end justify-between p-6">
-                      <div></div>
-                      <div className="w-full">
-                        <h3 className="text-white font-bold text-lg mb-3">{project.title || project.name}</h3>
-                        <Button variant="secondary" size="sm" className="w-full">
-                          了解详情 <ArrowRight className="ml-2 h-4 w-4" />
-                        </Button>
-                      </div>
+                <div key={idx} className="group relative h-64 overflow-hidden rounded-lg cursor-pointer" onClick={handleCaseClick}>
+                  <img src={project.mainImage || project.image} alt={project.title || project.name} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
+                  <div className="absolute inset-0 bg-black/40 group-hover:bg-black/60 transition-all flex flex-col items-end justify-between p-6">
+                    <div></div>
+                    <div className="w-full">
+                      <h3 className="text-white font-bold text-lg mb-3">{project.title || project.name}</h3>
+                      <Button variant="secondary" size="sm" className="w-full">
+                        了解详情 <ArrowRight className="ml-2 h-4 w-4" />
+                      </Button>
                     </div>
                   </div>
-                </Link>
+                </div>
               );
             })}
           </div>
