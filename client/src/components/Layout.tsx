@@ -1,4 +1,4 @@
-import { Link, useLocation } from "wouter";
+import { useLocation } from "wouter";
 import { cn } from "@/lib/utils";
 import { Menu, X, Settings } from "lucide-react";
 import { useState } from "react";
@@ -23,11 +23,9 @@ export default function Layout({ children }: { children: React.ReactNode }) {
       <header className="sticky top-0 z-50 w-full border-b border-border bg-background shadow-sm">
         <div className="container flex h-20 items-center justify-between">
           {/* Logo - Left aligned */}
-          <Link href="/">
-            <a className="flex items-center gap-2">
-              <img src="/images/zuodi-logo.png" alt="佐迪" className="h-20 lg:h-24 w-auto" />
-            </a>
-          </Link>
+          <a href="/" className="flex items-center gap-2">
+            <img src="/images/zuodi-logo.png" alt="佐迪" className="h-20 lg:h-24 w-auto" />
+          </a>
 
           {/* Mobile Menu Toggle */}
           <button
@@ -40,26 +38,24 @@ export default function Layout({ children }: { children: React.ReactNode }) {
           {/* Navigation - Right aligned */}
           <nav className="hidden md:flex items-center gap-8">
             {navItems.map((item) => (
-              <Link key={item.path} href={item.path}>
-                <a
-                  className={cn(
-                    "text-sm font-medium transition-colors hover:text-primary",
-                    location === item.path ? "text-primary font-semibold" : "text-gray-600"
-                  )}
-                >
-                  {item.name}
-                </a>
-              </Link>
+              <a
+                key={item.path}
+                href={item.path}
+                className={cn(
+                  "text-sm font-medium transition-colors hover:text-primary",
+                  location === item.path ? "text-primary font-semibold" : "text-gray-600"
+                )}
+              >
+                {item.name}
+              </a>
             ))}
             <a href="#contact" className="inline-flex items-center gap-2 px-6 py-2 bg-primary hover:bg-primary/90 text-white text-sm font-medium transition-colors rounded">
               获取报价
             </a>
-            <Link href="/login">
-              <a className="inline-flex items-center gap-2 px-4 py-2 border-2 border-primary text-primary hover:bg-primary hover:text-primary-foreground transition-colors rounded">
-                <Settings className="w-4 h-4" />
-                管理
-              </a>
-            </Link>
+            <a href="/login" className="inline-flex items-center gap-2 px-4 py-2 border-2 border-primary text-primary hover:bg-primary hover:text-primary-foreground transition-colors rounded">
+              <Settings className="w-4 h-4" />
+              管理
+            </a>
           </nav>
 
 
@@ -70,17 +66,17 @@ export default function Layout({ children }: { children: React.ReactNode }) {
           <div className="md:hidden border-t-2 border-foreground bg-background p-4 absolute w-full left-0 top-20 shadow-xl">
             <nav className="flex flex-col gap-4">
               {navItems.map((item) => (
-                <Link key={item.path} href={item.path}>
-                  <a
-                    className={cn(
-                      "text-lg font-heading uppercase tracking-wider",
-                      location === item.path ? "text-primary" : "text-foreground"
-                    )}
-                    onClick={() => setIsMenuOpen(false)}
-                  >
-                    {item.name}
-                  </a>
-                </Link>
+                <a
+                  key={item.path}
+                  href={item.path}
+                  className={cn(
+                    "text-lg font-heading uppercase tracking-wider",
+                    location === item.path ? "text-primary" : "text-foreground"
+                  )}
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  {item.name}
+                </a>
               ))}
               <Button className="w-full rounded-none font-heading uppercase tracking-wider">
                 获取报价
