@@ -95,22 +95,7 @@ export default function CaseDetail() {
         )}
       </div>
 
-      {/* 相关产品 */}
-      {products.length > 0 && (
-        <div className="bg-muted py-16 mt-16">
-          <div className="container max-w-4xl">
-            <h2 className="font-heading text-2xl font-bold mb-8">相关产品</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {products.map((product: any, idx: number) => (
-                <div key={idx} className="bg-background p-6 border border-border">
-                  <h3 className="font-semibold text-lg mb-2">{product.name || `产品 ${idx + 1}`}</h3>
-                  <p className="text-muted-foreground text-sm">{product.description || "暂无描述"}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      )}
+
 
       {/* CTA 按钮 */}
       <div className="container max-w-4xl py-16">
