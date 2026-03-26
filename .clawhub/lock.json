@@ -1,0 +1,29 @@
+{
+  "version": 1,
+  "skills": {
+    "ai-news-skills": {
+      "version": "1.3.1",
+      "installedAt": 1774423455763
+    },
+    "agent-reach": {
+      "version": "1.1.0",
+      "installedAt": 1774423493222
+    },
+    "ai-news-researcher": {
+      "version": "1.0.0",
+      "installedAt": 1774423626986
+    },
+    "news-aggregator": {
+      "version": "1.0.3",
+      "installedAt": 1774423637336
+    },
+    "flyai": {
+      "version": "1.0.10",
+      "installedAt": 1774449130360
+    },
+    "gog": {
+      "version": "1.0.0",
+      "installedAt": 1774452868379
+    }
+  }
+}
