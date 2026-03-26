@@ -1,1507 +1,226 @@
-# 🧭 gogcli — Google in your terminal.
-
-![GitHub Repo Banner](https://ghrb.waren.build/banner?header=gogcli%F0%9F%A7%AD&subheader=Google+in+your+terminal&bg=f3f4f6&color=1f2937&support=true)
-<!-- Created with GitHub Repo Banner by Waren Gonzaga: https://ghrb.waren.build -->
-
-Fast, script-friendly CLI for Gmail, Calendar, Chat, Classroom, Drive, Docs, Slides, Sheets, Forms, Apps Script, Contacts, Tasks, People, Groups (Workspace), and Keep (Workspace-only). JSON-first output, multiple accounts, and least-privilege auth built in.
-
-## Features
-
-- **Gmail** - search threads and messages, send emails, view attachments, manage labels/drafts/filters/delegation/vacation settings, history, and watch (Pub/Sub push)
-- **Email tracking** - track opens for `gog gmail send --track` with a small Cloudflare Worker backend
-- **Calendar** - list/create/update events, detect conflicts, manage invitations, check free/busy status, team calendars, propose new times, focus/OOO/working-location events, recurrence + reminders
-- **Classroom** - manage courses, roster, coursework/materials, submissions, announcements, topics, invitations, guardians, profiles
-- **Chat** - list/find/create spaces, list messages/threads (filter by thread/unread), send messages and DMs (Workspace-only)
-- **Drive** - list/search/upload/download files, manage permissions/comments, organize folders, list shared drives
-- **Contacts** - search/create/update contacts, access Workspace directory/other contacts
-- **Tasks** - manage tasklists and tasks: get/create/add/update/done/undo/delete/clear, repeat schedules
-- **Sheets** - read/write/update spreadsheets, format cells, create new sheets (and export via Drive)
-- **Forms** - create/get forms and inspect responses
-- **Apps Script** - create/get projects, inspect content, and run functions
-- **Docs/Slides** - export to PDF/DOCX/PPTX via Drive (plus create/copy, docs-to-text)
-- **People** - access profile information
-- **Keep (Workspace only)** - list/get/search notes and download attachments (service account + domain-wide delegation)
-- **Groups** - list groups you belong to, view group members (Google Workspace)
-- **Local time** - quick local/UTC time display for scripts and agents
-- **Multiple accounts** - manage multiple Google accounts simultaneously (with aliases)
-- **Command allowlist** - restrict top-level commands for sandboxed/agent runs
-- **Secure credential storage** using OS keyring or encrypted on-disk keyring (configurable)
-- **Auto-refreshing tokens** - authenticate once, use indefinitely
-- **Least-privilege auth** - `--readonly` and `--drive-scope` to request fewer scopes
-- **Workspace service accounts** - domain-wide delegation auth (preferred when configured)
-- **Parseable output** - JSON mode for scripting and automation (Calendar adds day-of-week fields)
-
-## Installation
-
-### Homebrew
+# 佐迪智能网站优化项目
 
-```bash
-brew install steipete/tap/gogcli
-```
-### Arch User Repository
-
-```bash
-yay -S gogcli
-```
-
-### Build from Source
-
-```bash
-git clone https://github.com/steipete/gogcli.git
-cd gogcli
-make
-```
-
-Run:
-
-```bash
-./bin/gog --help
-```
-
-Help:
-
-- `gog --help` shows top-level command groups.
-- Drill down with `gog <group> --help` (and deeper subcommands).
-- For the full expanded command list: `GOG_HELP=full gog --help`.
-- Make shortcut: `make gog -- --help` (or `make gog -- gmail --help`).
-- `make gog-help` shows CLI help (note: `make gog --help` is Make’s own help; use `--`).
-
-## Quick Start
-
-### 1. Get OAuth2 Credentials
-
-Before adding an account, create OAuth2 credentials from Google Cloud Console:
-
-1. Open the Google Cloud Console credentials page: https://console.cloud.google.com/apis/credentials
-1. Create a project: https://console.cloud.google.com/projectcreate
-2. Enable the APIs you need:
-   - Gmail API: https://console.cloud.google.com/apis/api/gmail.googleapis.com
-   - Google Calendar API: https://console.cloud.google.com/apis/api/calendar-json.googleapis.com
-   - Google Chat API: https://console.cloud.google.com/apis/api/chat.googleapis.com
-   - Google Drive API: https://console.cloud.google.com/apis/api/drive.googleapis.com
-   - Google Classroom API: https://console.cloud.google.com/apis/api/classroom.googleapis.com
-   - People API (Contacts): https://console.cloud.google.com/apis/api/people.googleapis.com
-   - Google Tasks API: https://console.cloud.google.com/apis/api/tasks.googleapis.com
-   - Google Sheets API: https://console.cloud.google.com/apis/api/sheets.googleapis.com
-   - Google Forms API: https://console.cloud.google.com/apis/api/forms.googleapis.com
-   - Apps Script API: https://console.cloud.google.com/apis/api/script.googleapis.com
-   - Cloud Identity API (Groups): https://console.cloud.google.com/apis/api/cloudidentity.googleapis.com
-3. Configure OAuth consent screen: https://console.cloud.google.com/auth/branding
-4. If your app is in "Testing", add test users: https://console.cloud.google.com/auth/audience
-5. Create OAuth client:
-   - Go to https://console.cloud.google.com/auth/clients
-   - Click "Create Client"
-   - Application type: "Desktop app"
-   - Download the JSON file (usually named `client_secret_....apps.googleusercontent.com.json`)
-
-### 2. Store Credentials
-
-```bash
-gog auth credentials ~/Downloads/client_secret_....json
-```
-
-For multiple OAuth clients/projects:
-
-```bash
-gog --client work auth credentials ~/Downloads/work-client.json
-gog auth credentials list
-```
-
-### 3. Authorize Your Account
-
-```bash
-gog auth add you@gmail.com
-```
-
-This will open a browser window for OAuth authorization. The refresh token is stored securely in your system keychain.
-
-Headless / remote server flows (no browser on the server):
-
-Manual interactive flow (recommended):
-
-```bash
-gog auth add you@gmail.com --services user --manual
-```
-
-- The CLI prints an auth URL. Open it in a local browser.
-- After approval, copy the full loopback redirect URL from the browser address bar.
-- Paste that URL back into the terminal when prompted.
-
-Split remote flow (`--remote`, useful for two-step/scripted handoff):
-
-```bash
-# Step 1: print auth URL (open it locally in a browser)
-gog auth add you@gmail.com --services user --remote --step 1
-
-# Step 2: paste the full redirect URL from your browser address bar
-gog auth add you@gmail.com --services user --remote --step 2 --auth-url 'http://127.0.0.1:<port>/oauth2/callback?code=...&state=...'
-```
-
-- The `state` is cached on disk for a short time (about 10 minutes). If it expires, rerun step 1.
-- Remote step 2 requires a redirect URL that includes `state` (state check mandatory).
-
-### 4. Test Authentication
-
-```bash
-export GOG_ACCOUNT=you@gmail.com
-gog gmail labels list
-```
-
-## Authentication & Secrets
-
-### Accounts and tokens
-
-`gog` stores your OAuth refresh tokens in a “keyring” backend. Default is `auto` (best available backend for your OS/environment).
-
-Before you can run `gog auth add`, you must store OAuth client credentials once via `gog auth credentials <credentials.json>` (download a Desktop app OAuth client JSON from the Cloud Console). For multiple clients, use `gog --client <name> auth credentials ...`; tokens are isolated per client.
-
-List accounts:
-
-```bash
-gog auth list
-```
-
-Verify tokens are usable (helps spot revoked/expired tokens):
-
-```bash
-gog auth list --check
-```
-
-Accounts can be authorized either via OAuth refresh tokens or Workspace service accounts (domain-wide delegation). If a service account key is configured for an account, it takes precedence over OAuth refresh tokens (see `gog auth list`).
-
-Show current auth state/services for the active account:
-
-```bash
-gog auth status
-```
-
-### Multiple OAuth clients
-
-Use `--client` (or `GOG_CLIENT`) to select a named OAuth client:
-
-```bash
-gog --client work auth credentials ~/Downloads/work.json
-gog --client work auth add you@company.com
-```
-
-Optional domain mapping for auto-selection:
-
-```bash
-gog --client work auth credentials ~/Downloads/work.json --domain example.com
-```
-
-How it works:
-
-- Default client is `default` (stored in `credentials.json`).
-- Named clients are stored as `credentials-<client>.json`.
-- Tokens are isolated per client (`token:<client>:<email>`); defaults are per client too.
-
-Client selection order (when `--client` is not set):
-
-1) `--client` / `GOG_CLIENT`
-2) `account_clients` config (email -> client)
-3) `client_domains` config (domain -> client)
-4) Credentials file named after the email domain (`credentials-example.com.json`)
-5) `default`
-
-Config example (JSON5):
-
-```json5
-{
-  account_clients: { "you@company.com": "work" },
-  client_domains: { "example.com": "work" },
-}
-```
-
-List stored credentials:
-
-```bash
-gog auth credentials list
-```
-
-See `docs/auth-clients.md` for the full client selection and mapping rules.
-
-### Keyring backend: Keychain vs encrypted file
-
-Backends:
-
-- `auto` (default): picks the best backend for the platform.
-- `keychain`: macOS Keychain (recommended on macOS; avoids password management).
-- `file`: encrypted on-disk keyring (requires a password).
-
-Set backend via command (writes `keyring_backend` into `config.json`):
-
-```bash
-gog auth keyring file
-gog auth keyring keychain
-gog auth keyring auto
-```
-
-Show current backend + source (env/config/default) and config path:
-
-```bash
-gog auth keyring
-```
-
-Non-interactive runs (CI/ssh): file backend requires `GOG_KEYRING_PASSWORD`.
-
-```bash
-export GOG_KEYRING_PASSWORD='...'
-gog --no-input auth status
-```
-
-Force backend via env (overrides config):
-
-```bash
-export GOG_KEYRING_BACKEND=file
-```
-
-Precedence: `GOG_KEYRING_BACKEND` env var overrides `config.json`.
-
-## Configuration
-
-### Account Selection
-
-Specify the account using either a flag or environment variable:
-
-```bash
-# Via flag
-gog gmail search 'newer_than:7d' --account you@gmail.com
-
-# Via alias
-gog auth alias set work work@company.com
-gog gmail search 'newer_than:7d' --account work
-
-# Via environment
-export GOG_ACCOUNT=you@gmail.com
-gog gmail search 'newer_than:7d'
-
-# Auto-select (default account or the single stored token)
-gog gmail labels list --account auto
-```
-
-List configured accounts:
-
-```bash
-gog auth list
-```
-
-### Output
-
-- Default: human-friendly tables on stdout.
-- `--plain`: stable TSV on stdout (tabs preserved; best for piping to tools that expect `\t`).
-- `--json`: JSON on stdout (best for scripting).
-- Human-facing hints/progress go to stderr.
-- Colors are enabled only in rich TTY output and are disabled automatically for `--json` and `--plain`.
-
-### Service Scopes
-
-By default, `gog auth add` requests access to the **user** services (see `gog auth services` for the current list and scopes).
-
-To request fewer scopes:
-
-```bash
-gog auth add you@gmail.com --services drive,calendar
-```
-
-To request read-only scopes (write operations will fail with 403 insufficient scopes):
-
-```bash
-gog auth add you@gmail.com --services drive,calendar --readonly
-```
-
-To control Drive’s scope (default: `full`):
-
-```bash
-gog auth add you@gmail.com --services drive --drive-scope full
-gog auth add you@gmail.com --services drive --drive-scope readonly
-gog auth add you@gmail.com --services drive --drive-scope file
-```
-
-Notes:
-
-- `--drive-scope readonly` is enough for listing/downloading/exporting via Drive (write operations will 403).
-- `--drive-scope file` is write-capable (limited to files created/opened by this app) and can’t be combined with `--readonly`.
-
-If you need to add services later and Google doesn't return a refresh token, re-run with `--force-consent`:
-
-```bash
-gog auth add you@gmail.com --services user --force-consent
-# Or add just Sheets
-gog auth add you@gmail.com --services sheets --force-consent
-```
-
-`--services all` is accepted as an alias for `user` for backwards compatibility.
-
-Docs commands are implemented via the Drive API, and `docs` requests both Drive and Docs API scopes.
-
-Service scope matrix (auto-generated; run `go run scripts/gen-auth-services-md.go`):
-
-<!-- auth-services:start -->
-| Service | User | APIs | Scopes | Notes |
-| --- | --- | --- | --- | --- |
-| gmail | yes | Gmail API | `https://www.googleapis.com/auth/gmail.modify`<br>`https://www.googleapis.com/auth/gmail.settings.basic`<br>`https://www.googleapis.com/auth/gmail.settings.sharing` |  |
-| calendar | yes | Calendar API | `https://www.googleapis.com/auth/calendar` |  |
-| chat | yes | Chat API | `https://www.googleapis.com/auth/chat.spaces`<br>`https://www.googleapis.com/auth/chat.messages`<br>`https://www.googleapis.com/auth/chat.memberships`<br>`https://www.googleapis.com/auth/chat.users.readstate.readonly` |  |
-| classroom | yes | Classroom API | `https://www.googleapis.com/auth/classroom.courses`<br>`https://www.googleapis.com/auth/classroom.rosters`<br>`https://www.googleapis.com/auth/classroom.coursework.students`<br>`https://www.googleapis.com/auth/classroom.coursework.me`<br>`https://www.googleapis.com/auth/classroom.courseworkmaterials`<br>`https://www.googleapis.com/auth/classroom.announcements`<br>`https://www.googleapis.com/auth/classroom.topics`<br>`https://www.googleapis.com/auth/classroom.guardianlinks.students`<br>`https://www.googleapis.com/auth/classroom.profile.emails`<br>`https://www.googleapis.com/auth/classroom.profile.photos` |  |
-| drive | yes | Drive API | `https://www.googleapis.com/auth/drive` |  |
-| docs | yes | Docs API, Drive API | `https://www.googleapis.com/auth/drive`<br>`https://www.googleapis.com/auth/documents` | Export/copy/create via Drive |
-| slides | yes | Slides API, Drive API | `https://www.googleapis.com/auth/drive`<br>`https://www.googleapis.com/auth/presentations` | Create/edit presentations |
-| contacts | yes | People API | `https://www.googleapis.com/auth/contacts`<br>`https://www.googleapis.com/auth/contacts.other.readonly`<br>`https://www.googleapis.com/auth/directory.readonly` | Contacts + other contacts + directory |
-| tasks | yes | Tasks API | `https://www.googleapis.com/auth/tasks` |  |
-| sheets | yes | Sheets API, Drive API | `https://www.googleapis.com/auth/drive`<br>`https://www.googleapis.com/auth/spreadsheets` | Export via Drive |
-| people | yes | People API | `profile` | OIDC profile scope |
-| forms | yes | Forms API | `https://www.googleapis.com/auth/forms.body`<br>`https://www.googleapis.com/auth/forms.responses.readonly` |  |
-| appscript | yes | Apps Script API | `https://www.googleapis.com/auth/script.projects`<br>`https://www.googleapis.com/auth/script.deployments`<br>`https://www.googleapis.com/auth/script.processes` |  |
-| groups | no | Cloud Identity API | `https://www.googleapis.com/auth/cloud-identity.groups.readonly` | Workspace only |
-| keep | no | Keep API | `https://www.googleapis.com/auth/keep.readonly` | Workspace only; service account (domain-wide delegation) |
-<!-- auth-services:end -->
-
-### Service Accounts (Workspace only)
-
-A service account is a non-human Google identity that belongs to a Google Cloud project. In Google Workspace, a service account can impersonate a user via **domain-wide delegation** (admin-controlled) and access APIs like Gmail/Calendar/Drive as that user.
-
-In `gog`, service accounts are an **optional auth method** that can be configured per account email. If a service account key is configured for an account, it takes precedence over OAuth refresh tokens (see `gog auth list`).
-
-#### 1) Create a Service Account (Google Cloud)
-
-1. Create (or pick) a Google Cloud project.
-2. Enable the APIs you’ll use (e.g. Gmail, Calendar, Drive, Sheets, Docs, People, Tasks, Cloud Identity).
-3. Go to **IAM & Admin → Service Accounts** and create a service account.
-4. In the service account details, enable **Domain-wide delegation**.
-5. Create a key (**Keys → Add key → Create new key → JSON**) and download the JSON key file.
-
-#### 2) Allowlist scopes (Google Workspace Admin Console)
-
-Domain-wide delegation is enforced by Workspace admin settings.
-
-1. Open **Admin console → Security → API controls → Domain-wide delegation**.
-2. Add a new API client:
-   - Client ID: use the service account’s “Client ID” from Google Cloud.
-   - OAuth scopes: comma-separated list of scopes you want to allow (copy from `gog auth services` and/or your `gog auth add --services ...` usage).
-
-If a scope is missing from the allowlist, service-account token minting can fail (or API calls will 403 with insufficient permissions).
-
-#### 3) Configure `gog` to use the service account
-
-Store the key for the user you want to impersonate:
-
-```bash
-gog auth service-account set you@yourdomain.com --key ~/Downloads/service-account.json
-```
-
-Verify `gog` is preferring the service account for that account:
-
-```bash
-gog --account you@yourdomain.com auth status
-gog auth list
-```
-
-### Google Keep (Workspace only)
-
-Keep requires Workspace + domain-wide delegation. You can configure it via the generic service-account command above (recommended), or the legacy Keep helper:
-
-```bash
-gog auth service-account set you@yourdomain.com --key ~/Downloads/service-account.json
-gog keep list --account you@yourdomain.com
-gog keep get <noteId> --account you@yourdomain.com
-```
-
-### Environment Variables
-
-- `GOG_ACCOUNT` - Default account email or alias to use (avoids repeating `--account`; otherwise uses keyring default or a single stored token)
-- `GOG_CLIENT` - OAuth client name (selects stored credentials + token bucket)
-- `GOG_JSON` - Default JSON output
-- `GOG_PLAIN` - Default plain output
-- `GOG_COLOR` - Color mode: `auto` (default), `always`, or `never`
-- `GOG_TIMEZONE` - Default output timezone for Calendar/Gmail (IANA name, `UTC`, or `local`)
-- `GOG_ENABLE_COMMANDS` - Comma-separated allowlist of top-level commands (e.g., `calendar,tasks`)
-
-### Config File (JSON5)
-
-Find the actual config path in `gog --help` or `gog auth keyring`.
-
-Typical paths:
-
-- macOS: `~/Library/Application Support/gogcli/config.json`
-- Linux: `~/.config/gogcli/config.json` (or `$XDG_CONFIG_HOME/gogcli/config.json`)
-- Windows: `%AppData%\\gogcli\\config.json`
-
-Example (JSON5 supports comments and trailing commas):
-
-```json5
-{
-  // Avoid macOS Keychain prompts
-  keyring_backend: "file",
-  // Default output timezone for Calendar/Gmail (IANA, UTC, or local)
-  default_timezone: "UTC",
-  // Optional account aliases
-  account_aliases: {
-    work: "work@company.com",
-    personal: "me@gmail.com",
-  },
-  // Optional per-account OAuth client selection
-  account_clients: {
-    "work@company.com": "work",
-  },
-  // Optional domain -> client mapping
-  client_domains: {
-    "example.com": "work",
-  },
-}
-```
-
-### Config Commands
-
-```bash
-gog config path
-gog config list
-gog config keys
-gog config get default_timezone
-gog config set default_timezone UTC
-gog config unset default_timezone
-```
-
-### Account Aliases
-
-```bash
-gog auth alias set work work@company.com
-gog auth alias list
-gog auth alias unset work
-```
-
-Aliases work anywhere you pass `--account` or `GOG_ACCOUNT` (reserved: `auto`, `default`).
-
-### Command Allowlist (Sandboxing)
-
-```bash
-# Only allow calendar + tasks commands for an agent
-gog --enable-commands calendar,tasks calendar events --today
-
-# Same via env
-export GOG_ENABLE_COMMANDS=calendar,tasks
-gog tasks list <tasklistId>
-```
- 
-## Security
+## 📋 项目概述
 
-### Credential Storage
+这是一个完整的佐迪智能网站 (`zuodii.com`) 优化项目，包含JavaScript错误修复、内容优化、SEO提升和自动化监控系统。
 
-OAuth credentials are stored securely in your system's keychain:
-- **macOS**: Keychain Access
-- **Linux**: Secret Service (GNOME Keyring, KWallet)
-- **Windows**: Credential Manager
+## 🎯 项目目标
 
-The CLI uses [github.com/99designs/keyring](https://github.com/99designs/keyring) for secure storage.
+1. **修复JavaScript错误**: 解决 `TypeError: Invalid URL` 等前端错误
+2. **优化网站内容**: 提升内容质量、结构和用户体验
+3. **增强SEO**: 改善搜索引擎友好度和排名
+4. **建立监控系统**: 24/7网站状态和错误监控
+5. **自动化工具链**: 开发完整的分析、优化、部署工具
 
-If no OS keychain backend is available (e.g., Linux/WSL/container), keyring can fall back to an encrypted on-disk store and may prompt for a password; for non-interactive runs set `GOG_KEYRING_PASSWORD`.
+## 📁 项目结构
 
-### Keychain Prompts (macOS)
-
-macOS Keychain may prompt more than you’d expect when the “app identity” keeps changing (different binary path, `go run` temp builds, rebuilding to new `./bin/gog`, multiple copies). Keychain treats those as different apps, so it asks again.
-
-Options:
-
-- **Default (recommended):** keep using Keychain (secure) and run a stable `gog` binary path to reduce repeat prompts.
-- **Force Keychain:** `GOG_KEYRING_BACKEND=keychain` (disables any file-backend fallback).
-- **Avoid Keychain prompts entirely:** `GOG_KEYRING_BACKEND=file` (stores encrypted entries on disk under your config dir).
-  - To avoid password prompts too (CI/non-interactive): set `GOG_KEYRING_PASSWORD=...` (tradeoff: secret in env).
-
-### Best Practices
-
-- **Never commit OAuth client credentials** to version control
-- Store client credentials outside your project directory
-- Use different OAuth clients for development and production
-- Re-authorize with `--force-consent` if you suspect token compromise
-- Remove unused accounts with `gog auth remove <email>`
-
-### OAuth Client IDs in Open Source
-
-Some open source Google CLIs ship a pre-configured OAuth client ID/secret copied from other desktop apps to avoid OAuth consent verification, testing-user limits, or quota issues. This makes the consent screen/security emails show the other app’s name and can stop working at any time.
-
-`gogcli` does not do this. Supported auth:
-
-- Your own OAuth Desktop client JSON via `gog auth credentials ...` + `gog auth add ...`
-- Google Workspace service accounts with domain-wide delegation (Workspace only)
-
-## Commands
-
-Flag aliases:
-- `--out` also accepts `--output`.
-- `--out-dir` also accepts `--output-dir` (Gmail thread attachment downloads).
-
-### Authentication
-
-```bash
-gog auth credentials <path>           # Store OAuth client credentials
-gog auth credentials list             # List stored OAuth client credentials
-gog --client work auth credentials <path>  # Store named OAuth client credentials
-gog auth add <email>                  # Authorize and store refresh token
-gog auth service-account set <email> --key <path>  # Configure service account impersonation (Workspace only)
-gog auth service-account status <email>            # Show service account status
-gog auth service-account unset <email>             # Remove service account
-gog auth keep <email> --key <path>                 # Legacy alias (Keep)
-gog auth keyring [backend]            # Show/set keyring backend (auto|keychain|file)
-gog auth status                       # Show current auth state/services
-gog auth services                     # List available services and OAuth scopes
-gog auth list                         # List stored accounts
-gog auth list --check                 # Validate stored refresh tokens
-gog auth remove <email>               # Remove a stored refresh token
-gog auth manage                       # Open accounts manager in browser
-gog auth tokens                       # Manage stored refresh tokens
-```
-
-### Keep (Workspace only)
-
-```bash
-gog keep list --account you@yourdomain.com
-gog keep get <noteId> --account you@yourdomain.com
-gog keep search <query> --account you@yourdomain.com
-gog keep attachment <attachmentName> --account you@yourdomain.com --out ./attachment.bin
-```
-
-### Gmail
-
-```bash
-# Search and read
-gog gmail search 'newer_than:7d' --max 10
-gog gmail thread get <threadId>
-gog gmail thread get <threadId> --download              # Download attachments to current dir
-gog gmail thread get <threadId> --download --out-dir ./attachments
-gog gmail get <messageId>
-gog gmail get <messageId> --format metadata
-gog gmail attachment <messageId> <attachmentId>
-gog gmail attachment <messageId> <attachmentId> --out ./attachment.bin
-gog gmail url <threadId>              # Print Gmail web URL
-gog gmail thread modify <threadId> --add STARRED --remove INBOX
-
-# Send and compose
-gog gmail send --to a@b.com --subject "Hi" --body "Plain fallback"
-gog gmail send --to a@b.com --subject "Hi" --body-file ./message.txt
-gog gmail send --to a@b.com --subject "Hi" --body-file -   # Read body from stdin
-gog gmail send --to a@b.com --subject "Hi" --body "Plain fallback" --body-html "<p>Hello</p>"
-# Reply + include quoted original message (auto-generates HTML quote unless you pass --body-html)
-gog gmail send --reply-to-message-id <messageId> --quote --to a@b.com --subject "Re: Hi" --body "My reply"
-gog gmail drafts list
-gog gmail drafts create --subject "Draft" --body "Body"
-gog gmail drafts create --to a@b.com --subject "Draft" --body "Body"
-gog gmail drafts update <draftId> --subject "Draft" --body "Body"
-gog gmail drafts update <draftId> --to a@b.com --subject "Draft" --body "Body"
-gog gmail drafts send <draftId>
-
-# Labels
-gog gmail labels list
-gog gmail labels get INBOX --json  # Includes message counts
-gog gmail labels create "My Label"
-gog gmail labels modify <threadId> --add STARRED --remove INBOX
-gog gmail labels delete <labelIdOrName>  # Deletes user label (guards system labels; confirm)
-
-# Batch operations
-gog gmail batch delete <messageId> <messageId>
-gog gmail batch modify <messageId> <messageId> --add STARRED --remove INBOX
-
-# Filters
-gog gmail filters list
-gog gmail filters create --from 'noreply@example.com' --add-label 'Notifications'
-gog gmail filters delete <filterId>
-
-# Settings
-gog gmail autoforward get
-gog gmail autoforward enable --email forward@example.com
-gog gmail autoforward disable
-gog gmail forwarding list
-gog gmail forwarding add --email forward@example.com
-gog gmail sendas list
-gog gmail sendas create --email alias@example.com
-gog gmail vacation get
-gog gmail vacation enable --subject "Out of office" --message "..."
-gog gmail vacation disable
-
-# Delegation (G Suite/Workspace)
-gog gmail delegates list
-gog gmail delegates add --email delegate@example.com
-gog gmail delegates remove --email delegate@example.com
-
-# Watch (Pub/Sub push)
-gog gmail watch start --topic projects/<p>/topics/<t> --label INBOX
-gog gmail watch serve --bind 127.0.0.1 --token <shared> --hook-url http://127.0.0.1:18789/hooks/agent
-gog gmail watch serve --bind 0.0.0.0 --verify-oidc --oidc-email <svc@...> --hook-url <url>
-gog gmail watch serve --bind 127.0.0.1 --token <shared> --exclude-labels SPAM,TRASH --hook-url http://127.0.0.1:18789/hooks/agent
-gog gmail history --since <historyId>
-```
-
-Gmail watch (Pub/Sub push):
-- Create Pub/Sub topic + push subscription (OIDC preferred; shared token ok for dev).
-- Full flow + payload details: `docs/watch.md`.
-- `watch serve --exclude-labels` defaults to `SPAM,TRASH`; IDs are case-sensitive.
-
-### Email Tracking
-
-Track when recipients open your emails:
-
-```bash
-# Set up local tracking config (per-account; generates keys; follow printed deploy steps)
-gog gmail track setup --worker-url https://gog-email-tracker.<acct>.workers.dev
-
-# Send with tracking
-gog gmail send --to recipient@example.com --subject "Hello" --body-html "<p>Hi!</p>" --track
-
-# Check opens
-gog gmail track opens <tracking_id>
-gog gmail track opens --to recipient@example.com
-
-# View status
-gog gmail track status
-```
-
-Docs: `docs/email-tracking.md` (setup/deploy) + `docs/email-tracking-worker.md` (internals).
-
-**Notes:** `--track` requires exactly 1 recipient (no cc/bcc) and an HTML body (`--body-html` or `--quote`). Use `--track-split` to send per-recipient messages with individual tracking ids. The tracking worker stores IP/user-agent + coarse geo by default.
-
-### Calendar
-
-```bash
-# Calendars
-gog calendar calendars
-gog calendar acl <calendarId>         # List access control rules
-gog calendar colors                   # List available event/calendar colors
-gog calendar time --timezone America/New_York
-gog calendar users                    # List workspace users (use email as calendar ID)
-
-# Events (with timezone-aware time flags)
-gog calendar events <calendarId> --today                    # Today's events
-gog calendar events <calendarId> --tomorrow                 # Tomorrow's events
-gog calendar events <calendarId> --week                     # This week (Mon-Sun by default; use --week-start)
-gog calendar events <calendarId> --days 3                   # Next 3 days
-gog calendar events <calendarId> --from today --to friday   # Relative dates
-gog calendar events <calendarId> --from today --to friday --weekday   # Include weekday columns
-gog calendar events <calendarId> --from 2025-01-01T00:00:00Z --to 2025-01-08T00:00:00Z
-gog calendar events --all             # Fetch events from all calendars
-gog calendar event <calendarId> <eventId>
-gog calendar get <calendarId> <eventId>                     # Alias for event
-gog calendar search "meeting" --today
-gog calendar search "meeting" --tomorrow
-gog calendar search "meeting" --days 365
-gog calendar search "meeting" --from 2025-01-01T00:00:00Z --to 2025-01-31T00:00:00Z --max 50
-
-# Search defaults to 30 days ago through 90 days ahead unless you set --from/--to/--today/--week/--days.
-# Tip: set GOG_CALENDAR_WEEKDAY=1 to default --weekday for calendar events output.
-
-# JSON event output includes timezone and localized times (useful for agents).
-gog calendar get <calendarId> <eventId> --json
-# {
-#   "event": {
-#     "id": "...",
-#     "summary": "...",
-#     "startDayOfWeek": "Friday",
-#     "endDayOfWeek": "Friday",
-#     "timezone": "America/Los_Angeles",
-#     "eventTimezone": "America/New_York",
-#     "startLocal": "2026-01-23T20:45:00-08:00",
-#     "endLocal": "2026-01-23T22:45:00-08:00",
-#     "start": { "dateTime": "2026-01-23T23:45:00-05:00" },
-#     "end": { "dateTime": "2026-01-24T01:45:00-05:00" }
-#   }
-# }
-
-# Team calendars (requires Cloud Identity API for Google Workspace)
-gog calendar team <group-email> --today           # Show team's events for today
-gog calendar team <group-email> --week            # Show team's events for the week (use --week-start)
-gog calendar team <group-email> --freebusy        # Show only busy/free blocks (faster)
-gog calendar team <group-email> --query "standup" # Filter by event title
-
-# Create and update
-gog calendar create <calendarId> \
-  --summary "Meeting" \
-  --from 2025-01-15T10:00:00Z \
-  --to 2025-01-15T11:00:00Z
-
-gog calendar create <calendarId> \
-  --summary "Team Sync" \
-  --from 2025-01-15T14:00:00Z \
-  --to 2025-01-15T15:00:00Z \
-  --attendees "alice@example.com,bob@example.com" \
-  --location "Zoom"
-
-gog calendar update <calendarId> <eventId> \
-  --summary "Updated Meeting" \
-  --from 2025-01-15T11:00:00Z \
-  --to 2025-01-15T12:00:00Z
-
-# Send notifications when creating/updating
-gog calendar create <calendarId> \
-  --summary "Team Sync" \
-  --from 2025-01-15T14:00:00Z \
-  --to 2025-01-15T15:00:00Z \
-  --send-updates all
-
-gog calendar update <calendarId> <eventId> \
-  --send-updates externalOnly
-
-# Default: no attendee notifications unless you pass --send-updates.
-gog calendar delete <calendarId> <eventId> \
-  --send-updates all --force
-
-# Recurrence + reminders
-gog calendar create <calendarId> \
-  --summary "Payment" \
-  --from 2025-02-11T09:00:00-03:00 \
-  --to 2025-02-11T09:15:00-03:00 \
-  --rrule "RRULE:FREQ=MONTHLY;BYMONTHDAY=11" \
-  --reminder "email:3d" \
-  --reminder "popup:30m"
-
-# Special event types via --event-type (focus-time/out-of-office/working-location)
-gog calendar create primary \
-  --event-type focus-time \
-  --from 2025-01-15T13:00:00Z \
-  --to 2025-01-15T14:00:00Z
-
-gog calendar create primary \
-  --event-type out-of-office \
-  --from 2025-01-20 \
-  --to 2025-01-21 \
-  --all-day
-
-gog calendar create primary \
-  --event-type working-location \
-  --working-location-type office \
-  --working-office-label "HQ" \
-  --from 2025-01-22 \
-  --to 2025-01-23
-
-# Dedicated shortcuts (same event types, more opinionated defaults)
-gog calendar focus-time --from 2025-01-15T13:00:00Z --to 2025-01-15T14:00:00Z
-gog calendar out-of-office --from 2025-01-20 --to 2025-01-21 --all-day
-gog calendar working-location --type office --office-label "HQ" --from 2025-01-22 --to 2025-01-23
-# Add attendees without replacing existing attendees/RSVP state
-gog calendar update <calendarId> <eventId> \
-  --add-attendee "alice@example.com,bob@example.com"
-
-gog calendar delete <calendarId> <eventId>
-
-# Invitations
-gog calendar respond <calendarId> <eventId> --status accepted
-gog calendar respond <calendarId> <eventId> --status declined
-gog calendar respond <calendarId> <eventId> --status tentative
-gog calendar respond <calendarId> <eventId> --status declined --send-updates externalOnly
-
-# Propose a new time (browser-only flow; API limitation)
-gog calendar propose-time <calendarId> <eventId>
-gog calendar propose-time <calendarId> <eventId> --open
-gog calendar propose-time <calendarId> <eventId> --decline --comment "Can we do 5pm?"
-
-# Availability
-gog calendar freebusy --calendars "primary,work@example.com" \
-  --from 2025-01-15T00:00:00Z \
-  --to 2025-01-16T00:00:00Z
-
-gog calendar conflicts --calendars "primary,work@example.com" \
-  --today                             # Today's conflicts
-```
-
-### Time
-
-```bash
-gog time now
-gog time now --timezone UTC
-```
-
-### Drive
-
-```bash
-# List and search
-gog drive ls --max 20
-gog drive ls --parent <folderId> --max 20
-gog drive ls --no-all-drives            # Only list from "My Drive"
-gog drive search "invoice" --max 20
-gog drive search "invoice" --no-all-drives
-gog drive get <fileId>                # Get file metadata
-gog drive url <fileId>                # Print Drive web URL
-gog drive copy <fileId> "Copy Name"
-
-# Upload and download
-gog drive upload ./path/to/file --parent <folderId>
-gog drive upload ./path/to/file --replace <fileId>  # Replace file content in-place (preserves shared link)
-gog drive upload ./report.docx --convert
-gog drive upload ./chart.png --convert-to sheet
-gog drive upload ./report.docx --convert --name report.docx
-gog drive download <fileId> --out ./downloaded.bin
-gog drive download <fileId> --format pdf --out ./exported.pdf     # Google Workspace files only
-gog drive download <fileId> --format docx --out ./doc.docx
-gog drive download <fileId> --format pptx --out ./slides.pptx
-
-# Organize
-gog drive mkdir "New Folder"
-gog drive mkdir "New Folder" --parent <parentFolderId>
-gog drive rename <fileId> "New Name"
-gog drive move <fileId> --parent <destinationFolderId>
-gog drive delete <fileId>             # Move to trash
-gog drive delete <fileId> --permanent # Permanently delete
-
-# Permissions
-gog drive permissions <fileId>
-gog drive share <fileId> --to user --email user@example.com --role reader
-gog drive share <fileId> --to user --email user@example.com --role writer
-gog drive share <fileId> --to domain --domain example.com --role reader
-gog drive unshare <fileId> --permission-id <permissionId>
-
-# Shared drives (Team Drives)
-gog drive drives --max 100
-```
-
-### Docs / Slides / Sheets
-
-```bash
-# Docs
-gog docs info <docId>
-gog docs cat <docId> --max-bytes 10000
-gog docs create "My Doc"
-gog docs create "My Doc" --file ./doc.md            # Import markdown
-gog docs copy <docId> "My Doc Copy"
-gog docs export <docId> --format pdf --out ./doc.pdf
-gog docs list-tabs <docId>
-gog docs cat <docId> --tab "Notes"
-gog docs cat <docId> --all-tabs
-gog docs update <docId> --format markdown --content-file ./doc.md
-gog docs write <docId> --replace --markdown --file ./doc.md
-gog docs find-replace <docId> "old" "new"
-
-# Slides
-gog slides info <presentationId>
-gog slides create "My Deck"
-gog slides create-from-markdown "My Deck" --content-file ./slides.md
-gog slides copy <presentationId> "My Deck Copy"
-gog slides export <presentationId> --format pdf --out ./deck.pdf
-gog slides list-slides <presentationId>
-gog slides add-slide <presentationId> ./slide.png --notes "Speaker notes"
-gog slides update-notes <presentationId> <slideId> --notes "Updated notes"
-gog slides replace-slide <presentationId> <slideId> ./new-slide.png --notes "New notes"
-
-# Sheets
-gog sheets copy <spreadsheetId> "My Sheet Copy"
-gog sheets export <spreadsheetId> --format pdf --out ./sheet.pdf
-gog sheets format <spreadsheetId> 'Sheet1!A1:B2' --format-json '{"textFormat":{"bold":true}}' --format-fields 'userEnteredFormat.textFormat.bold'
-```
-
-### Contacts
-
-```bash
-# Personal contacts
-gog contacts list --max 50
-gog contacts search "Ada" --max 50
-gog contacts get people/<resourceName>
-gog contacts get user@example.com     # Get by email
-
-# Other contacts (people you've interacted with)
-gog contacts other list --max 50
-gog contacts other search "John" --max 50
-
-# Create and update
-gog contacts create \
-  --given "John" \
-  --family "Doe" \
-  --email "john@example.com" \
-  --phone "+1234567890"
-
-gog contacts update people/<resourceName> \
-  --given "Jane" \
-  --email "jane@example.com" \
-  --birthday "1990-05-12" \
-  --notes "Met at WWDC"
-
-# Update via JSON (see docs/contacts-json-update.md)
-gog contacts get people/<resourceName> --json | \
-  jq '(.contact.urls //= []) | (.contact.urls += [{"value":"obsidian://open?vault=notes&file=People/John%20Doe","type":"profile"}])' | \
-  gog contacts update people/<resourceName> --from-file -
-
-gog contacts delete people/<resourceName>
-
-# Workspace directory (requires Google Workspace)
-gog contacts directory list --max 50
-gog contacts directory search "Jane" --max 50
-```
-
-### Tasks
-
-```bash
-# Task lists
-gog tasks lists --max 50
-gog tasks lists create <title>
-
-# Tasks in a list
-gog tasks list <tasklistId> --max 50
-gog tasks get <tasklistId> <taskId>
-gog tasks add <tasklistId> --title "Task title"
-gog tasks add <tasklistId> --title "Weekly sync" --due 2025-02-01 --repeat weekly --repeat-count 4
-gog tasks add <tasklistId> --title "Daily standup" --due 2025-02-01 --repeat daily --repeat-until 2025-02-05
-gog tasks update <tasklistId> <taskId> --title "New title"
-gog tasks done <tasklistId> <taskId>
-gog tasks undo <tasklistId> <taskId>
-gog tasks delete <tasklistId> <taskId>
-gog tasks clear <tasklistId>
-
-# Note: Google Tasks treats due dates as date-only; time components may be ignored.
-# See docs/dates.md for all supported date/time input formats across commands.
-```
-
-### Sheets
-
-```bash
-# Read
-gog sheets metadata <spreadsheetId>
-gog sheets get <spreadsheetId> 'Sheet1!A1:B10'
-
-# Export (via Drive)
-gog sheets export <spreadsheetId> --format pdf --out ./sheet.pdf
-gog sheets export <spreadsheetId> --format xlsx --out ./sheet.xlsx
-
-# Write
-gog sheets update <spreadsheetId> 'A1' 'val1|val2,val3|val4'
-gog sheets update <spreadsheetId> 'A1' --values-json '[["a","b"],["c","d"]]'
-gog sheets update <spreadsheetId> 'Sheet1!A1:C1' 'new|row|data' --copy-validation-from 'Sheet1!A2:C2'
-gog sheets append <spreadsheetId> 'Sheet1!A:C' 'new|row|data'
-gog sheets append <spreadsheetId> 'Sheet1!A:C' 'new|row|data' --copy-validation-from 'Sheet1!A2:C2'
-gog sheets clear <spreadsheetId> 'Sheet1!A1:B10'
-
-# Format
-gog sheets format <spreadsheetId> 'Sheet1!A1:B2' --format-json '{"textFormat":{"bold":true}}' --format-fields 'userEnteredFormat.textFormat.bold'
-
-# Create
-gog sheets create "My New Spreadsheet" --sheets "Sheet1,Sheet2"
-```
-
-### Forms
-
-```bash
-# Forms
-gog forms get <formId>
-gog forms create --title "Weekly Check-in" --description "Friday async update"
-
-# Responses
-gog forms responses list <formId> --max 20
-gog forms responses get <formId> <responseId>
-```
-
-### Apps Script
-
-```bash
-# Projects
-gog appscript get <scriptId>
-gog appscript content <scriptId>
-gog appscript create --title "Automation Helpers"
-gog appscript create --title "Bound Script" --parent-id <driveFileId>
-
-# Execute functions
-gog appscript run <scriptId> myFunction --params '["arg1", 123, true]'
-gog appscript run <scriptId> myFunction --dev-mode
-```
-
-### People
-
-```bash
-# Profile
-gog people me
-gog people get people/<userId>
-
-# Search the Workspace directory
-gog people search "Ada Lovelace" --max 5
-
-# Relations (defaults to people/me)
-gog people relations
-gog people relations people/<userId> --type manager
-```
-
-### Chat
-
-```bash
-# Spaces
-gog chat spaces list
-gog chat spaces find "Engineering"
-gog chat spaces create "Engineering" --member alice@company.com --member bob@company.com
-
-# Messages
-gog chat messages list spaces/<spaceId> --max 5
-gog chat messages list spaces/<spaceId> --thread <threadId>
-gog chat messages list spaces/<spaceId> --unread
-gog chat messages send spaces/<spaceId> --text "Build complete!" --thread spaces/<spaceId>/threads/<threadId>
-
-# Threads
-gog chat threads list spaces/<spaceId>
-
-# Direct messages
-gog chat dm space user@company.com
-gog chat dm send user@company.com --text "ping"
-```
-
-Note: Chat commands require a Google Workspace account (consumer @gmail.com accounts are not supported).
-
-### Groups (Google Workspace)
-
-```bash
-# List groups you belong to
-gog groups list
-
-# List members of a group
-gog groups members engineering@company.com
-```
-
-Note: Groups commands require the Cloud Identity API and the `cloud-identity.groups.readonly` scope. If you get a permissions error, re-authenticate:
-
-```bash
-gog auth add your@email.com --services groups --force-consent
-```
-
-### Classroom (Google Workspace for Education)
-
-```bash
-# Courses
-gog classroom courses list
-gog classroom courses list --role teacher
-gog classroom courses get <courseId>
-gog classroom courses create --name "Math 101"
-gog classroom courses update <courseId> --name "Math 102"
-gog classroom courses archive <courseId>
-gog classroom courses unarchive <courseId>
-gog classroom courses url <courseId>
-
-# Roster
-gog classroom roster <courseId>
-gog classroom roster <courseId> --students
-gog classroom students add <courseId> <userId>
-gog classroom teachers add <courseId> <userId>
-
-# Coursework
-gog classroom coursework list <courseId>
-gog classroom coursework get <courseId> <courseworkId>
-gog classroom coursework create <courseId> --title "Homework 1" --type ASSIGNMENT --state PUBLISHED
-gog classroom coursework update <courseId> <courseworkId> --title "Updated"
-gog classroom coursework assignees <courseId> <courseworkId> --mode INDIVIDUAL_STUDENTS --add-student <studentId>
-
-# Materials
-gog classroom materials list <courseId>
-gog classroom materials create <courseId> --title "Syllabus" --state PUBLISHED
-
-# Submissions
-gog classroom submissions list <courseId> <courseworkId>
-gog classroom submissions get <courseId> <courseworkId> <submissionId>
-gog classroom submissions grade <courseId> <courseworkId> <submissionId> --grade 85
-gog classroom submissions return <courseId> <courseworkId> <submissionId>
-gog classroom submissions turn-in <courseId> <courseworkId> <submissionId>
-gog classroom submissions reclaim <courseId> <courseworkId> <submissionId>
-
-# Announcements
-gog classroom announcements list <courseId>
-gog classroom announcements create <courseId> --text "Welcome!"
-gog classroom announcements update <courseId> <announcementId> --text "Updated"
-gog classroom announcements assignees <courseId> <announcementId> --mode INDIVIDUAL_STUDENTS --add-student <studentId>
-
-# Topics
-gog classroom topics list <courseId>
-gog classroom topics create <courseId> --name "Unit 1"
-gog classroom topics update <courseId> <topicId> --name "Unit 2"
-
-# Invitations
-gog classroom invitations list
-gog classroom invitations create <courseId> <userId> --role student
-gog classroom invitations accept <invitationId>
-
-# Guardians
-gog classroom guardians list <studentId>
-gog classroom guardians get <studentId> <guardianId>
-gog classroom guardians delete <studentId> <guardianId>
-
-# Guardian invitations
-gog classroom guardian-invitations list <studentId>
-gog classroom guardian-invitations create <studentId> --email parent@example.com
-
-# Profiles
-gog classroom profile get
-gog classroom profile get <userId>
-```
-
-Note: Classroom commands require a Google Workspace for Education account. Personal Google accounts have limited Classroom functionality.
-
-### Docs
-
-```bash
-# Export (via Drive)
-gog docs export <docId> --format pdf --out ./doc.pdf
-gog docs export <docId> --format docx --out ./doc.docx
-gog docs export <docId> --format txt --out ./doc.txt
-```
-
-### Slides
-
-```bash
-# Export (via Drive)
-gog slides export <presentationId> --format pptx --out ./deck.pptx
-gog slides export <presentationId> --format pdf --out ./deck.pdf
-```
-
-## Output Formats
-
-### Text
-
-Human-readable output with colors (default):
-
-```bash
-$ gog gmail search 'newer_than:7d' --max 3
-THREAD_ID           SUBJECT                           FROM                  DATE
-18f1a2b3c4d5e6f7    Meeting notes                     alice@example.com     2025-01-10
-17e1d2c3b4a5f6e7    Invoice #12345                    billing@vendor.com    2025-01-09
-16d1c2b3a4e5f6d7    Project update                    bob@example.com       2025-01-08
-```
-
-Message-level search (one row per email; add `--include-body` to fetch/decode bodies):
-
-```bash
-$ gog gmail messages search 'newer_than:7d' --max 3
-ID                  THREAD             SUBJECT                           FROM                  DATE
-18f1a2b3c4d5e6f7    9e8d7c6b5a4f3e2d    Meeting notes                     alice@example.com     2025-01-10
-17e1d2c3b4a5f6e7    9e8d7c6b5a4f3e2d    Invoice #12345                    billing@vendor.com    2025-01-09
-16d1c2b3a4e5f6d7    7f6e5d4c3b2a1908    Project update                    bob@example.com       2025-01-08
-```
-
-### JSON
-
-Machine-readable output for scripting and automation:
-
-```bash
-$ gog gmail search 'newer_than:7d' --max 3 --json
-{
-  "threads": [
-    {
-      "id": "18f1a2b3c4d5e6f7",
-      "snippet": "Meeting notes from today...",
-      "messages": [...]
-    },
-    ...
-  ]
-}
-```
-
-```bash
-$ gog gmail messages search 'newer_than:7d' --max 3 --json
-{
-  "messages": [
-    {
-      "id": "18f1a2b3c4d5e6f7",
-      "threadId": "9e8d7c6b5a4f3e2d",
-      "subject": "Meeting notes",
-      "from": "alice@example.com",
-      "date": "2025-01-10"
-    },
-    ...
-  ]
-}
-```
-
-```bash
-$ gog gmail messages search 'newer_than:7d' --max 1 --include-body --json
-{
-  "messages": [
-    {
-      "id": "18f1a2b3c4d5e6f7",
-      "threadId": "9e8d7c6b5a4f3e2d",
-      "subject": "Meeting notes",
-      "from": "alice@example.com",
-      "date": "2025-01-10",
-      "body": "Hi team — meeting notes..."
-    }
-  ]
-}
-```
-
-Data goes to stdout, errors and progress to stderr for clean piping:
-
-```bash
-gog --json drive ls --max 5 | jq '.files[] | select(.mimeType=="application/pdf")'
-```
-
-Useful pattern:
-
-- `gog --json ... | jq .`
-
-Calendar JSON convenience fields:
-
-- `startDayOfWeek` / `endDayOfWeek` on event payloads (derived from start/end).
-
-## Examples
-
-### Search recent emails and download attachments
-
-```bash
-# Search for emails from the last week
-gog gmail search 'newer_than:7d has:attachment' --max 10
-
-# Get thread details and download attachments
-gog gmail thread get <threadId> --download
 ```
-
-### Modify labels on a thread
-
-```bash
-# Archive and star a thread
-gog gmail thread modify <threadId> --remove INBOX --add STARRED
+├── AGENTS.md, SOUL.md, USER.md     # 身份和配置文档
+├── MEMORY.md                        # 长期记忆和项目记录
+├── memory/                          # 日常维护日志和项目文档
+├── scripts/                         # 自动化工具脚本
+│   ├── website_error_monitor.js     # JavaScript错误监控
+│   ├── fix_js_errors.js             # 错误修复工具
+│   ├── website_content_optimizer.js # 内容优化工具
+│   ├── website_monitor.sh           # 基础网站监控
+│   ├── deploy_fix.js                # 部署管理工具
+│   └── website_optimization_phase1.js # 第一阶段优化
+├── skills/                          # OpenClaw技能库
+└── 优化文档/                        # 详细优化方案和报告
 ```
 
-### Create a calendar event with attendees
+## 🔧 核心工具
 
+### 1. JavaScript错误监控系统
 ```bash
-# Find a free time slot
-gog calendar freebusy --calendars "primary" \
-  --from 2025-01-15T00:00:00Z \
-  --to 2025-01-16T00:00:00Z
-
-# Create the meeting
-gog calendar create primary \
-  --summary "Team Standup" \
-  --from 2025-01-15T10:00:00Z \
-  --to 2025-01-15T10:30:00Z \
-  --attendees "alice@example.com,bob@example.com"
-```
+# 启动24/7错误监控
+node scripts/website_error_monitor.js start
 
-### Find and download files from Drive
+# 执行单次检查
+node scripts/website_error_monitor.js check
 
-```bash
-# Search for PDFs
-gog drive search "invoice filetype:pdf" --max 20 --json | \
-  jq -r '.files[] | .id' | \
-  while read fileId; do
-    gog drive download "$fileId"
-  done
+# 生成错误报告
+node scripts/website_error_monitor.js report
 ```
 
-### Manage multiple accounts
-
+### 2. 网站内容优化工具
 ```bash
-# Check personal Gmail
-gog gmail search 'is:unread' --account personal@gmail.com
-
-# Check work Gmail
-gog gmail search 'is:unread' --account work@company.com
-
-# Or set default
-export GOG_ACCOUNT=work@company.com
-gog gmail search 'is:unread'
-```
+# 分析网站状态
+node scripts/website_content_optimizer.js analyze
 
-### Update a Google Sheet from a CSV
+# 执行完整优化流程
+node scripts/website_content_optimizer.js optimize
 
-```bash
-# Convert CSV to pipe-delimited format and update sheet
-cat data.csv | tr ',' '|' | \
-  gog sheets update <spreadsheetId> 'Sheet1!A1'
+# 生成第一阶段优化文件
+node scripts/website_optimization_phase1.js start
 ```
 
-### Export Sheets / Docs / Slides
-
+### 3. 错误修复工具
 ```bash
-# Sheets
-gog sheets export <spreadsheetId> --format pdf
-
-# Docs
-gog docs export <docId> --format docx
+# 分析并修复JavaScript错误
+node scripts/fix_js_errors.js fix
 
-# Slides
-gog slides export <presentationId> --format pptx
+# 测试修复效果
+node scripts/fix_js_errors.js test
 ```
 
-### Batch process Gmail threads
-
+### 4. 基础监控
 ```bash
-# Mark all emails from a sender as read
-gog --json gmail search 'from:noreply@example.com' --max 200 | \
-  jq -r '.threads[].id' | \
-  xargs -n 50 gog gmail labels modify --remove UNREAD
-
-# Archive old emails
-gog --json gmail search 'older_than:1y' --max 200 | \
-  jq -r '.threads[].id' | \
-  xargs -n 50 gog gmail labels modify --remove INBOX
-
-# Label important emails
-gog --json gmail search 'from:boss@example.com' --max 200 | \
-  jq -r '.threads[].id' | \
-  xargs -n 50 gog gmail labels modify --add IMPORTANT
-```
-
-## Advanced Features
+# 网站状态监控
+./scripts/website_monitor.sh monitor
 
-### Verbose Mode
-
-Enable verbose logging for troubleshooting:
-
-```bash
-gog --verbose gmail search 'newer_than:7d'
-# Shows API requests and responses
+# 生成监控报告
+./scripts/website_monitor.sh report
 ```
-
-## Global Flags
-
-All commands support these flags:
-
-- `--account <email|alias|auto>` - Account to use (overrides GOG_ACCOUNT)
-- `--enable-commands <csv>` - Allowlist top-level commands (e.g., `calendar,tasks`)
-- `--json` - Output JSON to stdout (best for scripting)
-- `--plain` - Output stable, parseable text to stdout (TSV; no colors)
-- `--color <mode>` - Color mode: `auto`, `always`, or `never` (default: auto)
-- `--force` - Skip confirmations for destructive commands
-- `--no-input` - Never prompt; fail instead (useful for CI)
-- `--verbose` - Enable verbose logging
-- `--help` - Show help for any command
 
-## Shell Completions
+## 📊 优化成果
 
-Generate shell completions for your preferred shell:
+### 第一阶段完成 (2026-03-26)
+✅ **JavaScript错误修复系统**
+- 24/7实时错误监控
+- 多层修复架构 (用户层+运行时层+代码层)
+- 自动化修复工具链
+- 完整的错误预防机制
 
-### Bash
+✅ **网站内容优化方案**
+- 全面的网站分析报告
+- 四阶段优化路线图
+- 可直接实施的优化模板
+- 详细的实施指南和检查清单
 
-```bash
-# macOS (with Homebrew)
-gog completion bash > $(brew --prefix)/etc/bash_completion.d/gog
-
-# Linux
-gog completion bash > /etc/bash_completion.d/gog
-
-# Or load directly in your current session
-source <(gog completion bash)
-```
-
-### Zsh
+✅ **自动化工具链**
+- 网站分析工具
+- 优化建议生成
+- 模板文件生成
+- 实施进度跟踪
 
-```zsh
-# Generate completion file
-gog completion zsh > "${fpath[1]}/_gog"
+## 🚀 实施计划
 
-# Or add to .zshrc for automatic loading
-echo 'eval "$(gog completion zsh)"' >> ~/.zshrc
+### 第一阶段: 基础优化 (1-2周)
+1. SEO基础优化 (标题、结构化数据等)
+2. 页面结构优化 (导航、内容区域、页脚)
+3. 内容填充 (产品介绍、案例展示)
+4. 技术优化 (性能、移动端)
+5. 测试验证
+
+### 第二阶段: 内容深度优化 (3-4周)
+1. 产品库建设 (50+产品)
+2. 案例库完善 (20+案例)
+3. 行业内容创建
+4. 多媒体内容优化
 
-# Enable completions if not already enabled
-echo "autoload -U compinit; compinit" >> ~/.zshrc
-```
+### 第三阶段: 功能增强 (2-3周)
+1. 搜索功能实现
+2. 在线询价系统
+3. 客户管理系统
+4. 数据分析仪表板
 
-### Fish
-
-```fish
-gog completion fish > ~/.config/fish/completions/gog.fish
-```
+### 第四阶段: 高级优化 (4-6周)
+1. 个性化推荐
+2. AI内容生成
+3. 自动化营销
+4. 生态系统建设
 
-### PowerShell
+## 📈 预期效果
 
-```powershell
-# Load for current session
-gog completion powershell | Out-String | Invoke-Expression
+### SEO优化
+- 评分从20/100提升到80+/100
+- 核心关键词进入前3页
+- 自然搜索流量增长 > 30%
 
-# Or add to profile for all sessions
-gog completion powershell >> $PROFILE
-```
+### 用户体验
+- 页面加载速度 < 3秒
+- 导航清晰度显著提升
+- 内容可读性大幅改善
 
-After installing completions, start a new shell session for changes to take effect.
+### 业务转化
+- 询价转化率提升 > 20%
+- 用户停留时间提升 > 40%
+- 品牌知名度显著提升
 
-## Development
+## 🛡️ 保障措施
 
-After cloning, install tools:
+1. **分阶段实施**: 降低风险，便于回滚
+2. **完整备份**: 所有修改前备份原始文件
+3. **测试验证**: 每阶段完成后全面测试
+4. **实时监控**: 错误监控系统24/7运行
+5. **数据驱动**: 基于监控数据持续优化
 
-```bash
-make tools
-```
+## 📝 文档清单
 
-Pinned tools (installed into `.tools/`):
+### 技术文档
+- `佐迪智能网站JavaScript错误技术修复完成报告.md`
+- `佐迪智能网站内容优化第一阶段完成报告.md`
+- `佐迪智能网站内容版块优化方案.md`
 
-- Format: `make fmt` (goimports + gofumpt)
-- Lint: `make lint` (golangci-lint)
-- Test: `make test`
+### 实施指南
+- `网站JavaScript错误临时解决方案.md`
+- `佐迪智能网站故障应急处理.md`
+- `小红书自动化流程优化.md`
 
-CI runs format checks, tests, and lint on push/PR.
+### 工具文档
+- 所有脚本的使用说明
+- 监控系统配置指南
+- 部署和回滚流程
 
-### Integration Tests (Live Google APIs)
+## 👥 使用说明
 
-Opt-in tests that hit real Google APIs using your stored `gog` credentials/tokens.
+### 快速开始
+1. 安装Node.js环境
+2. 克隆本仓库
+3. 运行监控系统: `node scripts/website_error_monitor.js start`
+4. 分析网站: `node scripts/website_content_optimizer.js analyze`
 
+### 开发环境
 ```bash
-# Optional: override which account to use
-export GOG_IT_ACCOUNT=you@gmail.com
-export GOG_CLIENT=work
-go test -tags=integration ./...
-```
-
-Tip: if you want to avoid macOS Keychain prompts during these runs, set `GOG_KEYRING_BACKEND=file` and `GOG_KEYRING_PASSWORD=...` (uses encrypted on-disk keyring).
+# 安装依赖 (如果需要)
+npm install
 
-### Live Test Script (CLI)
+# 运行所有测试
+npm test
 
-Fast end-to-end smoke checks against live APIs:
-
-```bash
-scripts/live-test.sh --fast
-scripts/live-test.sh --account you@gmail.com --skip groups,keep,calendar-enterprise
-scripts/live-test.sh --client work --account you@company.com
+# 构建项目
+npm run build
 ```
-
-Script toggles:
 
-- `--auth all,groups` to re-auth before running
-- `--client <name>` to select OAuth client credentials
-- `--strict` to fail on optional features (groups/keep/enterprise)
-- `--allow-nontest` to override the test-account guardrail
+### 生产部署
+1. 配置环境变量
+2. 设置定时任务 (监控系统)
+3. 部署优化文件到网站
+4. 启用错误监控
 
-Go test wrapper (opt-in):
+## 📞 技术支持
 
-```bash
-GOG_LIVE=1 go test -tags=integration ./internal/integration -run Live
-```
-
-Optional env:
-- `GOG_LIVE_FAST=1`
-- `GOG_LIVE_SKIP=groups,keep`
-- `GOG_LIVE_AUTH=all,groups`
-- `GOG_LIVE_ALLOW_NONTEST=1`
-- `GOG_LIVE_EMAIL_TEST=steipete+gogtest@gmail.com`
-- `GOG_LIVE_GROUP_EMAIL=group@domain`
-- `GOG_LIVE_CLASSROOM_COURSE=<courseId>`
-- `GOG_LIVE_CLASSROOM_CREATE=1`
-- `GOG_LIVE_CLASSROOM_ALLOW_STATE=1`
-- `GOG_LIVE_TRACK=1`
-- `GOG_LIVE_GMAIL_BATCH_DELETE=1`
-- `GOG_LIVE_GMAIL_FILTERS=1`
-- `GOG_LIVE_GMAIL_WATCH_TOPIC=projects/.../topics/...`
-- `GOG_LIVE_CALENDAR_RESPOND=1`
-- `GOG_LIVE_CALENDAR_RECURRENCE=1`
-- `GOG_KEEP_SERVICE_ACCOUNT=/path/to/service-account.json`
-- `GOG_KEEP_IMPERSONATE=user@workspace-domain`
-
-### Make Shortcut
-
-Build and run:
-
-```bash
-make gog auth add you@gmail.com
-```
+### 问题排查
+1. 检查错误日志: `/tmp/zodi_js_errors.log`
+2. 查看监控报告: `node scripts/website_error_monitor.js report`
+3. 分析网站状态: `./scripts/website_monitor.sh monitor`
 
-For clean stdout when scripting:
+### 紧急响应
+1. 错误告警: 监控系统自动通知
+2. 快速修复: 使用修复工具立即处理
+3. 回滚机制: 15分钟内完整回滚
 
-- Use `--` when the first arg is a flag: `make gog -- --json gmail search "from:me" | jq .`
+## 📄 许可证
 
-## License
+本项目采用 MIT 许可证 - 详见 [LICENSE](LICENSE) 文件
 
-MIT
+## 🤝 贡献指南
 
-## Links
+欢迎提交Issue和Pull Request来改进本项目。
 
-- [GitHub Repository](https://github.com/steipete/gogcli)
-- [Gmail API Documentation](https://developers.google.com/gmail/api)
-- [Google Calendar API Documentation](https://developers.google.com/calendar)
-- [Google Drive API Documentation](https://developers.google.com/drive)
-- [Google People API Documentation](https://developers.google.com/people)
-- [Google Tasks API Documentation](https://developers.google.com/tasks)
-- [Google Sheets API Documentation](https://developers.google.com/sheets)
-- [Cloud Identity API Documentation](https://cloud.google.com/identity/docs/reference/rest)
+## 📅 更新日志
 
-## Credits
+### 2026-03-26
+- ✅ 初始提交：完整的网站优化项目
+- ✅ JavaScript错误监控和修复系统
+- ✅ 网站内容优化第一阶段方案
+- ✅ 自动化工具链开发完成
+- ✅ 详细文档和实施指南
 
-This project is inspired by Mario Zechner's original CLIs:
+---
 
-- [gmcli](https://github.com/badlogic/gmcli)
-- [gccli](https://github.com/badlogic/gccli)
-- [gdcli](https://github.com/badlogic/gdcli)
+**项目状态**: ✅ 第一阶段完成，准备实施  
+**最后更新**: 2026-03-26  
+**维护者**: 东来哥 (AI助手)  
+**联系方式**: 通过OpenClaw平台
