@@ -9,84 +9,15 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Oswald:wght@400;500;700;800&display=swap">
     <link rel="stylesheet" href="./assets/index-Cg7oX_Ag.css">
     <link rel="stylesheet" href="./assets/mobile_patch.css">
+    <!-- 加载静态数据 -->
+    <script src="./data/loader.js"></script>
     <script>
         // 应用配置
         window.zuodii_appId = "zuodii-prod";
+        window.zuodii_mode = "static"; // 静态模式
         
-        // 增强错误处理
-        window.addEventListener('error', function(e) {
-            console.error('[全局错误]', e.message, 'at', e.filename, ':', e.lineno);
-            document.getElementById('error-display').innerHTML += 
-                '<div style="color:red; margin:5px; padding:5px; border:1px solid red;">' +
-                '错误: ' + e.message + ' at ' + (e.filename || '未知文件') + ':' + e.lineno +
-                '</div>';
-        });
-        
-        window.addEventListener('unhandledrejection', function(e) {
-            console.error('[未处理的Promise拒绝]', e.reason);
-            document.getElementById('error-display').innerHTML += 
-                '<div style="color:orange; margin:5px; padding:5px; border:1px solid orange;">' +
-                'Promise拒绝: ' + (e.reason?.message || e.reason) +
-                '</div>';
-        });
-        
-        // 脚本加载监控
-        let scriptsLoaded = 0;
-        const totalScripts = 3;
-        
-        function checkScriptLoad() {
-            scriptsLoaded++;
-            console.log(`脚本加载进度: ${scriptsLoaded}/${totalScripts}`);
-            document.getElementById('loading-status').textContent = 
-                `加载中... (${scriptsLoaded}/${totalScripts})`;
-            
-            if (scriptsLoaded === totalScripts) {
-                console.log('所有脚本加载完成，等待 React 渲染...');
-                document.getElementById('loading-status').textContent = '脚本加载完成，等待渲染...';
-                
-                // 检查 React 是否加载
-                setTimeout(() => {
-                    if (window.React) {
-                        console.log('React 已加载，版本:', window.React.version);
-                        document.getElementById('loading-status').textContent = 
-                            'React 已加载 v' + window.React.version;
-                    } else {
-                        console.error('React 未加载');
-                        document.getElementById('loading-status').textContent = 
-                            '错误: React 未加载';
-                        document.getElementById('error-display').innerHTML += 
-                            '<div style="color:red; margin:5px; padding:5px; border:1px solid red;">' +
-                            '严重: React 库未加载，应用无法启动' +
-                            '</div>';
-                    }
-                }, 2000);
-            }
-        }
-        
-        // 监控脚本加载
-        document.addEventListener('DOMContentLoaded', function() {
-            const scripts = document.querySelectorAll('script[type="module"]');
-            scripts.forEach(script => {
-                const originalOnLoad = script.onload;
-                const originalOnError = script.onerror;
-                
-                script.onload = function(e) {
-                    console.log('脚本加载成功:', script.src);
-                    checkScriptLoad();
-                    if (originalOnLoad) originalOnLoad.call(this, e);
-                };
-                
-                script.onerror = function(e) {
-                    console.error('脚本加载失败:', script.src);
-                    document.getElementById('error-display').innerHTML += 
-                        '<div style="color:red; margin:5px; padding:5px; border:1px solid red;">' +
-                        '脚本加载失败: ' + script.src +
-                        '</div>';
-                    checkScriptLoad();
-                    if (originalOnError) originalOnError.call(this, e);
-                };
-            });
-        });
+        // 简化的加载监控
+        console.log('[ZUODII] 应用启动，模式: 静态数据驱动');
     </script>
     <style>
         #loading-overlay {
@@ -111,14 +42,7 @@
         }
         
         #error-display {
-            max-width: 800px;
-            max-height: 300px;
-            overflow-y: auto;
-            margin: 20px;
-            padding: 10px;
-            border: 1px solid #ccc;
-            background: #f9f9f9;
-            font-size: 12px;
+            display: none;
         }
         
         .spinner {
@@ -133,17 +57,6 @@
         @keyframes spin {
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
-        }
-        
-        /* 隐藏调试信息（生产环境可移除） */
-        @media (min-width: 768px) {
-            #error-display {
-                position: fixed;
-                bottom: 10px;
-                right: 10px;
-                width: 400px;
-                z-index: 10000;
-            }
         }
     </style>
 </head>
@@ -177,34 +90,16 @@
     <script>
         // 页面加载完成后隐藏加载覆盖层
         window.addEventListener('load', function() {
-            // 检查应用是否渲染
             setTimeout(function() {
                 const root = document.getElementById('root');
                 if (root && root.innerHTML && root.innerHTML.trim().length > 100) {
-                    console.log('应用已渲染，隐藏加载层');
+                    console.log('[ZUODII] 应用已渲染');
                     document.getElementById('loading-overlay').style.display = 'none';
                 } else {
-                    console.warn('应用未渲染，保持加载层显示');
-                    document.getElementById('loading-status').textContent = 
-                        '应用加载超时。请检查控制台错误。';
-                    
-                    // 提供手动继续选项
-                    const continueBtn = document.createElement('button');
-                    continueBtn.textContent = '继续访问网站';
-                    continueBtn.style.margin = '10px';
-                    continueBtn.style.padding = '10px 20px';
-                    continueBtn.style.background = '#3498db';
-                    continueBtn.style.color = 'white';
-                    continueBtn.style.border = 'none';
-                    continueBtn.style.borderRadius = '4px';
-                    continueBtn.style.cursor = 'pointer';
-                    continueBtn.onclick = function() {
-                        document.getElementById('loading-overlay').style.display = 'none';
-                    };
-                    
-                    document.getElementById('loading-overlay').appendChild(continueBtn);
+                    console.log('[ZUODII] 隐藏加载层，继续访问');
+                    document.getElementById('loading-overlay').style.display = 'none';
                 }
-            }, 5000); // 等待5秒
+            }, 3000);
         });
     </script>
 </body>
