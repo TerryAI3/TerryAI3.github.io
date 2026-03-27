@@ -4,77 +4,56 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>ZUODI 佐迪智能家具 | 办公空间解决方案专家</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="dns-prefetch" href="https://zuodii.com">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Oswald:wght@400;500;700;800&display=swap">
     <link rel="stylesheet" href="./assets/index-Cg7oX_Ag.css">
     <link rel="stylesheet" href="./assets/mobile_patch.css">
     <!-- 加载静态数据 -->
     <script src="./data/loader.js"></script>
     <script>
-        // 应用配置
         window.zuodii_appId = "zuodii-prod";
-        window.zuodii_mode = "static"; // 静态模式
-        
-        // 简化的加载监控
+        window.zuodii_mode = "static";
         console.log('[ZUODII] 应用启动，模式: 静态数据驱动');
+        
+        window.addEventListener('error', function(e) {
+            var errDisplay = document.getElementById('error-display');
+            if (errDisplay) {
+                errDisplay.style.display = 'block';
+                errDisplay.style.color = 'red';
+                errDisplay.style.marginTop = '10px';
+                errDisplay.style.fontSize = '12px';
+                errDisplay.style.maxWidth = '80%';
+                errDisplay.style.wordBreak = 'break-all';
+                errDisplay.innerText = e.message || e;
+            }
+        });
     </script>
     <style>
         #loading-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(255, 255, 255, 0.9);
-            z-index: 9999;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
+            position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(255, 255, 255, 0.95); z-index: 9999;
+            display: flex; flex-direction: column; justify-content: center; align-items: center;
             font-family: Arial, sans-serif;
         }
-        
-        #loading-status {
-            font-size: 18px;
-            margin: 20px;
-            color: #333;
-        }
-        
-        #error-display {
-            display: none;
-        }
-        
+        #loading-status { font-size: 18px; margin: 20px; color: #333; }
+        #error-display { display: none; }
         .spinner {
-            width: 40px;
-            height: 40px;
-            border: 4px solid #f3f3f3;
-            border-top: 4px solid #3498db;
-            border-radius: 50%;
+            width: 40px; height: 40px; border: 4px solid #f3f3f3;
+            border-top: 4px solid #3498db; border-radius: 50%;
             animation: spin 1s linear infinite;
         }
-        
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
     </style>
 </head>
 <body>
-    <!-- 加载覆盖层 -->
     <div id="loading-overlay">
         <div class="spinner"></div>
         <div id="loading-status">初始化中...</div>
         <div id="error-display"></div>
-        <div style="margin-top: 20px; font-size: 14px; color: #666;">
-            如果长时间停留在此页面，请检查浏览器控制台 (F12) 查看错误信息
+        <div style="margin-top: 20px; font-size: 14px; color: #666; text-align: center; padding: 0 20px;">
+            如果长时间停留在此页面，请检查网络或刷新重试
         </div>
     </div>
-    
-    <!-- 主应用容器 -->
     <div id="root"></div>
-    
-    <!-- 无 JavaScript 回退 -->
     <noscript>
         <div style="text-align:center; padding:50px;">
             <h1>佐迪智能家具</h1>
@@ -82,25 +61,29 @@
         </div>
     </noscript>
 
-    <!-- 应用脚本 -->
     <script type="module" src="./assets/index-T7eFSBbb.js"></script>
     <script type="module" src="./assets/vendor-CANcgsl4.js"></script>
     <script type="module" src="./assets/ui-DbSFp3oG.js"></script>
     
     <script>
-        // 页面加载完成后隐藏加载覆盖层
+        var hideLoader = function() {
+            var overlay = document.getElementById('loading-overlay');
+            if (overlay) overlay.style.display = 'none';
+        };
         window.addEventListener('load', function() {
-            setTimeout(function() {
-                const root = document.getElementById('root');
-                if (root && root.innerHTML && root.innerHTML.trim().length > 100) {
-                    console.log('[ZUODII] 应用已渲染');
-                    document.getElementById('loading-overlay').style.display = 'none';
-                } else {
-                    console.log('[ZUODII] 隐藏加载层，继续访问');
-                    document.getElementById('loading-overlay').style.display = 'none';
-                }
-            }, 3000);
+            setTimeout(hideLoader, 3000);
         });
+        setTimeout(hideLoader, 8000);
+        
+        var checkRoot = function() {
+            var root = document.getElementById('root');
+            if (root && root.innerHTML.trim().length > 100) {
+                hideLoader();
+            } else {
+                setTimeout(checkRoot, 500);
+            }
+        };
+        setTimeout(checkRoot, 500);
     </script>
 </body>
 </html>
