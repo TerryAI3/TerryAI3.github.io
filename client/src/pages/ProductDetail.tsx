@@ -1,19 +1,15 @@
 import { useLocation, useParams } from "wouter";
-import { trpc } from "@/lib/trpc";
 import { Button } from "@/components/ui/button";
-import { Loader2, ArrowLeft } from "lucide-react";
+import { ArrowLeft } from "lucide-react";
+import productsData from "@/data-products.json";
 
 export default function ProductDetail() {
   const { id } = useParams<{ id: string }>();
   const [, setLocation] = useLocation();
-  const productId = id ? parseInt(id, 10) : null;
 
-  const { data: product, isLoading, error } = trpc.products.getById.useQuery(
-    productId || 0,
-    { enabled: !!productId }
-  );
+  const product = productsData.products.find((p: any) => p.id === id);
 
-  if (!productId) {
+  if (!product) {
     return (
       <div className="min-h-screen flex items-center justify-center">
         <div className="text-center">
@@ -24,27 +20,7 @@ export default function ProductDetail() {
     );
   }
 
-  if (isLoading) {
-    return (
-      <div className="min-h-screen flex items-center justify-center">
-        <Loader2 className="animate-spin w-8 h-8" />
-      </div>
-    );
-  }
-
-  if (error || !product) {
-    return (
-      <div className="min-h-screen flex items-center justify-center">
-        <div className="text-center">
-          <h1 className="text-2xl font-bold mb-4">产品加载失败</h1>
-          <Button onClick={() => setLocation('/products')}>返回产品列表</Button>
-        </div>
-      </div>
-    );
-  }
-
-  const images = product.images ? JSON.parse(product.images) : [];
-  const specs = product.specifications ? JSON.parse(product.specifications) : {};
+  const specs = product.features ? { "产品特点": product.features.join(" | ") } : {};
 
   return (
     <div className="min-h-screen bg-background">
@@ -67,7 +43,7 @@ export default function ProductDetail() {
         <div className="flex flex-wrap gap-12 pb-8 border-b border-border">
           <div>
             <p className="text-sm text-muted-foreground mb-2">产品系列</p>
-            <p className="text-lg font-semibold">{product.seriesId ? `系列 ${product.seriesId}` : "未分类"}</p>
+            <p className="text-lg font-semibold">{product.category || "未分类"}</p>
           </div>
         </div>
       </div>
@@ -75,28 +51,13 @@ export default function ProductDetail() {
       {/* 中部分：产品图片竖向排列 */}
       <div className="space-y-8">
         {/* 主图 */}
-        {product.imageUrl && (
+        {product.image && (
           <div className="w-screen h-96 bg-muted flex items-center justify-center overflow-hidden" style={{ marginLeft: 'calc(-50vw + 50%)' }}>
             <img
-              src={product.imageUrl}
+              src={product.image}
               alt={product.name}
               className="w-full h-full object-contain"
             />
-          </div>
-        )}
-
-        {/* 其他图片竖向排列 */}
-        {images.length > 0 && (
-          <div className="space-y-8">
-            {images.map((img: string, idx: number) => (
-              <div key={idx} className="w-screen h-96 bg-muted flex items-center justify-center overflow-hidden" style={{ marginLeft: 'calc(-50vw + 50%)' }}>
-                <img
-                  src={img}
-                  alt={`${product.name} - 图片 ${idx + 1}`}
-                  className="w-full h-full object-contain"
-                />
-              </div>
-            ))}
           </div>
         )}
       </div>

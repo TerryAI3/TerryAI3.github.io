@@ -1,27 +1,20 @@
 import { useState } from "react";
-import { trpc } from "@/lib/trpc";
-import { Loader2 } from "lucide-react";
+import productsData from "@/data-products.json";
 
 export default function Products() {
-  const [selectedSeries, setSelectedSeries] = useState<number | null>(null);
-  
-  const { data: seriesList, isLoading: seriesLoading } = trpc.series.list.useQuery();
-  const { data: products, isLoading: productsLoading } = trpc.series.getProducts.useQuery(
-    selectedSeries!,
-    { enabled: selectedSeries !== null }
+  // Extract series from categories in productsData
+  const seriesList = productsData.categories.map((c: any, index: number) => ({
+    id: index + 1,
+    name: c.name,
+    nameEn: c.id,
+    description: c.description
+  }));
+
+  const [selectedSeries, setSelectedSeries] = useState<number>(seriesList[0]?.id || 1);
+
+  const displayProducts = productsData.products.filter(
+    (p: any) => p.category === seriesList.find((s: any) => s.id === selectedSeries)?.name
   );
-
-  const displayProducts = selectedSeries === null 
-    ? [] 
-    : products || [];
-
-  if (seriesLoading) {
-    return (
-      <div className="min-h-screen flex items-center justify-center">
-        <Loader2 className="animate-spin w-8 h-8" />
-      </div>
-    );
-  }
 
   return (
     <div className="min-h-screen bg-white">
@@ -46,7 +39,7 @@ export default function Products() {
               <p className="text-gray-500">产品分类</p>
             </div>
             <div className="flex gap-8 overflow-x-auto pb-2">
-              {seriesList?.map((series) => (
+              {seriesList.map((series) => (
                 <button
                   key={series.id}
                   onClick={() => setSelectedSeries(series.id)}
@@ -71,28 +64,19 @@ export default function Products() {
 
       {/* Products Grid */}
       <div className="container mx-auto px-4 py-16">
-        {selectedSeries === null ? (
-          <div className="text-center py-32">
-            <p className="text-gray-400 text-xl">请选择一个产品系列查看产品</p>
-          </div>
-        ) : productsLoading ? (
-          <div className="flex justify-center py-32">
-            <Loader2 className="animate-spin w-8 h-8 text-primary" />
-          </div>
-        ) : displayProducts.length === 0 ? (
+        {displayProducts.length === 0 ? (
           <div className="text-center py-32">
             <p className="text-gray-400 text-xl">该系列暂无产品</p>
-            <p className="text-gray-500 mt-4">请使用管理后台添加产品</p>
           </div>
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {displayProducts.map((product) => (
+            {displayProducts.map((product: any) => (
               <a key={product.id} href={`/products/${product.id}`} className="group block bg-white hover:shadow-xl transition-shadow">
                   {/* Product Image */}
                   <div className="aspect-[16/10] overflow-hidden bg-gray-100">
-                    {product.imageUrl ? (
+                    {product.image ? (
                       <img
-                        src={product.imageUrl}
+                        src={product.image}
                         alt={product.name}
                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                       />
@@ -108,9 +92,6 @@ export default function Products() {
                     <h3 className="text-2xl font-semibold text-gray-800 mb-2">
                       {product.name}
                     </h3>
-                    {product.nameEn && (
-                      <p className="text-gray-500 mb-4">{product.nameEn}</p>
-                    )}
                     {product.description && (
                       <p className="text-gray-600 line-clamp-2">
                         {product.description}
