@@ -24,6 +24,18 @@
     "gog": {
       "version": "1.0.0",
       "installedAt": 1774452868379
+    },
+    "pdf": {
+      "version": "0.1.0",
+      "installedAt": 1774577292812
+    },
+    "pdf-ocr": {
+      "version": "1.0.0",
+      "installedAt": 1774577295215
+    },
+    "pdf-smart-tool-cn": {
+      "version": "1.1.0",
+      "installedAt": 1774577296980
     }
   }
 }

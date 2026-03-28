@@ -1,0 +1,30 @@
+{
+  "scrape_id": "01KMMYVMGJK1CEVSSRCNDFZW1D",
+  "endpoint": "scrape",
+  "version": "2e07754767e8205c",
+  "status": "completed",
+  "url": "https://example.com",
+  "data": {
+    "markdown": "# Example Domain\nThis domain is for use in documentation examples without needing permission. Avoid use in operations.\n[Learn more](https://iana.org/domains/example)",
+    "metadata": {
+      "content_type": "text/html",
+      "final_url": "https://example.com/",
+      "proxy_location": "US",
+      "proxy_sticky_session": "sticky-0c9710ce",
+      "requested_url": "https://example.com",
+      "status_code": 200,
+      "title": "Example Domain",
+      "viewport": "width=device-width, initial-scale=1"
+    },
+    "traffic_bytes": 1410,
+    "credits_used": 1,
+    "credits_detail": {
+      "base_cost": 1,
+      "traffic_cost": 0,
+      "json_extract_cost": 0
+    }
+  },
+  "started_at": "2026-03-26T11:35:44Z",
+  "ended_at": "2026-03-26T11:35:56Z",
+  "total_credits_used": 1
+}

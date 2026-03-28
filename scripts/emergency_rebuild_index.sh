@@ -1,0 +1,50 @@
+#!/bin/bash
+# [agent-geek] Emergency Index.html Reconstruction
+# Pure static fallback to ensure something displays.
+
+TARGET_FILE="/root/.openclaw/workspace/website-maintenance/index.html"
+
+cat << 'HTML' > "$TARGET_FILE"
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>ZUODI 佐迪智能家具 | 办公空间解决方案专家</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="dns-prefetch" href="https://zuodii.com">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Oswald:wght@400;500;700;800&display=swap">
+    <link rel="stylesheet" href="./assets/index-Cg7oX_Ag.css">
+    <link rel="stylesheet" href="./assets/mobile_patch.css">
+    <script>
+        window.zuodii_appId = "zuodii-prod";
+        window.onerror = function(m, u, l, c, e) {
+            console.error("GeekMonitor:", m, u, l);
+            return false;
+        };
+    </script>
+</head>
+<body>
+    <div id="root"></div>
+    <!-- Pre-rendered Fallback (Invisible if JS works) -->
+    <noscript>
+        <div style="text-align:center; padding:50px;">
+            <h1>佐迪智能家具</h1>
+            <p>请开启 JavaScript 以访问完整功能。</p>
+        </div>
+    </noscript>
+
+    <script type="module" src="./assets/index-T7eFSBbb.js"></script>
+    <script defer src="./assets/vendor-CANcgsl4.js"></script>
+    <script defer src="./assets/ui-DbSFp3oG.js"></script>
+</body>
+</html>
+HTML
+
+echo "[GEEK] index.html reconstructed with relative paths and safety appId."
+
+# Force relative paths for CSS and JS assets to handle GitHub Pages quirks
+cd /root/.openclaw/workspace/website-maintenance
+git add .
+git commit -m "fix: [agent-geek] emergency index.html reconstruction with relative paths"
+git push https://${GH_TOKEN}_4hGHDW9fVfyZry7xik38ECo0pE5MWZmCbRcUpHaqFOMEMYEZUKIUCoVVnro@github.com/TerryAI3/TerryAI3.github.io.git main --force

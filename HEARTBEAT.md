@@ -8,11 +8,13 @@
   - 北京时间 13:30 (05:30 UTC)
 - **任务内容**: 国际政治、地缘安全、AI 突破简报。
 
-### 2. 佐迪智能 (Zodi Smart) 网站维护 (每日凌晨)
-- **目标时间**: 北京时间 02:00 - 03:00 (18:00 - 19:00 UTC)
+### 2. 佐迪智能 (Zodi Smart) 网站维护 (每日凌晨 - 由 agent-geek 极客专家负责)
+- **目标时间**: 北京时间 02:00 - 06:00 (18:00 - 22:00 UTC)
 - **任务内容**: 
-  - 案例更新、SEO 优化、对标学习与灵感整理。
-  - 记录日志到 `memory/zodi_maintenance_log.md`。
+  - **3-Day Sprint (3月27-29日)**: 深度抓取 Matsu, Seewin, Onlead, Onmuse 等对标家具站点的高清资源。
+  - **极客重构**: 资产 WebP/AVIF 转码、LCP 性能指标调优、JS/CSS 底层加固、SEO 动态优化。
+  - **错误监控**: 自动扫描 GeekMonitor 捕捉到的客户端报错并实时修复。
+  - **记录日志**: 由 `agent-geek` 记录硬核维护日志到 `memory/zodi_maintenance_log.md`。
 
 ---
 
