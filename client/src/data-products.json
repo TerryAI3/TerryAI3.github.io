@@ -1,195 +1,298 @@
 {
-  "products": [
-    {
-      "id": "office-chair-ergonomic",
-      "name": "人体工学办公椅",
-      "category": "办公椅",
-      "price": "¥2,890",
-      "image": "/images/products/office-chair-ergonomic.webp",
-      "description": "专业级人体工学设计，提供全天候舒适支撑。采用高弹性网布，透气性能卓越。可调节腰部支撑和扶手高度，适合长时间办公。",
-      "features": [
-        "高弹性网布材质，透气舒适",
-        "可调节腰部支撑系统",
-        "360°旋转，升降气压棒",
-        "符合人体工学设计标准",
-        "5年质保"
-      ]
-    },
-    {
-      "id": "office-chair-executive",
-      "name": "行政主管椅",
-      "category": "办公椅",
-      "price": "¥3,490",
-      "image": "/images/products/office-chair-executive.webp",
-      "description": "高端商务风格，采用进口PU皮革。宽敞的坐垫设计，提供尊贵的办公体验。适合董事长室、总经理办公室等高端场景。",
-      "features": [
-        "进口PU皮革，易清洁耐用",
-        "加厚坐垫，舒适度极佳",
-        "扶手可调节，支持多角度调整",
-        "高级气压棒，承重可达150kg",
-        "10年质保"
-      ]
-    },
-    {
-      "id": "office-chair-mesh",
-      "name": "网布透气椅",
-      "category": "办公椅",
-      "price": "¥1,890",
-      "image": "/images/products/office-chair-mesh.webp",
-      "description": "经济实用型办公椅，采用高密度网布。轻盈透气，适合普通办公区域、会议室等场景。性价比最优。",
-      "features": [
-        "高密度网布，透气性能好",
-        "轻盈设计，易于移动",
-        "标准升降机制，操作简单",
-        "多色可选，搭配灵活",
-        "3年质保"
-      ]
-    },
-    {
-      "id": "office-desk-executive",
-      "name": "行政主管桌",
-      "category": "办公桌",
-      "price": "¥4,890",
-      "image": "/images/products/office-desk-executive.webp",
-      "description": "大气商务风格，采用优质实木贴面。宽敞的工作面积，内置隐藏式线缆管理系统。适合高管办公室。",
-      "features": [
-        "优质实木贴面，质感高端",
-        "宽敞工作面积（1.8m × 0.9m）",
-        "隐藏式线缆管理系统",
-        "可配套文件柜和书架",
-        "10年质保"
-      ]
-    },
-    {
-      "id": "office-workstation",
-      "name": "员工工作站",
-      "category": "办公桌",
-      "price": "¥1,290",
-      "image": "/images/products/office-workstation.webp",
-      "description": "标准员工工作站，简洁实用设计。模块化组合方案，可灵活搭配。适合开放式办公区域。",
-      "features": [
-        "简洁现代设计",
-        "标准工作面积（1.2m × 0.6m）",
-        "模块化组合，灵活搭配",
-        "承重能力强，稳定耐用",
-        "5年质保"
-      ]
-    },
-    {
-      "id": "conference-table",
-      "name": "会议桌",
-      "category": "会议家具",
-      "price": "¥6,890",
-      "image": "/images/products/conference-table.webp",
-      "description": "专业会议室配置，采用进口实木。椭圆形设计，便于沟通交流。内置智能线缆系统。",
-      "features": [
-        "进口实木材质，高端大气",
-        "椭圆形设计，便于沟通",
-        "内置智能线缆系统",
-        "可容纳12-16人",
-        "支持定制尺寸",
-        "15年质保"
-      ]
-    },
-    {
-      "id": "student-desk-adjustable",
-      "name": "可调节学生课桌",
-      "category": "学生家具",
-      "price": "¥890",
-      "image": "/images/products/student-desk-adjustable.webp",
-      "description": "专为学生设计，支持高度和倾角调节。符合人体工学，保护学生脊椎健康。适合各年龄段学生。",
-      "features": [
-        "高度可调节（60-80cm）",
-        "桌面倾角可调（0-45°）",
-        "环保板材，安全无毒",
-        "轻盈易搬运",
-        "5年质保"
-      ]
-    },
-    {
-      "id": "student-desk-combo",
-      "name": "学生课桌椅组合",
-      "category": "学生家具",
-      "price": "¥1,490",
-      "image": "/images/products/student-desk-combo.webp",
-      "description": "完整的学生学习解决方案，包含课桌和配套椅子。一体化设计，节省空间。适合学校教室。",
-      "features": [
-        "课桌+椅子完整组合",
-        "高度可调节，适应不同年级",
-        "一体化设计，节省空间",
-        "环保材料，符合国家标准",
-        "5年质保"
-      ]
-    },
-    {
-      "id": "student-desk-double",
-      "name": "双人学生课桌",
-      "category": "学生家具",
-      "price": "¥1,290",
-      "image": "/images/products/student-desk-double.webp",
-      "description": "双人设计，适合小班教学或自习室。分隔式设计，保护学生隐私。高效利用空间。",
-      "features": [
-        "双人分隔设计",
-        "保护学生隐私",
-        "高效空间利用",
-        "环保板材",
-        "便于清洁维护",
-        "5年质保"
-      ]
-    },
-    {
-      "id": "classroom-furniture",
-      "name": "教室家具套装",
-      "category": "学生家具",
-      "price": "¥12,890",
-      "image": "/images/products/classroom-furniture.webp",
-      "description": "完整的教室配置方案，包含讲台、黑板、课桌椅等。一站式解决方案，为学校节省采购成本。",
-      "features": [
-        "包含讲台、黑板、课桌椅",
-        "完整教室配置方案",
-        "一站式采购，省心省力",
-        "可定制数量和配置",
-        "专业安装服务",
-        "10年质保"
-      ]
-    },
-    {
-      "id": "classroom-set",
-      "name": "标准教室套装",
-      "category": "学生家具",
-      "price": "¥8,890",
-      "image": "/images/products/classroom-set.webp",
-      "description": "标准教室配置，包含40套课桌椅和讲台。适合普通教室快速部署。性价比最优。",
-      "features": [
-        "40套课桌椅+讲台",
-        "标准教室配置",
-        "快速部署，即装即用",
-        "性价比最优",
-        "专业安装服务",
-        "8年质保"
-      ]
-    }
-  ],
   "categories": [
     {
-      "id": "office-chairs",
-      "name": "办公椅",
-      "description": "专业级人体工学办公椅，提供全天候舒适支撑"
+      "id": "seating",
+      "name": "座椅系列",
+      "description": "舒适的人体工学座椅与休闲沙发"
     },
     {
-      "id": "office-desks",
-      "name": "办公桌",
-      "description": "高端商务办公桌，适合各类办公场景"
+      "id": "desks",
+      "name": "办公与课桌",
+      "description": "适合办公、教室、培训的多功能桌"
     },
     {
-      "id": "conference-furniture",
-      "name": "会议家具",
-      "description": "专业会议室配置，提升企业形象"
+      "id": "storage",
+      "name": "储物柜",
+      "description": "书包柜、图书馆书柜、办公文件柜"
     },
     {
-      "id": "student-furniture",
-      "name": "学生家具",
-      "description": "专为学生设计的教室家具，保护脊椎健康"
+      "id": "special",
+      "name": "专用空间家具",
+      "description": "宿舍床、餐厅桌椅、讲台、美术桌"
+    }
+  ],
+  "products": [
+    {
+      "id": "prod-1774710768210-797",
+      "name": "守恒组合桌",
+      "category": "办公与课桌",
+      "description": "SMZ-SH(ZHZ)-7660-B(1)",
+      "image": "http://www.seewin-edu.com/uploadfile/Product-OK/11peixunjiaoshi/1peixunzhuo/2shouheng/SMZ-SH(ZHZ)-7660-B(1).jpg",
+      "images": [
+        "http://www.seewin-edu.com/uploadfile/Product-OK/11peixunjiaoshi/1peixunzhuo/2shouheng/SMZ-SH(ZHZ)-7660-B(1).jpg",
+        "http://www.seewin-edu.com/uploadfile/Product-OK/11peixunjiaoshi/1peixunzhuo/2shouheng/SH-1.jpg",
+        "http://www.seewin-edu.com/uploadfile/Product-OK/11peixunjiaoshi/1peixunzhuo/2shouheng/SH-2.jpg",
+        "http://www.seewin-edu.com/uploadfile/Product-OK/11peixunjiaoshi/1peixunzhuo/2shouheng/SH-3.jpg",
+        "http://www.seewin-edu.com/uploadfile/Product-OK/11peixunjiaoshi/1peixunzhuo/2shouheng/SH-4.jpg",
+        "http://www.seewin-edu.com/uploadfile/Product-OK/11peixunjiaoshi/1peixunzhuo/2shouheng/SH-5.jpg",
+        "http://www.seewin-edu.com/uploadfile/Product-OK/11peixunjiaoshi/1peixunzhuo/4wosen/fmWS.jpg",
+        "http://www.seewin-edu.com/uploadfile/Product-OK/4zhuantyejiaoshi/wurenji/mule/MLFM.jpg",
+        "http://www.seewin-edu.com/uploadfile/Product-OK/11peixunjiaoshi/1peixunzhuo/2shouheng/fm.jpg"
+      ],
+      "features": [
+        "环保材料制造",
+        "符合人体工学设计",
+        "坚固耐用，安全可靠",
+        "诗敏教学设备官方出品"
+      ]
+    },
+    {
+      "id": "prod-1774710768468-852",
+      "name": "米切索沙发",
+      "category": "座椅系列",
+      "description": "采用环保材料制造，整体结构稳定，设计符合人体工学，坚固耐用。",
+      "image": "http://www.seewin-edu.com/uploadfile/Product-OK/13tushuguan/4YLSF/10MQS/SMRD-MQ-7075-C.jpg",
+      "images": [
+        "http://www.seewin-edu.com/uploadfile/Product-OK/13tushuguan/4YLSF/10MQS/SMRD-MQ-7075-C.jpg",
+        "http://www.seewin-edu.com/uploadfile/Product-OK/13tushuguan/4YLSF/10MQS/SMRS-MQ-7076-C.jpg",
+        "http://www.seewin-edu.com/uploadfile/Product-OK/13tushuguan/4YLSF/10MQS/SMRS-MQ-1276-C.jpg",
+        "http://www.seewin-edu.com/uploadfile/Product-OK/13tushuguan/4YLSF/10MQS/MQS-1.jpg",
+        "http://www.seewin-edu.com/uploadfile/Product-OK/13tushuguan/4YLSF/10MQS/MQS-2.jpg",
+        "http://www.seewin-edu.com/uploadfile/Product-OK/13tushuguan/4YLSF/5GL/fmGL.jpg",
+        "http://www.seewin-edu.com/uploadfile/Product-OK/13tushuguan/4YLSF/4MG/fmMG.jpg",
+        "http://www.seewin-edu.com/uploadfile/Product-OK/13tushuguan/4YLSF/9LY/fmLY.jpg"
+      ],
+      "features": [
+        "环保材料制造",
+        "符合人体工学设计",
+        "坚固耐用，安全可靠",
+        "诗敏教学设备官方出品"
+      ]
+    },
+    {
+      "id": "prod-1774710768738-67",
+      "name": "巴克斯考试桌",
+      "category": "办公与课桌",
+      "description": "采用环保材料制造，整体结构稳定，设计符合人体工学，坚固耐用。",
+      "image": "http://www.seewin-edu.com/uploadfile/Product-OK/4zhuantyejiaoshi/3SMX-JSJ/9SMRZ-BKS/SMRZ-BKSKSZ-1765-B.jpg",
+      "images": [
+        "http://www.seewin-edu.com/uploadfile/Product-OK/4zhuantyejiaoshi/3SMX-JSJ/9SMRZ-BKS/SMRZ-BKSKSZ-1765-B.jpg",
+        "http://www.seewin-edu.com/uploadfile/Product-OK/4zhuantyejiaoshi/3SMX-JSJ/9SMRZ-BKS/SMRZ-BKSKSZ-2460-B.jpg",
+        "http://www.seewin-edu.com/uploadfile/Product-OK/4zhuantyejiaoshi/3SMX-JSJ/9SMRZ-BKS/SMJ-BKSJT-2460-B.jpg",
+        "http://www.seewin-edu.com/uploadfile/Product-OK/4zhuantyejiaoshi/3SMX-JSJ/9SMRZ-BKS/bks-1.jpg",
+        "http://www.seewin-edu.com/uploadfile/Product-OK/4zhuantyejiaoshi/3SMX-JSJ/9SMRZ-BKS/bks-2.jpg",
+        "http://www.seewin-edu.com/uploadfile/Product-OK/4zhuantyejiaoshi/3SMX-JSJ/9SMRZ-BKS/bks-3.jpg",
+        "http://www.seewin-edu.com/uploadfile/Product-OK/4zhuantyejiaoshi/3SMX-JSJ/9SMRZ-BKS/bks-4.jpg",
+        "http://www.seewin-edu.com/uploadfile/Product-OK/4zhuantyejiaoshi/3SMX-JSJ/9SMRZ-BKS/bks-5.jpg",
+        "http://www.seewin-edu.com/uploadfile/Product-OK/4zhuantyejiaoshi/3SMX-JSJ/9SMRZ-BKS/bks-6.jpg",
+        "http://www.seewin-edu.com/uploadfile/Product-OK/4zhuantyejiaoshi/3SMX-JSJ/9SMRZ-BKS/bks-7.jpg",
+        "http://www.seewin-edu.com/uploadfile/Product-OK/4zhuantyejiaoshi/3SMX-JSJ/9SMRZ-BKS/bks-8.jpg",
+        "http://www.seewin-edu.com/uploadfile/Product-OK/4zhuantyejiaoshi/3SMX-JSJ/9SMRZ-BKS/bks-9.jpg",
+        "http://www.seewin-edu.com/uploadfile/Product-OK/4zhuantyejiaoshi/3SMX-JSJ/9SMRZ-BKS/bks-10.jpg",
+        "http://www.seewin-edu.com/uploadfile/Product-OK/4zhuantyejiaoshi/3SMX-JSJ/9SMRZ-BKS/bks-11.jpg",
+        "http://www.seewin-edu.com/uploadfile/Product-OK/4zhuantyejiaoshi/3SMX-JSJ/9SMRZ-BKS/bks-12.jpg",
+        "http://www.seewin-edu.com/uploadfile/Product-OK/4zhuantyejiaoshi/3SMX-JSJ/9SMRZ-BKS/bks-13.jpg",
+        "http://www.seewin-edu.com/uploadfile/Product-OK/4zhuantyejiaoshi/3SMX-JSJ/9SMRZ-BKS/bks-14.jpg",
+        "http://www.seewin-edu.com/uploadfile/Product-OK/4zhuantyejiaoshi/3SMX-JSJ/9SMRZ-BKS/bks-15.jpg",
+        "http://www.seewin-edu.com/uploadfile/Product-OK/4zhuantyejiaoshi/3SMX-JSJ/9SMRZ-BKS/bks-16.jpg",
+        "http://www.seewin-edu.com/uploadfile/Product-OK/4zhuantyejiaoshi/3SMX-JSJ/9SMRZ-BKS/bks-17.jpg",
+        "http://www.seewin-edu.com/uploadfile/Product-OK/4zhuantyejiaoshi/3SMX-JSJ/2SMRZ-BBQ/SMRZ-BBQ.jpg",
+        "http://www.seewin-edu.com/uploadfile/Product-OK/4zhuantyejiaoshi/3SMX-JSJ/7SMRZ-AL/SMRZ-AL.jpg",
+        "http://www.seewin-edu.com/uploadfile/Product-OK/4zhuantyejiaoshi/3SMX-JSJ/3SMRZ-KW/SMRZ-KW.jpg"
+      ],
+      "features": [
+        "环保材料制造",
+        "符合人体工学设计",
+        "坚固耐用，安全可靠",
+        "诗敏教学设备官方出品"
+      ]
+    },
+    {
+      "id": "prod-1774710769471-420",
+      "name": "科威特智慧讲台",
+      "category": "专用空间家具",
+      "description": "采用环保材料制造，整体结构稳定，设计符合人体工学，坚固耐用。",
+      "image": "http://www.seewin-edu.com/uploadfile/Product-OK/5baiban/SMRJ-KWT-1780-B/SMRJ-KWT-1780-B-1.jpg",
+      "images": [
+        "http://www.seewin-edu.com/uploadfile/Product-OK/5baiban/SMRJ-KWT-1780-B/SMRJ-KWT-1780-B-1.jpg",
+        "http://www.seewin-edu.com/uploadfile/Product-OK/5baiban/SMRJ-KWT-1780-B/SMRJ-KWT-1780-B-2.jpg",
+        "http://www.seewin-edu.com/uploadfile/Product-OK/5baiban/SMX-Veri/SMX-Veri.jpg",
+        "http://www.seewin-edu.com/uploadfile/Product-OK/5baiban/SMRJ-KWT-1780-B/SMRJ-KWT-1780-B.jpg",
+        "http://www.seewin-edu.com/uploadfile/Product-OK/5baiban/SMR01J-YK1060B2/SMR01J-YK1060B2-1.jpg"
+      ],
+      "features": [
+        "环保材料制造",
+        "符合人体工学设计",
+        "坚固耐用，安全可靠",
+        "诗敏教学设备官方出品"
+      ]
+    },
+    {
+      "id": "prod-1774710769730-653",
+      "name": "凡尔赛储物柜",
+      "category": "储物柜",
+      "description": "采用环保材料制造，整体结构稳定，设计符合人体工学，坚固耐用。",
+      "image": "http://www.seewin-edu.com/uploadfile/Product-OK/9chuwugui/4fanersai/SMG-FES-1240-B.jpg",
+      "images": [
+        "http://www.seewin-edu.com/uploadfile/Product-OK/9chuwugui/4fanersai/SMG-FES-1240-B.jpg",
+        "http://www.seewin-edu.com/uploadfile/Product-OK/9chuwugui/4fanersai/FES-1.jpg",
+        "http://www.seewin-edu.com/uploadfile/Product-OK/9chuwugui/6like/lkfm.jpg",
+        "http://www.seewin-edu.com/uploadfile/Product-OK/9chuwugui/4fanersai/fmFES.jpg",
+        "http://www.seewin-edu.com/uploadfile/Product-OK/9chuwugui/1liang/fmLA.jpg"
+      ],
+      "features": [
+        "环保材料制造",
+        "符合人体工学设计",
+        "坚固耐用，安全可靠",
+        "诗敏教学设备官方出品"
+      ]
+    },
+    {
+      "id": "prod-1774710769988-357",
+      "name": "西塞罗双面柜",
+      "category": "储物柜",
+      "description": "采用环保材料制造，整体结构稳定，设计符合人体工学，坚固耐用。",
+      "image": "http://www.seewin-edu.com/uploadfile/Product-OK/13tushuguan/2TSG/11XSL/SMG-XSL-1660-B.jpg",
+      "images": [
+        "http://www.seewin-edu.com/uploadfile/Product-OK/13tushuguan/2TSG/11XSL/SMG-XSL-1660-B.jpg",
+        "http://www.seewin-edu.com/uploadfile/Product-OK/13tushuguan/2TSG/11XSL/XSL-1.jpg",
+        "http://www.seewin-edu.com/uploadfile/Product-OK/13tushuguan/2TSG/11XSL/XSL-2.jpg",
+        "http://www.seewin-edu.com/uploadfile/Product-OK/13tushuguan/2TSG/11XSL/XSL-3.jpg",
+        "http://www.seewin-edu.com/uploadfile/Product-OK/13tushuguan/2TSG/11XSL/XSL-4.jpg",
+        "http://www.seewin-edu.com/uploadfile/Product-OK/13tushuguan/2TSG/10BZ/fmBZ.jpg",
+        "http://www.seewin-edu.com/uploadfile/Product-OK/13tushuguan/2TSG/11XSL/fmXSL.jpg",
+        "http://www.seewin-edu.com/uploadfile/Product-OK/13tushuguan/2TSG/8BS/fmBS.jpg"
+      ],
+      "features": [
+        "环保材料制造",
+        "符合人体工学设计",
+        "坚固耐用，安全可靠",
+        "诗敏教学设备官方出品"
+      ]
+    },
+    {
+      "id": "prod-1774710770246-43",
+      "name": "海纳上床下桌",
+      "category": "专用空间家具",
+      "description": "采用环保材料制造，整体结构稳定，设计符合人体工学，坚固耐用。",
+      "image": "http://www.seewin-edu.com/uploadfile/Product-OK/2sushe/4haina/SMRC-HN(PT)-4090-B.jpg",
+      "images": [
+        "http://www.seewin-edu.com/uploadfile/Product-OK/2sushe/4haina/SMRC-HN(PT)-4090-B.jpg",
+        "http://www.seewin-edu.com/uploadfile/Product-OK/2sushe/4haina/SMRC-HN(TG)-4590-B.jpg",
+        "http://www.seewin-edu.com/uploadfile/Product-OK/2sushe/4haina/HN-2.jpg",
+        "http://www.seewin-edu.com/uploadfile/Product-OK/2sushe/4haina/HN-1.jpg",
+        "http://www.seewin-edu.com/uploadfile/Product-OK/2sushe/1hdpt/fmpt.jpg",
+        "http://www.seewin-edu.com/uploadfile/Product-OK/2sushe/5tiya/fm.jpg",
+        "http://www.seewin-edu.com/uploadfile/Product-OK/2sushe/7haisen/fmHS.jpg"
+      ],
+      "features": [
+        "环保材料制造",
+        "符合人体工学设计",
+        "坚固耐用，安全可靠",
+        "诗敏教学设备官方出品"
+      ]
+    },
+    {
+      "id": "prod-1774710770504-534",
+      "name": "达拉斯餐桌椅",
+      "category": "专用空间家具",
+      "description": "采用环保材料制造，整体结构稳定，设计符合人体工学，坚固耐用。",
+      "image": "http://www.seewin-edu.com/uploadfile/Product-OK/3canting/8dalas/SMWZ-DLS-1575-M.jpg",
+      "images": [
+        "http://www.seewin-edu.com/uploadfile/Product-OK/3canting/8dalas/SMWZ-DLS-1575-M.jpg",
+        "http://www.seewin-edu.com/uploadfile/Product-OK/3canting/8dalas/SMWZ-DLS-1275-M.jpg",
+        "http://www.seewin-edu.com/uploadfile/Product-OK/3canting/8dalas/SMWZ-DLS-1275-M-1.jpg",
+        "http://www.seewin-edu.com/uploadfile/Product-OK/3canting/8dalas/images/dalas1.jpg",
+        "http://www.seewin-edu.com/uploadfile/Product-OK/3canting/8dalas/images/dalas2.jpg",
+        "http://www.seewin-edu.com/uploadfile/Product-OK/3canting/8dalas/images/dalas3.jpg",
+        "http://www.seewin-edu.com/uploadfile/Product-OK/3canting/8dalas/images/dalas4.jpg",
+        "http://www.seewin-edu.com/uploadfile/Product-OK/3canting/8dalas/images/dalas5.jpg",
+        "http://www.seewin-edu.com/uploadfile/Product-OK/3canting/8dalas/images/dalas6.jpg",
+        "http://www.seewin-edu.com/uploadfile/Product-OK/3canting/8dalas/images/dalas7.jpg",
+        "http://www.seewin-edu.com/uploadfile/Product-OK/3canting/8dalas/images/dalas8.jpg",
+        "http://www.seewin-edu.com/uploadfile/Product-OK/3canting/8dalas/images/dalas9.jpg",
+        "http://www.seewin-edu.com/uploadfile/Product-OK/3canting/8dalas/images/dalas10.jpg",
+        "http://www.seewin-edu.com/uploadfile/Product-OK/3canting/8dalas/images/dalas11.jpg",
+        "http://www.seewin-edu.com/uploadfile/Product-OK/3canting/8dalas/images/dalas12.jpg",
+        "http://www.seewin-edu.com/uploadfile/Product-OK/3canting/8dalas/images/dalas13.jpg",
+        "http://www.seewin-edu.com/uploadfile/Product-OK/3canting/8dalas/fm.jpg",
+        "http://www.seewin-edu.com/uploadfile/Product-OK/3canting/7lanxin/fm.jpg",
+        "http://www.seewin-edu.com/uploadfile/Product-OK/3canting/4lanqi/fm.jpg"
+      ],
+      "features": [
+        "环保材料制造",
+        "符合人体工学设计",
+        "坚固耐用，安全可靠",
+        "诗敏教学设备官方出品"
+      ]
+    },
+    {
+      "id": "prod-1774710771168-247",
+      "name": "梵高绘画桌",
+      "category": "专用空间家具",
+      "description": "采用环保材料制造，整体结构稳定，设计符合人体工学，坚固耐用。",
+      "image": "http://www.seewin-edu.com/uploadfile/Product-OK/4zhuantyejiaoshi/5SMX-MSS/1SMRZ-FG/SMRZ-FG-6545-Q1.jpg",
+      "images": [
+        "http://www.seewin-edu.com/uploadfile/Product-OK/4zhuantyejiaoshi/5SMX-MSS/1SMRZ-FG/SMRZ-FG-6545-Q1.jpg",
+        "http://www.seewin-edu.com/uploadfile/Product-OK/4zhuantyejiaoshi/5SMX-MSS/1SMRZ-FG/SMRZ-FG-6545-A1.jpg",
+        "http://www.seewin-edu.com/uploadfile/Product-OK/4zhuantyejiaoshi/5SMX-MSS/1SMRZ-FG/SMRZ-FG-6545-A1-1.jpg",
+        "http://www.seewin-edu.com/uploadfile/Product-OK/4zhuantyejiaoshi/5SMX-MSS/1SMRZ-FG/SMRZ-FG-6545-Q1-2.jpg",
+        "http://www.seewin-edu.com/uploadfile/Product-OK/4zhuantyejiaoshi/5SMX-MSS/1SMRZ-FG/SMRZ-FG-6545-Q1-3.jpg",
+        "http://www.seewin-edu.com/uploadfile/Product-OK/4zhuantyejiaoshi/5SMX-MSS/4SMG-MK/SMG-MK.jpg",
+        "http://www.seewin-edu.com/uploadfile/Product-OK/4zhuantyejiaoshi/5SMX-MSS/1SMRZ-FG/SMRZ-FG.jpg",
+        "http://www.seewin-edu.com/uploadfile/Product-OK/4zhuantyejiaoshi/5SMX-MSS/6SMG-LS/SMG-LS.jpg"
+      ],
+      "features": [
+        "环保材料制造",
+        "符合人体工学设计",
+        "坚固耐用，安全可靠",
+        "诗敏教学设备官方出品"
+      ]
+    },
+    {
+      "id": "prod-1774710771426-724",
+      "name": "斯顿办公桌",
+      "category": "办公与课桌",
+      "description": "采用环保材料制造，整体结构稳定，设计符合人体工学，坚固耐用。",
+      "image": "http://www.seewin-edu.com/uploadfile/Product-OK/7xingzhengjiaju/3sidun/1bangongzhuo/SNJ-04SD-1616D.jpg",
+      "images": [
+        "http://www.seewin-edu.com/uploadfile/Product-OK/7xingzhengjiaju/3sidun/1bangongzhuo/SNJ-04SD-1616D.jpg",
+        "http://www.seewin-edu.com/uploadfile/Product-OK/7xingzhengjiaju/3sidun/4gongzuoweiC/fmSDGZWC.jpg",
+        "http://www.seewin-edu.com/uploadfile/Product-OK/7xingzhengjiaju/3sidun/6gongzuoweiE/fmSDGZWE.jpg",
+        "http://www.seewin-edu.com/uploadfile/Product-OK/7xingzhengjiaju/3sidun/17chashuiguiB/fmSDCSGB.jpg"
+      ],
+      "features": [
+        "环保材料制造",
+        "符合人体工学设计",
+        "坚固耐用，安全可靠",
+        "诗敏教学设备官方出品"
+      ]
+    },
+    {
+      "id": "prod-1774710771684-496",
+      "name": "办公椅6018",
+      "category": "座椅系列",
+      "description": "采用环保材料制造，整体结构稳定，设计符合人体工学，坚固耐用。",
+      "image": "http://www.seewin-edu.com/uploadfile/Product-OK/7xingzhengjiaju/6wangbuyi/6018/SM-6018B-1.jpg",
+      "images": [
+        "http://www.seewin-edu.com/uploadfile/Product-OK/7xingzhengjiaju/6wangbuyi/6018/SM-6018B-1.jpg",
+        "http://www.seewin-edu.com/uploadfile/Product-OK/7xingzhengjiaju/6wangbuyi/6018/SM-6018B-2.jpg",
+        "http://www.seewin-edu.com/uploadfile/Product-OK/7xingzhengjiaju/6wangbuyi/6018/SM-6018D-3.jpg",
+        "http://www.seewin-edu.com/uploadfile/Product-OK/7xingzhengjiaju/6wangbuyi/6018/WY6018-1.jpg",
+        "http://www.seewin-edu.com/uploadfile/Product-OK/7xingzhengjiaju/6wangbuyi/6018/WY6018-2.jpg",
+        "http://www.seewin-edu.com/uploadfile/Product-OK/7xingzhengjiaju/6wangbuyi/6018/WY6018-4.jpg",
+        "http://www.seewin-edu.com/uploadfile/Product-OK/7xingzhengjiaju/6wangbuyi/6018/WY6018-5.jpg",
+        "http://www.seewin-edu.com/uploadfile/Product-OK/7xingzhengjiaju/6wangbuyi/6018/WY6018-6.jpg",
+        "http://www.seewin-edu.com/uploadfile/Product-OK/7xingzhengjiaju/6wangbuyi/6215/fmWY6215.jpg",
+        "http://www.seewin-edu.com/uploadfile/Product-OK/7xingzhengjiaju/6wangbuyi/6018/fmWY6018.jpg",
+        "http://www.seewin-edu.com/uploadfile/Product-OK/7xingzhengjiaju/6wangbuyi/6046/fmWY6046.jpg"
+      ],
+      "features": [
+        "环保材料制造",
+        "符合人体工学设计",
+        "坚固耐用，安全可靠",
+        "诗敏教学设备官方出品"
+      ]
     }
   ]
 }
