@@ -107,14 +107,6 @@ export default function CaseDetail() {
           >
             获取报价
           </Button>
-          <Button 
-            variant="outline" 
-            size="lg" 
-            className="flex-1 h-14 font-heading uppercase"
-            onClick={() => setLocation("/")}
-          >
-            立即咨询
-          </Button>
         </div>
       </div>
     </div>

@@ -288,7 +288,7 @@ export default function Cases() {
                     onClick={() => window.location.href = `/cases/${caseItem.id}`}
                     className="inline-flex items-center gap-2 text-primary font-bold uppercase tracking-widest hover:gap-4 transition-all pt-2 bg-transparent border-none cursor-pointer p-0"
                   >
-                    了解详情 <ChevronRight className="h-5 w-5" />
+                    查看项目 <ChevronRight className="h-5 w-5" />
                   </button>
                 </div>
               </div>
@@ -328,7 +328,7 @@ export default function Cases() {
             </p>
           </div>
           <a href="#contact" className="inline-flex items-center gap-2 px-10 py-4 h-16 text-xl font-heading uppercase tracking-wider bg-secondary text-white hover:bg-white hover:text-primary transition-all rounded-none">
-            立即咨询
+            获取报价
           </a>
         </div>
       </section>

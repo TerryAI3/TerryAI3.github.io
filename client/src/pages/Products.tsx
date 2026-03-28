@@ -116,11 +116,6 @@ export default function Products() {
                         {product.description}
                       </p>
                     )}
-                    {product.price && (
-                      <p className="text-primary font-semibold mt-4">
-                        {product.price}
-                      </p>
-                    )}
                   </div>
                 </a>
             ))}

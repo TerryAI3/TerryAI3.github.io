@@ -102,7 +102,7 @@ export default function Office() {
                 <Button 
                   className="absolute bottom-0 left-0 w-full rounded-none translate-y-full group-hover:translate-y-0 transition-transform duration-300 font-heading uppercase tracking-wider"
                 >
-                  查看详情
+                  查看更多
                 </Button>
               </div>
 

@@ -145,7 +145,7 @@ export default function About() {
             </div>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               {[
-                { num: "01", title: "专业咨询", desc: "资深设计师为您的空间量身定制解决方案" },
+                { num: "01", title: "专业规划", desc: "资深设计师为您的空间量身定制解决方案" },
                 { num: "02", title: "精心设计", desc: "从空间规划到产品选型，全程专业指导" },
                 { num: "03", title: "优质制造", desc: "采用先进工艺和优质材料，确保产品质量" },
                 { num: "04", title: "安全物流", desc: "专业物流团队确保产品安全送达" },
@@ -175,7 +175,7 @@ export default function About() {
             </p>
           </div>
           <Button size="lg" className="rounded-none h-16 px-10 text-xl font-heading uppercase tracking-wider bg-secondary text-white hover:bg-white hover:text-primary">
-            立即咨询
+            获取报价
           </Button>
         </div>
       </section>

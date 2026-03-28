@@ -261,7 +261,7 @@ export default function Home() {
                     <div className="w-full">
                       <h3 className="text-white font-bold text-lg mb-3">{project.title || project.name}</h3>
                       <Button variant="secondary" size="sm" className="w-full">
-                        了解详情 <ArrowRight className="ml-2 h-4 w-4" />
+                        查看项目 <ArrowRight className="ml-2 h-4 w-4" />
                       </Button>
                     </div>
                   </div>

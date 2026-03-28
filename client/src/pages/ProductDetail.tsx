@@ -66,10 +66,6 @@ export default function ProductDetail() {
         
         <div className="flex flex-wrap gap-12 pb-8 border-b border-border">
           <div>
-            <p className="text-sm text-muted-foreground mb-2">产品价格</p>
-            <p className="text-3xl font-bold">${product.price}</p>
-          </div>
-          <div>
             <p className="text-sm text-muted-foreground mb-2">产品系列</p>
             <p className="text-lg font-semibold">{product.seriesId ? `系列 ${product.seriesId}` : "未分类"}</p>
           </div>
@@ -139,14 +135,6 @@ export default function ProductDetail() {
               onClick={() => setLocation("/")}
             >
               获取报价
-            </Button>
-            <Button 
-              variant="outline" 
-              size="lg" 
-              className="flex-1 h-14 font-heading uppercase"
-              onClick={() => setLocation("/")}
-            >
-              立即咨询
             </Button>
           </div>
         </div>
