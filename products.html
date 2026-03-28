@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>产品中心 - 佐迪智能家具</title>
+    <link rel="stylesheet" href="/assets/index-Cg7oX_Ag.css">
+    <style>
+        .products-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            min-height: 70vh;
+        }
+        .products-header {
+            text-align: center;
+            margin-bottom: 60px;
+            padding-top: 40px;
+        }
+        .products-header h1 {
+            font-size: 2.5rem;
+            color: #333;
+            margin-bottom: 20px;
+        }
+        .products-header p {
+            font-size: 1.2rem;
+            color: #666;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+        .category-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+        .category-tab {
+            padding: 12px 30px;
+            background: #f8f9fa;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: 500;
+        }
+        .category-tab.active {
+            background: #3498db;
+            color: white;
+        }
+        .category-tab:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+        .product-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+        .product-card:hover {
+            transform: translateY(-5px);
+        }
+        .product-image {
+            height: 200px;
+            background: #f5f5f5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #999;
+            font-size: 1.5rem;
+        }
+        .product-content {
+            padding: 20px;
+        }
+        .product-title {
+            font-size: 1.3rem;
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+        .product-description {
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 15px;
+            font-size: 0.95rem;
+        }
+        .product-features {
+            list-style: none;
+            padding: 0;
+            margin-bottom: 20px;
+        }
+        .product-features li {
+            padding: 5px 0;
+            color: #555;
+            font-size: 0.9rem;
+        }
+        .product-features li:before {
+            content: "✓ ";
+            color: #27ae60;
+            font-weight: bold;
+        }
+        .product-price {
+            color: #e74c3c;
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+        .product-actions {
+            display: flex;
+            gap: 10px;
+        }
+        .btn {
+            padding: 10px 20px;
+            border-radius: 5px;
+            border: none;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+        .btn-primary {
+            background: #3498db;
+            color: white;
+            flex: 1;
+        }
+        .btn-secondary {
+            background: #f8f9fa;
+            color: #333;
+            border: 1px solid #ddd;
+        }
+        .btn:hover {
+            opacity: 0.9;
+            transform: translateY(-2px);
+        }
+        .contact-section {
+            background: #f8f9fa;
+            padding: 40px;
+            border-radius: 10px;
+            text-align: center;
+            margin-top: 60px;
+        }
+        .contact-section h2 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+        .contact-section p {
+            color: #666;
+            max-width: 600px;
+            margin: 0 auto 30px;
+            line-height: 1.6;
+        }
+        .back-home {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 10px 20px;
+            background: #3498db;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+        .back-home:hover {
+            background: #2980b9;
+        }
+    </style>
+    <link rel="stylesheet" href="/assets/mobile_patch.css">
+</head>
+<body>
+    <div class="products-container">
+        <div class="products-header">
+            <h1>产品中心</h1>
+            <p>专业办公家具和学校家具解决方案，为您的办公和学习空间提供最佳选择</p>
+            <a href="/" class="back-home">返回首页</a>
+        </div>
+
+        <div class="category-tabs">
+            <div class="category-tab active" data-category="office">办公家具</div>
+            <div class="category-tab" data-category="school">学校家具</div>
+            <div class="category-tab" data-category="chair">办公椅系列</div>
+            <div class="category-tab" data-category="desk">课桌椅系列</div>
+        </div>
+
+        <div class="products-grid" id="products-grid">
+            <!-- 办公家具 -->
+            <div class="product-card" data-category="office">
+                <div class="product-image">
+                    <img src="/images/products/office-desk-executive.webp" alt="现代办公桌" style="width: 100%; height: 100%; object-fit: cover;">
+                </div>
+                <div class="product-content">
+                    <h3 class="product-title">现代办公桌系列</h3>
+                    <p class="product-description">人体工学设计，多种尺寸可选，适合不同办公空间需求</p>
+                    <ul class="product-features">
+                        <li>环保E1级板材</li>
+                        <li>可调节高度设计</li>
+                        <li>线缆管理系统</li>
+                        <li>多种颜色可选</li>
+                    </ul>
+                    <div class="product-price">¥1,200 - ¥3,500</div>
+                    <div class="product-actions">
+                        <button class="btn btn-primary">立即咨询</button>
+                        <button class="btn btn-secondary">查看详情</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-card" data-category="office">
+                <div class="product-image">
+                    <img src="/images/products/conference-table.webp" alt="会议桌" style="width: 100%; height: 100%; object-fit: cover;">
+                </div>
+                <div class="product-content">
+                    <h3 class="product-title">会议桌系列</h3>
+                    <p class="product-description">专业会议空间解决方案，提升会议效率</p>
+                    <ul class="product-features">
+                        <li>实木/钢化玻璃可选</li>
+                        <li>集成电源插座</li>
+                        <li>无线充电功能</li>
+                        <li>4-20人多种尺寸</li>
+                    </ul>
+                    <div class="product-price">¥3,800 - ¥15,000</div>
+                    <div class="product-actions">
+                        <button class="btn btn-primary">立即咨询</button>
+                        <button class="btn btn-secondary">查看详情</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 学校家具 -->
+            <div class="product-card" data-category="school">
+                <div class="product-image">
+                    <img src="/images/products/student-desk-adjustable.webp" alt="学生课桌" style="width: 100%; height: 100%; object-fit: cover;">
+                </div>
+                <div class="product-content">
+                    <h3 class="product-title">学生课桌系列</h3>
+                    <p class="product-description">符合国家标准，保护学生视力，促进健康成长</p>
+                    <ul class="product-features">
+                        <li>可调节高度</li>
+                        <li>防近视设计</li>
+                        <li>环保无毒涂料</li>
+                        <li>耐磨防刮表面</li>
+                    </ul>
+                    <div class="product-price">¥280 - ¥450</div>
+                    <div class="product-actions">
+                        <button class="btn btn-primary">立即咨询</button>
+                        <button class="btn btn-secondary">查看详情</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-card" data-category="school">
+                <div class="product-image">
+                    <img src="/images/products/classroom-furniture.webp" alt="实验室家具" style="width: 100%; height: 100%; object-fit: cover;">
+                </div>
+                <div class="product-content">
+                    <h3 class="product-title">实验室家具系列</h3>
+                    <p class="product-description">专业实验室解决方案，耐腐蚀、易清洁</p>
+                    <ul class="product-features">
+                        <li>耐酸碱腐蚀</li>
+                        <li>防火阻燃材料</li>
+                        <li>专业通风系统</li>
+                        <li>模块化设计</li>
+                    </ul>
+                    <div class="product-price">¥5,000 - ¥20,000</div>
+                    <div class="product-actions">
+                        <button class="btn btn-primary">立即咨询</button>
+                        <button class="btn btn-secondary">查看详情</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="contact-section">
+            <h2>需要定制解决方案？</h2>
+            <p>我们提供专业的定制服务，根据您的空间尺寸、功能需求和预算，量身打造最适合的家具解决方案。</p>
+            <button class="btn btn-primary" style="padding: 15px 40px; font-size: 1.1rem;">获取免费设计方案</button>
+        </div>
+    </div>
+
+    <script>
+        // 分类切换功能
+        document.querySelectorAll('.category-tab').forEach(tab => {
+            tab.addEventListener('click', function() {
+                // 更新激活状态
+                document.querySelectorAll('.category-tab').forEach(t => t.classList.remove('active'));
+                this.classList.add('active');
+                
+                // 筛选产品
+                const category = this.getAttribute('data-category');
+                const products = document.querySelectorAll('.product-card');
+                
+                products.forEach(product => {
+                    if (category === 'all' || product.getAttribute('data-category') === category) {
+                        product.style.display = 'block';
+                    } else {
+                        product.style.display = 'none';
+                    }
+                });
+            });
+        });
+
+        // 加载React应用的样式
+        const link = document.createElement('link');
+        link.rel = 'stylesheet';
+        link.href = '/assets/index-Cg7oX_Ag.css';
+        document.head.appendChild(link);
+    </script>
+</body>
+</html>

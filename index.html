@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>ZUODI 佐迪智能家具 | 办公空间解决方案专家</title>
+
+    <!-- Performance LCP preloads -->
+    <link rel="preload" href="./images/hero-1.jpg" as="image">
+    <link rel="preload" href="./images/hero-office.jpg" as="image">
+    
+    <!-- SEO and Security Hardening -->
+    <meta name="description" content="ZUODI 佐迪智能家具，致力于为企业提供高端办公环境与智慧空间解决方案，包括专业办公桌椅与多媒体培训设备。">
+    <meta name="keywords" content="佐迪家具, 智能办公, 办公空间, 高端办公桌椅">
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta http-equiv="X-XSS-Protection" content="1; mode=block">
+
+    <link rel="dns-prefetch" href="https://zuodii.com">
+    <link rel="stylesheet" href="./assets/index-Cg7oX_Ag.css">
+    <link rel="stylesheet" href="./assets/mobile_patch.css">
+    <!-- 加载静态数据 -->
+    <script src="./data/loader.js"></script>
+    <script>
+        window.zuodii_appId = "zuodii-prod";
+        window.zuodii_mode = "static";
+        console.log('[ZUODII] 应用启动，模式: 静态数据驱动');
+        
+        window.addEventListener('error', function(e) {
+            var errDisplay = document.getElementById('error-display');
+            if (errDisplay) {
+                errDisplay.style.display = 'block';
+                errDisplay.style.color = 'red';
+                errDisplay.style.marginTop = '10px';
+                errDisplay.style.fontSize = '12px';
+                errDisplay.style.maxWidth = '80%';
+                errDisplay.style.wordBreak = 'break-all';
+                errDisplay.innerText = e.message || e;
+            }
+        });
+    </script>
+    <style>
+        #loading-overlay {
+            position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(255, 255, 255, 0.95); z-index: 9999;
+            display: flex; flex-direction: column; justify-content: center; align-items: center;
+            font-family: Arial, sans-serif;
+        }
+        #loading-status { font-size: 18px; margin: 20px; color: #333; }
+        #error-display { display: none; }
+        .spinner {
+            width: 40px; height: 40px; border: 4px solid #f3f3f3;
+            border-top: 4px solid #3498db; border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+    </style>
+</head>
+<body>
+    <div id="loading-overlay">
+        <div class="spinner"></div>
+        <div id="loading-status">初始化中...</div>
+        <div id="error-display"></div>
+        <div style="margin-top: 20px; font-size: 14px; color: #666; text-align: center; padding: 0 20px;">
+            如果长时间停留在此页面，请检查网络或刷新重试
+        </div>
+    </div>
+    <div id="root"></div>
+    <noscript>
+        <div style="text-align:center; padding:50px;">
+            <h1>佐迪智能家具</h1>
+            <p>请开启 JavaScript 以访问完整功能。</p>
+        </div>
+    </noscript>
+
+    <script type="module" src="./assets/index-T7eFSBbb.js"></script>
+    <script type="module" src="./assets/vendor-CANcgsl4.js"></script>
+    <script type="module" src="./assets/ui-DbSFp3oG.js"></script>
+    
+    <script>
+        var hideLoader = function() {
+            var overlay = document.getElementById('loading-overlay');
+            if (overlay) overlay.style.display = 'none';
+        };
+        window.addEventListener('load', function() {
+            setTimeout(hideLoader, 3000);
+        });
+        setTimeout(hideLoader, 8000);
+        
+        var checkRoot = function() {
+            var root = document.getElementById('root');
+            if (root && root.innerHTML.trim().length > 100) {
+                hideLoader();
+            } else {
+                setTimeout(checkRoot, 500);
+            }
+        };
+        setTimeout(checkRoot, 500);
+    </script>
+</body>
+</html>
