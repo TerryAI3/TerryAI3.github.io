@@ -1,0 +1,75 @@
+/* 🎨 四大品牌整合颜色系统 */
+
+:root {
+  /* ===== 主色调 ===== */
+  /* 玛祖铭立: 高端深蓝 + 欧美斯: 现代中性 */
+  --color-primary: #1a365d;        /* 深蓝 - 专业、信任 */
+  --color-secondary: #2d3748;      /* 深灰 - 稳重、高端 */
+  --color-background: #ffffff;     /* 白 - 纯净、空间感 */
+  --color-surface: #f7fafc;        /* 浅灰 - 现代、简洁 */
+  
+  /* ===== 辅助色 ===== */
+  /* 玛祖铭立: 金色细节 + 欧美斯: 健康色系 */
+  --color-accent-gold: #d4af37;    /* 金 - 品质、奢华 */
+  --color-accent-teal: #319795;    /* 青 - 健康、清新 */
+  --color-accent-blue: #4299e1;    /* 蓝 - 科技、创新 */
+  --color-accent-gray: #a0aec0;    /* 灰 - 中性、过渡 */
+  
+  /* ===== 强调色 ===== */
+  /* 欧美斯: 灵感色 + 欧林: 专业色 */
+  --color-emphasis-orange: #ed8936; /* 橙 - 活力、创意 */
+  --color-emphasis-green: #48bb78;  /* 绿 - 成功、环保 */
+  --color-emphasis-purple: #9f7aea; /* 紫 - 灵感、创新 */
+  --color-emphasis-red: #f56565;    /* 红 - 重要、提示 */
+  
+  /* ===== 文字色 ===== */
+  /* 玛祖铭立: 高对比度 + 欧美斯: 易读性 */
+  --color-text-primary: #1a202c;    /* 近黑 - 主要文字 */
+  --color-text-secondary: #4a5568;  /* 深灰 - 次要文字 */
+  --color-text-tertiary: #718096;   /* 中灰 - 辅助文字 */
+  --color-text-inverse: #ffffff;    /* 白 - 反白文字 */
+  
+  /* ===== 边框和分割线 ===== */
+  --color-border-light: #e2e8f0;    /* 浅灰 - 细边框 */
+  --color-border-medium: #cbd5e0;   /* 中灰 - 常规边框 */
+  --color-border-dark: #a0aec0;     /* 深灰 - 强调边框 */
+  
+  /* ===== 状态色 ===== */
+  --color-success: #38a169;         /* 绿 - 成功状态 */
+  --color-warning: #d69e2e;         /* 黄 - 警告状态 */
+  --color-error: #e53e3e;           /* 红 - 错误状态 */
+  --color-info: #3182ce;            /* 蓝 - 信息状态 */
+}
+
+/* 深色模式支持 */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-primary: #2d3748;
+    --color-secondary: #1a202c;
+    --color-background: #171923;
+    --color-surface: #2d3748;
+    
+    --color-text-primary: #f7fafc;
+    --color-text-secondary: #e2e8f0;
+    --color-text-tertiary: #cbd5e0;
+    --color-text-inverse: #1a202c;
+    
+    --color-border-light: #4a5568;
+    --color-border-medium: #718096;
+    --color-border-dark: #a0aec0;
+  }
+}
+
+/* 颜色应用类 */
+.color-primary { color: var(--color-primary); }
+.bg-primary { background-color: var(--color-primary); }
+.border-primary { border-color: var(--color-primary); }
+
+.color-secondary { color: var(--color-secondary); }
+.bg-secondary { background-color: var(--color-secondary); }
+
+.color-accent-gold { color: var(--color-accent-gold); }
+.bg-accent-gold { background-color: var(--color-accent-gold); }
+
+.color-accent-teal { color: var(--color-accent-teal); }
+.bg-accent-teal { background-color: var(--color-accent-teal); }
