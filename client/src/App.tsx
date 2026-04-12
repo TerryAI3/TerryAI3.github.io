@@ -3,6 +3,7 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import HomePage from './pages/HomePage';
 import ProductsPage from './pages/ProductsPage';
+import IntelligencePage from './pages/Intelligence';
 
 const App: React.FC = () => {
   return (
@@ -18,7 +19,7 @@ const App: React.FC = () => {
                   佐迪家具
                 </div>
                 <div className="ml-2 text-sm text-gray-500 hidden sm:block">
-                  四大品牌整合
+                  智能智造
                 </div>
               </Link>
 
@@ -30,11 +31,11 @@ const App: React.FC = () => {
                 <Link to="/products" className="text-gray-700 hover:text-primary transition-colors duration-300 font-medium">
                   产品中心
                 </Link>
+                <Link to="/intelligence" className="text-gray-700 hover:text-primary transition-colors duration-300 font-medium">
+                  数字情报
+                </Link>
                 <Link to="/cases" className="text-gray-700 hover:text-primary transition-colors duration-300 font-medium">
                   案例展示
-                </Link>
-                <Link to="/solutions" className="text-gray-700 hover:text-primary transition-colors duration-300 font-medium">
-                  解决方案
                 </Link>
                 <Link to="/contact" className="text-gray-700 hover:text-primary transition-colors duration-300 font-medium">
                   联系我们
