@@ -4,7 +4,7 @@ import { resolve } from 'path';
 
 // CDN配置 - 生产环境使用CDN，开发环境使用本地
 const isProduction = process.env.NODE_ENV === 'production';
-const cdnBaseUrl = isProduction ? 'https://cdn.terryai3.com' : '';
+const cdnBaseUrl = isProduction ? 'https://cdn.zuodii.com' : '';
 
 // https://vitejs.dev/config/
 export default defineConfig({

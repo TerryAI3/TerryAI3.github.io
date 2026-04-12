@@ -2,7 +2,8 @@
 
 ## 📋 项目概况
 - **项目名称**: 佐迪智能家具官网
-- **GitHub仓库**: TerryAI3.github.io
+- **主域名**: zuodii.com
+- **GitHub仓库**: TerryAI3.github.io (开发仓库)
 - **当前分支**: source (开发分支)
 - **部署分支**: gh-pages (生产分支)
 - **技术栈**: React + TypeScript + Vite + TailwindCSS
@@ -58,7 +59,7 @@ npm run analyze
 
 ### 3. CDN准备就绪
 - **CDN配置**: 已集成到构建配置
-- **基础URL**: `https://cdn.terryai3.com` (生产环境)
+- **基础URL**: `https://cdn.zuodii.com` (生产环境)
 - **缓存策略**: 静态资源1年缓存
 - **备用方案**: Cloudflare + 阿里云混合
 

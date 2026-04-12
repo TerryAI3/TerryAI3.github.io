@@ -45,8 +45,8 @@ echo "📡 CDN配置说明:"
 echo ""
 echo "1. Cloudflare配置:"
 echo "   - 登录Cloudflare控制台"
-echo "   - 添加域名: terryai3.github.io"
-echo "   - 修改DNS记录指向GitHub Pages"
+echo "   - 添加域名: zuodii.com"
+echo "   - 修改DNS记录指向GitHub Pages (或当前主机)"
 echo "   - 启用代理状态 (橙色云图标)"
 echo "   - 配置SSL/TLS为Full"
 echo "   - 启用Always Use HTTPS"
@@ -136,8 +136,8 @@ test_speed() {
 }
 
 # 测试URLs
-MAIN_URL="https://terryai3.github.io"
-CDN_URL="https://cdn.terryai3.com/assets/index-CwRbp4qa.js"
+MAIN_URL="https://zuodii.com"
+CDN_URL="https://cdn.zuodii.com/assets/index-CwRbp4qa.js"
 
 echo ""
 echo "🌐 可用性测试:"
